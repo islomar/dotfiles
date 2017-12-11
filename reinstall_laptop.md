@@ -11,7 +11,7 @@
   * alias redo='sudo $(history -p !!)'
 * oh-my-zsh
 * Install yarn: `https://yarnpkg.com/lang/en/docs/install/`
-* sudo apt install npm
+* sudo apt install npm gitk git-gui
 * Configure SSH Server
   * http://ubuntuhandbook.org/index.php/2016/04/enable-ssh-ubuntu-16-04-lts/
   * https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
