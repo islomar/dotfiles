@@ -10,13 +10,18 @@
 * crear bash_aliases
   * alias redo='sudo $(history -p !!)'
 * oh-my-zsh
-* sudo apt install yarn
+* Install yarn: `https://yarnpkg.com/lang/en/docs/install/`
 * sudo apt install npm
 * Configure SSH Server
   * http://ubuntuhandbook.org/index.php/2016/04/enable-ssh-ubuntu-16-04-lts/
   * https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
 * `apt-get --yes autoremove --purge`
 * `apt-get autoclean`
+* `sudo apt-get install libmysqlclient-dev libpq-dev python-dev -y`
+* vim
+  * sudo apt install vim
+  * Copiar el vimrc de dotfiles
+  * Instalar los plugins: https://voragine.net/linux/instalar-vundle-gestor-modulos-vim
 
 **PENDIENTE**
 * Configurar vimrc
