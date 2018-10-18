@@ -8,6 +8,8 @@ Some references used:
 
 * https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml
 
+## Vim
+Install https://github.com/VundleVim/Vundle.vim
 
 
 ## Installing the coding style settings in Intellij
