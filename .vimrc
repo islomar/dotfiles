@@ -11,28 +11,28 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plug
-call plug#begin()
-Plug 'bling/vim-airline'
+call vundle#begin()
+Plugin 'bling/vim-airline'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'tpope/vim-vinegar'
-Plug 'kien/ctrlp.vim', { 'on': 'CtrlP' }
+Plugin 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plugin 'tpope/vim-vinegar'
+Plugin 'kien/ctrlp.vim', { 'on': 'CtrlP' }
 
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
-Plug 'tpope/vim-surround'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'nestorsalceda/vim-strip-trailing-whitespaces'
+Plugin 'tpope/vim-surround'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'nestorsalceda/vim-strip-trailing-whitespaces'
 
-Plug 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
-Plug 'klen/python-mode', { 'for': 'python' }
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plugin 'klen/python-mode', { 'for': 'python' }
+Plugin 'fatih/vim-go', { 'for': 'go' }
 let g:go_fmt_command = "goimports"
-Plug 'chase/vim-ansible-yaml', { 'for': 'ansible' }
+Plugin 'chase/vim-ansible-yaml', { 'for': 'ansible' }
 
-call plug#end()
+call vundle#end()
 
 let mapleader=","
 
