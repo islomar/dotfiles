@@ -12,7 +12,6 @@ Some references used:
 Install https://github.com/VundleVim/Vundle.vim
 
 
-## Installing the coding style settings in Intellij
-1. Download the intellij-java-google-style.xml file from the http://code.google.com/p/google-styleguide/ repo. 
-2. Copy it into your config/codestyles folder in your intellij settings folder. 
-3. Under Settings/Code Style select the google-styleguide as current code style for the metanome project.
+## IntelliJ settings
+* I'm using the "IDE Settings Sync" plugin, which is an automated way of syncing the IDE on any instance where you have logged.
+* Still, the exported settings are included in this repo as a ZIP file
