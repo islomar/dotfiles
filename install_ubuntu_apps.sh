@@ -12,6 +12,13 @@ sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install slack --classic
 
+# Ubuntu themes
+sudo apt install gnome-tweaks -y
+sudo apt install adwaita-icon-theme-full -y
+sudo apt install arc-theme -y
+sudo apt install numix-gtk-theme numix-icon-theme -y
+
+
 # Vundle for vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cd ~ && vim +PluginInstall +qall && cd -
