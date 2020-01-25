@@ -11,6 +11,7 @@ sudo apt install vim curl git npm yarn maven gitk git-gui silversearcher-ag htop
 sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install slack --classic
+sudo apt-get install smartmontools -y
 
 # Ubuntu themes
 sudo apt install gnome-tweaks -y
