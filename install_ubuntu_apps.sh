@@ -7,7 +7,7 @@ set -e
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install vim curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant -y
+sudo apt install vim curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip -y
 sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install slack --classic
