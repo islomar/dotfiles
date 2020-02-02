@@ -12,6 +12,7 @@ sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install slack --classic
 sudo apt-get install smartmontools -y
+sudo apt-get install --no-install-recommends gnome-panel -y
 
 # Ubuntu themes
 sudo apt install gnome-tweaks -y
