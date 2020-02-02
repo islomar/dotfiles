@@ -24,4 +24,5 @@
   * Instalar los plugins: https://voragine.net/linux/instalar-vundle-gestor-modulos-vim
 * uTorrent: https://www.linuxbabe.com/ubuntu/install-utorrent-ubuntu-16-04-17-04
 * Dropbox
+* [FreeFileSync](https://freefilesync.org/)
 * Configurar vimrc
