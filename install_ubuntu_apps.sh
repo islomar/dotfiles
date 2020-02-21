@@ -68,8 +68,6 @@ rm AdbeRdr9.5.5-1_i386linux_enu.deb
 # Dropbox
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 # ~/.dropbox-dist/dropboxd
-# Then, you need to set up the automatic boot (if you want it)
-#https://linoxide.com/linux-how-to/install-dropbox-ubuntu/
 
 # Spotify
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 4773BD5E130D1D45
@@ -106,3 +104,7 @@ rm google-chrome-stable_current_amd64.deb
 
 sudo apt autoremove --purge -y
 sudo apt autoclean
+
+# Manual steps
+## Generate GPG key: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
+## Dropbox: set up the automatic boot (if you want it) https://linoxide.com/linux-how-to/install-dropbox-ubuntu/
