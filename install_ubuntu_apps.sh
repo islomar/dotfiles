@@ -8,7 +8,6 @@ set -e
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt install vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro -y
-sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install slack --classic
 sudo apt-get install smartmontools -y
@@ -20,6 +19,7 @@ sudo apt install adwaita-icon-theme-full -y
 sudo apt install arc-theme -y
 sudo apt install numix-gtk-theme numix-icon-theme -y
 
+wget -O - https://github.com/nagygergo/jetbrains-toolbox-install/blob/master/jetbrains-toolbox.sh | bash
 
 # Vundle for vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
