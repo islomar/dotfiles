@@ -91,6 +91,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 # Git
 git config --global user.name "Isidro Lopez"
 git config --global user.email "islomar@gmail.com"
+git config --global core.editor vim
 
 # Visual Studio Code
 sudo snap install --classic code
