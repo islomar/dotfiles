@@ -8,7 +8,7 @@ set -e
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro -y
+sudo apt install vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip -y
 sudo snap install postman
 sudo snap install slack --classic
 sudo apt-get install smartmontools -y
@@ -31,6 +31,13 @@ sudo apt-get install fonts-powerline -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
 echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc"
+
+# PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
+cd ~
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 # Install Golang: https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-18-04
 ## Check the last release: https://golang.org/dl/
