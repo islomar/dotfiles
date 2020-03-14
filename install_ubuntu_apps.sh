@@ -22,6 +22,8 @@ sudo apt install numix-gtk-theme numix-icon-theme -y
 
 wget -O - https://github.com/nagygergo/jetbrains-toolbox-install/blob/master/jetbrains-toolbox.sh | bash
 
+curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+
 # Vundle for vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cd ~ && vim +PluginInstall +qall && cd -
