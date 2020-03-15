@@ -10,7 +10,7 @@ brew doctor
 brew update
 
 brew install vim tmux tmate curl git npm htop ctop maven slack postman
-brew cask install virtualbox vagrant
+brew cask install virtualbox vagrant google-chrome firefox
 
 # To install manually: vagrant virtualbox
 # Magnet (Windows manager)
