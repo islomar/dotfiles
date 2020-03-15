@@ -28,10 +28,12 @@ brew cleanup
 #   Install python, go
 #   Configure zsh
 #   Configure aliases
+#     https://gist.github.com/tyomo4ka/f76ac325ecaa3260808b98e715410067
 #     alias brewery='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
 #     IntelliJ
 #     cdgo
 #     cdw
+#     ll
 #     alias cleanup-docker="docker stop (docker ps -qa) && docker rm (docker ps -qa) && docker system prune -f && docker volume prune -f"
 
 
