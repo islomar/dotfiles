@@ -24,7 +24,16 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 brew cleanup
 
-# TODO: python, go, git
+# TODO: 
+#   Install python, go
+#   Configure zsh
+#   Configure aliases
+#     alias brewery='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
+#     IntelliJ
+#     cdgo
+#     cdw
+#     alias cleanup-docker="docker stop (docker ps -qa) && docker rm (docker ps -qa) && docker system prune -f && docker volume prune -f"
+
 
 # To install manually:
 #   Docker Desktop:   https://hub.docker.com/editions/community/docker-ce-desktop-mac
