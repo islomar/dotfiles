@@ -14,3 +14,7 @@ brew cask install virtualbox vagrant
 
 # To install manually: vagrant virtualbox
 # Magnet (Windows manager)
+
+# Other configurations:
+# Turn on FileVault (it requires an Apple ID)
+# Turn on Firewall
