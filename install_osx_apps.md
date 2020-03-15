@@ -24,6 +24,8 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 brew cleanup
 
+# TODO: python, go, git
+
 # To install manually:
 #   Docker Desktop:   https://hub.docker.com/editions/community/docker-ce-desktop-mac
 #   IntelliJ Toolbox: https://www.jetbrains.com/toolbox-app/download/#section=mac
@@ -34,4 +36,5 @@ brew cleanup
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
 #   Turn on Firewall
+#   Connect GitHub with SSH: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 #   Enable Find My Mac: https://support.apple.com/en-gb/guide/findmy-mac/fmm53101237/mac
