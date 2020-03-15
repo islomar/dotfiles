@@ -25,8 +25,9 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 brew cleanup
 
 # TODO: 
-#   Install python, go
+#   Install python, go, php
 #   Configure zsh
+#   Generate GPG key: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
 #   Configure aliases
 #     https://gist.github.com/tyomo4ka/f76ac325ecaa3260808b98e715410067
 #     alias brewery='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
