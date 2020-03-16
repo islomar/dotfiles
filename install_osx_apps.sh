@@ -11,8 +11,8 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install vim tmux tmate curl wget git npm htop ctop maven slack postman tree the_silver_searcher fzf
-brew cask install virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree
+brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf
+brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree
 
 # Vundle for vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -31,11 +31,8 @@ brew cleanup
 #   Configure aliases
 #     https://gist.github.com/tyomo4ka/f76ac325ecaa3260808b98e715410067
 #     alias brewery='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
-#     alias please='sudo $(history -p !-1)'
 #     IntelliJ
 #     cdgo
-#     cdw
-#     ll
 #     alias cleanup-docker="docker stop (docker ps -qa) && docker rm (docker ps -qa) && docker system prune -f && docker volume prune -f"
 
 
