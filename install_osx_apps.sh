@@ -23,16 +23,16 @@ curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 brew tap homebrew/cask-fonts
 brew cask install font-awesome-terminal-fonts
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts && ./install.sh && cd .. && rm -rf fonts
 
 brew cleanup
 
 # TODO: 
 #   Install python, go, php
-#   Configure zsh
 #   Generate GPG key: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
 #   Configure aliases
 #     https://gist.github.com/tyomo4ka/f76ac325ecaa3260808b98e715410067
