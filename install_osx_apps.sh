@@ -11,7 +11,7 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf zsh-syntax-highlighting
+brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf
 brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree
 
 # Vundle for vim
@@ -28,6 +28,9 @@ brew tap homebrew/cask-fonts
 brew cask install font-awesome-terminal-fonts
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts && ./install.sh && cd .. && rm -rf fonts
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 
 brew cleanup
 
@@ -47,7 +50,7 @@ brew cleanup
 #   IntelliJ Toolbox: https://www.jetbrains.com/toolbox-app/download/#section=mac
 #   Notion:           https://www.notion.so/desktop
 #   Grammarly
-#   zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+#   Add plugins to .zshrc: zsh-autosuggestions zsh-syntax-highlightning
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
