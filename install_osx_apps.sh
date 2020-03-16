@@ -11,7 +11,7 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install vim tmux tmate curl wget git npm htop ctop maven slack postman tree the_silver_searcher
+brew install vim tmux tmate curl wget git npm htop ctop maven slack postman tree the_silver_searcher fzf
 brew cask install virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree
 
 # Vundle for vim
