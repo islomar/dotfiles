@@ -47,10 +47,11 @@ brew cleanup
 #   IntelliJ Toolbox: https://www.jetbrains.com/toolbox-app/download/#section=mac
 #   Notion:           https://www.notion.so/desktop
 #   Grammarly
-# Magnet (Windows manager)
+
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
 #   Turn on Firewall
+#   In the Terminal, configure the font size and the Powerline font that you want, e.g. Powerline-patched Meslo
 #   Connect GitHub with SSH: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 #   Enable Find My Mac: https://support.apple.com/en-gb/guide/findmy-mac/fmm53101237/mac
