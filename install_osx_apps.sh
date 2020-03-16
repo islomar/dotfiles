@@ -22,6 +22,12 @@ cd ~ && vim +PluginInstall +qall && cd -
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Oh My Zsh
+brew tap homebrew/cask-fonts
+brew cask install font-awesome-terminal-fonts
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
 brew cleanup
 
 # TODO: 
