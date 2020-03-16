@@ -11,7 +11,7 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf
+brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf zsh-syntax-highlighting
 brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree
 
 # Vundle for vim
@@ -47,7 +47,7 @@ brew cleanup
 #   IntelliJ Toolbox: https://www.jetbrains.com/toolbox-app/download/#section=mac
 #   Notion:           https://www.notion.so/desktop
 #   Grammarly
-
+#   zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
