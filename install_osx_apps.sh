@@ -31,6 +31,7 @@ brew cleanup
 #   Configure aliases
 #     https://gist.github.com/tyomo4ka/f76ac325ecaa3260808b98e715410067
 #     alias brewery='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
+#     alias please='sudo $(history -p !-1)'
 #     IntelliJ
 #     cdgo
 #     cdw
