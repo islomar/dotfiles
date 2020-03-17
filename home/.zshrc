@@ -71,7 +71,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 aws z)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,6 +102,15 @@ export LC_CTYPE=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+
+# My aliases
+#alias ls="exa"
+alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
+alias cleanup-docker="docker stop $(docker ps -qa) && docker rm $(docker ps -qa) && docker system prune -f && docker volume prune -f"
+alias cdw="cd $HOME/workspace"
+alias cdc="cd $HOME/workspace/codium"
+alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
+alias please='sudo $(fc -ln -1)'
+
+
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-. $HOME/z.sh
