@@ -36,7 +36,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 brew cleanup
 
 # TODO: 
-#   Install python, go, php
+#   Install python, php
 #   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
 
 # To install manually:
@@ -45,7 +45,7 @@ brew cleanup
 #   Notion:           https://www.notion.so/desktop
 #   Grammarly
 #   Add plugins to .zshrc: zsh-autosuggestions zsh-syntax-highlightning
-
+#   Python: https://swapps.com/blog/how-to-configure-virtualenvwrapper-with-python3-in-osx-mojave/
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
