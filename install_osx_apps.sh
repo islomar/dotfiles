@@ -12,7 +12,7 @@ brew doctor
 brew update
 
 brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg
-brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree
+brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite
 
 # Vundle for vim
 wget https://raw.githubusercontent.com/islomar/dotfiles/master/.vimrc && cp -pr .vimrc $HOME/
@@ -58,5 +58,6 @@ brew cleanup
 #   Turn on FileVault (it requires an Apple ID)
 #   Turn on Firewall
 #   In the Terminal, configure the font size and the Powerline font that you want, e.g. Powerline-patched Meslo
+#   Generate and configure a new GPG: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
 #   Connect GitHub with SSH: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 #   Enable Find My Mac: https://support.apple.com/en-gb/guide/findmy-mac/fmm53101237/mac
