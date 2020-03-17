@@ -37,7 +37,7 @@ brew cleanup
 
 # TODO: 
 #   Install python, go, php
-
+#   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
 
 # To install manually:
 #   Docker Desktop:   https://hub.docker.com/editions/community/docker-ce-desktop-mac
