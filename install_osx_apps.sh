@@ -37,15 +37,7 @@ brew cleanup
 
 # TODO: 
 #   Install python, go, php
-#   Generate GPG key: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
-#   Configure aliases
-#     https://gist.github.com/tyomo4ka/f76ac325ecaa3260808b98e715410067
-#     alias brewery='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
-#     alias ls="exa"
-#     IntelliJ
-#     cdgo
-#     alias cleanup-docker="docker stop (docker ps -qa) && docker rm (docker ps -qa) && docker system prune -f && docker volume prune -f"
-#     alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
+
 
 # To install manually:
 #   Docker Desktop:   https://hub.docker.com/editions/community/docker-ce-desktop-mac
@@ -53,6 +45,7 @@ brew cleanup
 #   Notion:           https://www.notion.so/desktop
 #   Grammarly
 #   Add plugins to .zshrc: zsh-autosuggestions zsh-syntax-highlightning
+
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
