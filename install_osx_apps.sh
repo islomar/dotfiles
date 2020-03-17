@@ -36,7 +36,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 brew cleanup
 
 # TODO: 
-#   Install python, php
+#   Install php
 #   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
 
 # To install manually:
