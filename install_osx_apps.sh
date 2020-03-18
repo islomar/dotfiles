@@ -11,7 +11,7 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv
+brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer
 brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle rocket
 
 # Vundle for vim
@@ -55,3 +55,10 @@ brew cleanup
 #   Connect GitHub with SSH: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 #   Enable Find My Mac: https://support.apple.com/en-gb/guide/findmy-mac/fmm53101237/mac
 #   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
+#     Contexts (Windows Switcher): https://contexts.co/
+#     Authy
+#     Monosnap (screenshots)
+#     Caret (Markdown editor)
+#     Rocket (emojis)
+#     Magnet (Windows Manager, like Spectacle)
+#     Bartender (menu bar icons manager): https://www.macbartender.com/
