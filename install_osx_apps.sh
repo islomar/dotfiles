@@ -44,6 +44,8 @@ brew cleanup
 #   Add plugins to .zshrc: zsh-autosuggestions zsh-syntax-highlightning
 #   Python: https://swapps.com/blog/how-to-configure-virtualenvwrapper-with-python3-in-osx-mojave/
 #     * pipenv: https://docs.python-guide.org/dev/virtualenvs/#installing-pipenv
+#   Authy: https://authy.com
+
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
