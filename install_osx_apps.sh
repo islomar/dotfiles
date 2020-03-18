@@ -38,7 +38,6 @@ brew cleanup
 # TODO: 
 #   Install php
 #   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
-#   Magnet Windows Manager
 
 # To install manually:
 #   Docker Desktop:   https://hub.docker.com/editions/community/docker-ce-desktop-mac
