@@ -12,7 +12,7 @@ brew doctor
 brew update
 
 brew install vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv
-brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle
+brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle rocket
 
 # Vundle for vim
 wget https://raw.githubusercontent.com/islomar/dotfiles/master/.vimrc && cp -pr .vimrc $HOME/
@@ -35,9 +35,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 brew cleanup
 
-# TODO: 
-#   Install php
-#   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
 
 # To install manually:
 #   Docker Desktop:   https://hub.docker.com/editions/community/docker-ce-desktop-mac
@@ -55,3 +52,4 @@ brew cleanup
 #   Generate and configure a new GPG: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
 #   Connect GitHub with SSH: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 #   Enable Find My Mac: https://support.apple.com/en-gb/guide/findmy-mac/fmm53101237/mac
+#   https://github.com/CodelyTV/dotfiles/blob/master/doc/installation-guide.md
