@@ -66,3 +66,4 @@ brew cleanup
 
 # TO DO
 #   * Change zsh colours for prompt.
+#   * Configure Intellij: e.g. test templates, colours, etc.
