@@ -45,7 +45,7 @@ brew cleanup
 #   Python: https://swapps.com/blog/how-to-configure-virtualenvwrapper-with-python3-in-osx-mojave/
 #     * pipenv: https://docs.python-guide.org/dev/virtualenvs/#installing-pipenv
 #   Authy: https://authy.com
-
+#   Oh My Zsh - Fix Agnoster theme: https://github.com/agnoster/agnoster-zsh-theme/issues/72
 
 # Other configurations:
 #   Turn on FileVault (it requires an Apple ID)
