@@ -47,7 +47,7 @@ brew cleanup
 #   Authy: https://authy.com
 #   Oh My Zsh - Fix Agnoster theme: 
 #     https://github.com/agnoster/agnoster-zsh-theme/issues/72
-#     https://ethanschoonover.com/solarized/
+#     Use the Solarized theme: https://www.freecodecamp.org/news/jazz-up-your-bash-terminal-a-step-by-step-guide-with-pictures-80267554cb22/
 
 
 # Other configurations:
