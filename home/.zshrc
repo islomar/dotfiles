@@ -1,6 +1,13 @@
 zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$HOME/bin:$PATH"
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Configure Python
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
 
 export FZF_BASE=/usr/local/bin/fzf
 
@@ -111,6 +118,7 @@ alias cdw="cd $HOME/workspace"
 alias cdc="cd $HOME/workspace/codium"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias please='sudo $(fc -ln -1)'
-
+alias vzsh="vim ~/.zshrc"
+alias lg="lazygit"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
