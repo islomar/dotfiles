@@ -2,14 +2,15 @@
 All general purpose dot files with preferences and settings.
 
 Some references used:
+
+* [CodelyTV](https://github.com/CodelyTV/dotfiles)
 * https://dotfiles.github.io/
-
 * https://github.com/marianudo/dotfiles
-
 * https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml
 
-## Vim
-Install https://github.com/VundleVim/Vundle.vim
+## OS setups
+* [Ubuntu](./install_ubuntu_apps.sh)
+* [OSX](./install_osx_apps.sh)
 
 
 ## IntelliJ settings
