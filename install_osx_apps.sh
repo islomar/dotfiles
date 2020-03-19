@@ -62,3 +62,7 @@ brew cleanup
 #     Rocket (emojis)
 #     Magnet (Windows Manager, like Spectacle)
 #     Bartender (menu bar icons manager): https://www.macbartender.com/
+
+
+# TO DO
+#   * Change zsh colours for prompt.
