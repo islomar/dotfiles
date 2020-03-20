@@ -78,7 +78,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z zsh-sdkman)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,3 +122,8 @@ alias vzsh="vim ~/.zshrc"
 alias lg="lazygit"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+prompt_context(){} # To hide the user@hostname
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
