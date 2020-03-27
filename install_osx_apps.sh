@@ -23,6 +23,10 @@ cd ~ && vim +PluginInstall +qall && cd -
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Font Fira Code
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
+
 # Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 brew tap homebrew/cask-fonts
