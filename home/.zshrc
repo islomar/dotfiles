@@ -116,6 +116,7 @@ alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias cleanup-docker="docker stop $(docker ps -qa) && docker rm $(docker ps -qa) && docker system prune -f && docker volume prune -f"
 alias cdw="cd $HOME/workspace"
 alias cdc="cd $HOME/workspace/codium"
+alias cdp="cd $HOME/workspace/personal"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
@@ -127,3 +128,4 @@ prompt_context(){} # To hide the user@hostname
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+RPROMPT="[%D{%f/%m/%y}|%@]"
