@@ -123,7 +123,7 @@ alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias lg="lazygit"
-alias gpr="git pull --rebase"
+alias gplr="git pull --rebase"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
