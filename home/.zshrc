@@ -120,7 +120,9 @@ alias cdp="cd $HOME/workspace/personal"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
+alias szsh="source ~/.zshrc"
 alias lg="lazygit"
+alias gpr="git pull --rebase"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
