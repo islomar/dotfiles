@@ -117,10 +117,13 @@ alias cleanup-docker="docker stop $(docker ps -qa) && docker rm $(docker ps -qa)
 alias cdw="cd $HOME/workspace"
 alias cdc="cd $HOME/workspace/codium"
 alias cdp="cd $HOME/workspace/personal"
+alias cdh="cd $HOME/workspace/habitissimo"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
+alias szsh="source ~/.zshrc"
 alias lg="lazygit"
+alias gpr="git pull --rebase"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
