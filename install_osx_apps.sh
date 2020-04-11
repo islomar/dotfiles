@@ -70,6 +70,7 @@ brew cleanup
 #     Rocket (emojis)
 #     Magnet (Windows Manager, like Spectacle)
 #     Bartender (menu bar icons manager): https://www.macbartender.com/
+# https://www.genbeta.com/mac/mejor-software-gratuito-para-instalar-tu-nuevo-mac
 
 
 # TO DO
