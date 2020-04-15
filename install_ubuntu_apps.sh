@@ -57,7 +57,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.zshrc
 
 # Python
 sudo apt-get install libmysqlclient-dev libpq-dev python-dev -y
-sudo apt install python3-pip -y
+sudo apt install python3-pip python-pip -y
 pip3 install virtualenv
 mkdir ~/.virtualenvs
 pip3 install virtualenvwrapper
