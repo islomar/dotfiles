@@ -132,3 +132,9 @@ prompt_context(){} # To hide the user@hostname
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 RPROMPT="[%D{%f/%m/%y}|%@]"
+
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
+
