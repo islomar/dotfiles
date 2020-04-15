@@ -7,6 +7,11 @@ export GPG_TTY
 # Configure Python
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+fi
 source /usr/local/bin/virtualenvwrapper.sh
 
 export FZF_BASE=/usr/local/bin/fzf
