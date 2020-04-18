@@ -129,6 +129,7 @@ alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias lg="lazygit"
 alias gplr="git pull --rebase"
+alias update_git_repos="$HOME/apps/update_all_github_repos.sh"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
