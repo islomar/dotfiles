@@ -8,7 +8,7 @@ set -e
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install tree jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv -y
+sudo apt install tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv -y
 sudo snap install postman
 sudo snap install slack --classic
 sudo apt-get install smartmontools -y
