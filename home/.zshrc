@@ -1,6 +1,7 @@
 zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
-export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$HOME/bin:$PATH"
+export GOPATH=$HOME/go
+export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
@@ -129,7 +130,7 @@ alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias lg="lazygit"
 alias gplr="git pull --rebase"
-alias update_git_repos="$HOME/apps/update_all_github_repos.sh"
+alias update_git_repos="$HOME/bin/update_all_github_repos.sh"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
@@ -139,8 +140,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 RPROMPT="[%D{%f/%m/%y}|%@]"
 
-unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
-
