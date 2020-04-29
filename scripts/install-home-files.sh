@@ -12,6 +12,7 @@ ln -sf $HOME/.dotfiles/home/.vimrc $HOME/.vimrc
 ln -sf $HOME/.dotfiles/home/.gitignore_global $HOME/.gitignore_global
 ln -sf $HOME/.dotfiles/home/.gitattributes $HOME/.gitattributes
 ln -sf $HOME/.dotfiles/home/.zsenv $HOME/.zsenv
+ln -sf $HOME/.dotfiles/home/.tmux.conf $HOME/.tmux.conf
 #ln -sf $HOME/.dotfiles/home/.gitconfig $HOME/.gitconfig
 
 unamestr=`uname`
