@@ -1,9 +1,9 @@
 zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
-export GOPATH=$HOME/go
 export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
+
 
 # Configure Python
 export WORKON_HOME=$HOME/.virtualenvs
