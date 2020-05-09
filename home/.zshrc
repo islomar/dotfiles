@@ -1,6 +1,6 @@
 zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
-export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$DOTFILES_PATH/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
