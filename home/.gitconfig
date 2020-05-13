@@ -74,11 +74,12 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = /Users/islomar/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 	autocrlf = input
 	editor = vim
+	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
 [push]
-	default = nothing
+	default = simple
 [difftool "kdiff3"]
     path = kdiff3
     trustExitCode = false
