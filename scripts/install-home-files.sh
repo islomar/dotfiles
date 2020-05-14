@@ -15,8 +15,6 @@ ln -sf $HOME/.dotifles/langs/php/composer.json $HOME/composer/composer.json
 ln -sf $HOME/.dotfiles/home/.gitconfig $HOME/.gitconfig
 
 
-source $DOTFILES_PATH/scripts/export_apps.sh
-
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     source $DOTFILES_PATH/linux/install-linux-files.sh
