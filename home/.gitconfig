@@ -53,8 +53,6 @@
 	# List commits made by an specific author (current branch)
 	lci = "!sh -c \"git log --no-merges --author $1\" -"
 	
-	pullr="pull --rebase"
-
 	# List remote tags
 	rtagl='git ls-remote --tags ./.'
 	
@@ -73,6 +71,8 @@
     rank = "shortlog -nse --no-merges"
 [color]
 	ui = auto
+[commit]
+	gpgsign = true	
 [core]
 	excludesfile = $HOME/.gitignore_global
 	autocrlf = input
@@ -87,6 +87,8 @@
     prompt = false
 [diff]
     tool = kdiff3
+[gpg]
+	program = gpg	
 [mergetool "kdiff3"]
     path = kdiff3
     trustExitCode = false
