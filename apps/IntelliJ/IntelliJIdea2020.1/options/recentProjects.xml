@@ -1,0 +1,49 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/workspace/habitissimo/habitissimo">
+          <value>
+            <RecentProjectMetaInfo opened="true" projectWorkspaceId="1ZqlrmuYuIbLVmkeUA81u3rIF0Z">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IU-201.7223.91" />
+              <option name="buildTimestamp" value="1588217394259" />
+              <option name="productionCode" value="IU" />
+              <option name="projectOpenTimestamp" value="1591113063950" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/workspace/habitissimo/habitissimo2030-frontend">
+          <value>
+            <RecentProjectMetaInfo opened="true" projectWorkspaceId="1ckrX8A4oKYKO8nUKrExoq3lSyb">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IU-201.7223.91" />
+              <option name="buildTimestamp" value="1588217394259" />
+              <option name="productionCode" value="IU" />
+              <option name="projectOpenTimestamp" value="1591113063950" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/workspace/habitissimo/habitissimo2030-backend">
+          <value>
+            <RecentProjectMetaInfo opened="true" projectWorkspaceId="1bFz6focZu6nelGaHIEKeLLTgLb">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IU-201.7223.91" />
+              <option name="buildTimestamp" value="1588217394259" />
+              <frame x="-1920" y="23" width="1906" height="1177" extendedState="6" />
+              <option name="productionCode" value="IU" />
+              <option name="projectOpenTimestamp" value="1591113063950" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="recentPaths">
+      <list>
+        <option value="$USER_HOME$/workspace/habitissimo/habitissimo2030-backend" />
+        <option value="$USER_HOME$/workspace/habitissimo/habitissimo2030-frontend" />
+        <option value="$USER_HOME$/workspace/habitissimo/habitissimo" />
+      </list>
+    </option>
+  </component>
+</application>

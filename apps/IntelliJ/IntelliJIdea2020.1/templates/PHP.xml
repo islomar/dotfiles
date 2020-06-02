@@ -1,0 +1,7 @@
+<templateSet group="PHP">
+  <template name="test" value="/** @test */&#10;public function XXX(): void&#10;{&#10;&#10;}" description="Create a new test" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+</templateSet>

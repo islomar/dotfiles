@@ -1,0 +1,31 @@
+PIT mutation testing Idea plugin
+tv.codely.codelytv-theme
+com.jetbrains.php
+org.nik.presentation-assistant
+com.chrisrm.idea.MaterialThemeUI
+com.dubreuia
+com.kalessil.phpStorm.phpInspectionsEA
+name.kropp.intellij.makefile
+org.jetbrains.plugins.phpstorm-docker
+org.jetbrains.plugins.phpstorm-remote-interpreter
+de.netnexus.camelcaseplugin
+Key Promoter X
+Lombook Plugin
+de.espend.idea.php.phpunit
+com.jetbrains.plugins.ini4idea
+ru.adelf.idea.dotenv
+net.ashald.envfile
+Statistic
+LimitedWIP
+cucumber-javascript
+org.jetbrains.kotlin
+NEON support
+org.intellij.plugins.hcl
+izhangzhihao.rainbow.brackets
+de.espend.idea.php.annotation
+de.espend.idea.php.generics
+uk.co.ben-gibson.remote.repository.mapper
+saros
+intellij.prettierJS
+com.jetbrains.twig
+fr.adrienbrault.idea.symfony2plugin
