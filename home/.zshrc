@@ -17,6 +17,10 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export FZF_BASE=/usr/local/bin/fzf
 
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 

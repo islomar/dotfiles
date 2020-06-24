@@ -127,3 +127,6 @@ export SDKMAN_DIR="/home/islomar/.sdkman"
 [[ -s "/home/islomar/.sdkman/bin/sdkman-init.sh" ]] && source "/home/islomar/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
