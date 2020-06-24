@@ -78,7 +78,6 @@
 	excludesfile = $HOME/.gitignore_global
 	autocrlf = input
 	editor = vim
-	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
 [push]
 	default = simple
 [difftool "kdiff3"]
