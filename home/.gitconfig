@@ -17,7 +17,7 @@
 
 	# List current branch commits in the more concise way I can think of (just short SHA and message)
 	slog = log --pretty=oneline --abbrev-commit
-	
+
 	# Leaves your working copy in the very same state of your HEAD. Removes all staged, unstaged and untracked changes. WARNING: this is a highly destructive operation, use it with extreme caution
 	wipe = !git reset --hard && git clean -fd
 
@@ -44,24 +44,24 @@
 
 	# Push all changes, including submodules
 	pushall = push --recurse-submodules=on-demand
-	
+
 	# Shows last commit author
 	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-	
+
 	# Show a summary of last commit (show you where you currently are)
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 
 	# List commits made by an specific author (current branch)
 	lci = "!sh -c \"git log --no-merges --author $1\" -"
-	
+
 	# List remote tags
 	rtagl='git ls-remote --tags ./.'
-	
+
 	# Delete a branch both locally and remotely
 	brtotaldelete="!sh -c \"git branch -d $2 && git branch -d -r $1/$2 && git push $1 :$2\" -"
-	
+
 	addall = add -A :/
-	
+
 	# List files changed in my current branch with respect to master
 	ldf = "!git diff --name-only \"$(git merge-base HEAD ${1:-master})\""
 
@@ -73,7 +73,7 @@
 [color]
 	ui = auto
 [commit]
-	gpgsign = true	
+	gpgsign = true
 [core]
 	excludesfile = $HOME/.gitignore_global
 	autocrlf = input
@@ -88,13 +88,13 @@
 [diff]
     tool = kdiff3
 [gpg]
-	program = gpg	
+	program = gpg
 [mergetool "kdiff3"]
     path = kdiff3
     trustExitCode = false
 [mergetool]
     keepBackup = false
 [merge]
-	tool =kdiff3 
+	tool =kdiff3
 [status]
 	displayCommentPrefix = true

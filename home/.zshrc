@@ -135,6 +135,7 @@ alias szsh="source ~/.zshrc"
 alias lg="lazygit"
 alias gplr="git pull --rebase"
 alias update_git_repos="$HOME/bin/update_all_github_repos.sh"
+alias vphpini="vim $(php -i | grep "Loaded Configuration File" | cut -d" " -f 5)"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
