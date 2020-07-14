@@ -136,6 +136,10 @@ alias lg="lazygit"
 alias gplr="git pull --rebase"
 alias update_git_repos="$HOME/bin/update_all_github_repos.sh"
 alias vphpini="vim $(php -i | grep "Loaded Configuration File" | cut -d" " -f 5)"
+alias xdebug-enable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini"
+alias xdebug-disable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak"
+alias blackfire-enable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini"
+alias blackfire-disable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
