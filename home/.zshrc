@@ -140,6 +140,8 @@ alias xdebug-enable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak /usr/lo
 alias xdebug-disable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak"
 alias blackfire-enable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini"
 alias blackfire-disable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak"
+alias dc="$HOME/bin/docker-connect.sh"
+alias sof="$HOME/bin/show_open_files.sh"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
