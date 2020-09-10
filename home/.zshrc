@@ -12,6 +12,9 @@ unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
     export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+else
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
+    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv    
 fi
 source /usr/local/bin/virtualenvwrapper.sh
 
