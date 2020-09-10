@@ -145,6 +145,7 @@ alias blackfire-enable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak /
 alias blackfire-disable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak"
 alias dc="$HOME/bin/docker-connect.sh"
 alias sof="$HOME/bin/show_open_files.sh"
+bash $HOME/bin/docker-aliases.sh
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
