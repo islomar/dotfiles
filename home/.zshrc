@@ -144,6 +144,7 @@ alias xdebug-disable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini /usr/local
 alias blackfire-enable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini"
 alias blackfire-disable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini.bak"
 alias dc="$HOME/bin/docker-connect.sh"
+alias dl="$HOME/bin/docker-logs.sh"
 alias sof="$HOME/bin/show_open_files.sh"
 bash $HOME/bin/docker-aliases.sh
 
