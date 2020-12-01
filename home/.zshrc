@@ -14,7 +14,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
     export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 else
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
-    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv    
+    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 fi
 source /usr/local/bin/virtualenvwrapper.sh
 
@@ -137,6 +137,7 @@ alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias lg="lazygit"
 alias gplr="git pull --rebase"
+alias gp="git push || say 'Stop the line!'"
 alias update_git_repos="$HOME/bin/update_all_github_repos.sh"
 alias vphpini="vim $(php -i | grep "Loaded Configuration File" | cut -d" " -f 5)"
 alias xdebug-enable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini"
