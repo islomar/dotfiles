@@ -159,3 +159,6 @@ RPROMPT="[%D{%f/%m/%y}|%@]"
 if [[ "$unamestr" == 'Linux' ]]; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

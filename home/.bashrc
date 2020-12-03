@@ -130,3 +130,5 @@ export SDKMAN_DIR="/home/islomar/.sdkman"
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+complete -C /usr/bin/terraform terraform
