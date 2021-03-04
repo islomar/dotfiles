@@ -11,7 +11,7 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz
+brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz git-extras
 brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle rocket vlc
 
 # Vundle for vim
@@ -50,7 +50,7 @@ brew cleanup
 #   Python: https://swapps.com/blog/how-to-configure-virtualenvwrapper-with-python3-in-osx-mojave/
 #     * pipenv: https://docs.python-guide.org/dev/virtualenvs/#installing-pipenv
 #   Authy: https://authy.com
-#   Oh My Zsh - Fix Agnoster theme: 
+#   Oh My Zsh - Fix Agnoster theme:
 #     https://github.com/agnoster/agnoster-zsh-theme/issues/72
 #     Use the Solarized theme: https://www.freecodecamp.org/news/jazz-up-your-bash-terminal-a-step-by-step-guide-with-pictures-80267554cb22/
 
