@@ -97,3 +97,5 @@
 	tool =kdiff3
 [status]
 	displayCommentPrefix = true
+[pull]
+	rebase = true
