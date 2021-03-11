@@ -24,6 +24,11 @@ export FZF_BASE=/usr/local/bin/fzf
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
+# docker-sync
+if which ruby >/dev/null && which gem >/dev/null; then
+  export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -136,7 +141,7 @@ alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias lg="lazygit"
-alias gplr="git pull --rebase"
+alias gplr="git pull --rebase --autostash"
 alias gp="git push || say 'Stop the line!'"
 alias update_git_repos="$HOME/bin/update_all_github_repos.sh"
 alias vphpini="vim $(php -i | grep "Loaded Configuration File" | cut -d" " -f 5)"
