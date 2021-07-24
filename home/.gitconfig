@@ -72,8 +72,6 @@
     rank = "shortlog -nse --no-merges"
 [color]
 	ui = auto
-[commit]
-	gpgsign = true
 [core]
 	excludesfile = $HOME/.gitignore_global
 	autocrlf = input
