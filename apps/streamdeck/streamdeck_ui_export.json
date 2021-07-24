@@ -1,0 +1,47 @@
+{
+    "streamdeck_ui_version": 1,
+    "state": {
+        "BL06K1B00782": {
+            "buttons": {
+                "0": {
+                    "0": {
+                        "icon": "/home/islomar/Pictures/obs_new_icon_small-r.png",
+                        "text": "Open OBS",
+                        "switch_page": 1,
+                        "write": "",
+                        "keys": "",
+                        "command": "obs"
+                    },
+                    "1": {
+                        "text": "Record OBS",
+                        "command": "wmctrl -xa obs",
+                        "keys": "Ctrl+R",
+                        "icon": "/home/islomar/Pictures/Iconos_StreamDeck/Small/video.solid.png",
+                        "write": ""
+                    },
+                    "2": {
+                        "command": "xdotool search --name '^Meet - .+$' windowactivate ",
+                        "icon": "/home/islomar/Pictures/google-meet-2923654-2416657.png",
+                        "text": "Focus Meet"
+                    },
+                    "3": {
+                        "text": "Pause OBS",
+                        "icon": "/home/islomar/Pictures/Iconos_StreamDeck/Small/video-slash.solid.png",
+                        "keys": "Ctrl+P"
+                    },
+                    "4": {},
+                    "5": {}
+                },
+                "1": {
+                    "0": {},
+                    "1": {},
+                    "2": {},
+                    "3": {},
+                    "4": {},
+                    "5": {}
+                }
+            },
+            "page": 0
+        }
+    }
+}
