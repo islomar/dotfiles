@@ -20,24 +20,51 @@
                         "write": ""
                     },
                     "2": {
-                        "command": "xdotool search --name '^Meet - .+$' windowactivate ",
-                        "icon": "/home/islomar/Pictures/google-meet-2923654-2416657.png",
-                        "text": "Focus Meet"
+                        "command": "",
+                        "icon": "",
+                        "text": "Next page",
+                        "switch_page": 2
                     },
                     "3": {
                         "text": "Pause OBS",
                         "icon": "/home/islomar/Pictures/Iconos_StreamDeck/Small/video-slash.solid.png",
                         "keys": "Ctrl+P"
                     },
-                    "4": {},
-                    "5": {}
+                    "4": {
+                        "text": "Screenshot",
+                        "keys": "",
+                        "command": "gnome-screenshot -ai",
+                        "icon": "/home/islomar/Pictures/org.gnome.Screenshot.png"
+                    },
+                    "5": {
+                        "text": "Emojis",
+                        "command": "emote",
+                        "icon": "/home/islomar/Pictures/Iconos_StreamDeck/Apple_Emoji_update_2018_1_07162018_carousel.jpg.large.jpg",
+                        "switch_page": 0
+                    }
                 },
                 "1": {
-                    "0": {},
-                    "1": {},
-                    "2": {},
+                    "0": {
+                        "text": "Focus Meet",
+                        "command": "xdotool search --name '^Meet - .+$' windowactivate ",
+                        "icon": "/home/islomar/Pictures/google-meet-2923654-2416657.png"
+                    },
+                    "1": {
+                        "command": "shutdown -h now",
+                        "icon": "/home/islomar/Pictures/Iconos_StreamDeck/Small/power-off.solid.png",
+                        "text": "Shutdown"
+                    },
+                    "2": {
+                        "text": "Draw",
+                        "command": "xdotool key alt+super+d",
+                        "icon": "/home/islomar/Pictures/Iconos_StreamDeck/Large/paint-brush.solid.png",
+                        "keys": ""
+                    },
                     "3": {},
-                    "4": {},
+                    "4": {
+                        "text": "Previous page",
+                        "switch_page": 1
+                    },
                     "5": {}
                 }
             },
