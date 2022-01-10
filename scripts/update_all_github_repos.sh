@@ -14,6 +14,6 @@ for d in */ ; do
     echo "$d"
     cd $d
     git remote prune origin
-    git pull --rebase
+    git stash && git pull --rebase --all && git stash pop
     cd ..
 done
