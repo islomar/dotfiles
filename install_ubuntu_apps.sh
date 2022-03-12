@@ -5,14 +5,17 @@ set -e
 # TO DO
 # dpkg -l <packageName>
 
+mkdir ~/bin
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras -y
+sudo apt install gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras zsh -y
 sudo snap install postman
+sudo snap install emote
 sudo snap install slack --classic
 sudo apt-get install smartmontools -y
 sudo apt-get install --no-install-recommends gnome-panel -y
+
 
 # Ubuntu themes
 sudo apt install gnome-tweaks -y
@@ -31,8 +34,12 @@ cd ~ && vim +PluginInstall +qall && cd -
 # Oh my zsh
 sudo apt-get install fonts-powerline -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git
 
 # PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
 cd ~
@@ -68,6 +75,11 @@ export WORKON_HOME=~/.virtualenvs
 #export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 #source $HOME/.local/bin/virtualenvwrapper.sh
 
+# brew & pyenv
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+brew install pyenv
+
 # Adobe
 wget ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
 sudo dpkg -i AdbeRdr9.5.5-1_i386linux_enu.deb
@@ -85,12 +97,21 @@ sudo add-apt-repository "deb http://repository.spotify.com stable non-free"
 sudo apt install spotify-client -y
 
 # Docker
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
-sudo apt install docker-ce docker-compose -y
-sudo usermod -aG docker islomar
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
 
 # SDKMan
 curl -s "https://get.sdkman.io" | bash
@@ -103,14 +124,14 @@ git config --global core.editor vim
 git config --global commit.gpgsign true
 
 # Visual Studio Code
-sudo snap install --classic code
-sudo apt-get install apt-transport-https
-sudo snap install code
+# sudo snap install --classic code
+# sudo apt-get install apt-transport-https
+# sudo snap install code
 
 # Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-rm google-chrome-stable_current_amd64.deb
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# sudo dpkg -i google-chrome-stable_current_amd64.deb
+# rm google-chrome-stable_current_amd64.deb
 
 sudo apt autoremove --purge -y
 sudo apt autoclean

@@ -11,7 +11,6 @@ ln -sf $HOME/.dotfiles/home/.gitattributes $HOME/.gitattributes
 ln -sf $HOME/.dotfiles/home/.zshenv $HOME/.zshenv
 ln -sf $HOME/.dotfiles/home/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/.dotfiles/home/.tmate.conf $HOME/.tmate.conf
-ln -sf $HOME/.dotifles/langs/php/composer.json $HOME/composer/composer.json
 ln -sf $HOME/.dotfiles/home/.gitconfig $HOME/.gitconfig
 
 

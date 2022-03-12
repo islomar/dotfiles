@@ -1,6 +1,9 @@
 zmodload zsh/zprof
+# Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # If you come from bash you might have to change your $PATH.
-export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$DOTFILES_PATH/bin:$PATH"
+export PATH="$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin:/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$DOTFILES_PATH/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
@@ -153,6 +156,7 @@ alias blackfire-disable="mv /usr/local/etc/php/7.4/conf.d/ext-blackfire.ini /usr
 alias dc="$HOME/bin/docker-connect.sh"
 alias dl="$HOME/bin/docker-logs.sh"
 alias sof="$HOME/bin/show_open_files.sh"
+alias say="$HOME/bin/say.sh"
 bash $HOME/bin/docker-aliases.sh
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -174,4 +178,7 @@ complete -o nospace -C /usr/bin/terraform terraform
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+source /home/islomar/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
