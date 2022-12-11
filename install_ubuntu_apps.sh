@@ -23,7 +23,7 @@ sudo apt install adwaita-icon-theme-full -y
 sudo apt install arc-theme -y
 sudo apt install numix-gtk-theme numix-icon-theme -y
 
-wget -O - https://github.com/nagygergo/jetbrains-toolbox-install/blob/master/jetbrains-toolbox.sh | bash
+curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
 
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
