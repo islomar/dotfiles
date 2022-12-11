@@ -1,7 +1,7 @@
 [user]
 	name = Isidro Lopez
 	email = islomar@gmail.com
-	signingkey = 6A8DB35DCEAFA5071EA368D159415A689E124722
+	#signingkey = 6A8DB35DCEAFA5071EA368D159415A689E124722
 [alias]
 	# Typical shortcuts
 	co = checkout
