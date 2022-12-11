@@ -5,7 +5,7 @@ set -e
 # TO DO
 # dpkg -l <packageName>
 
-mkdir ~/bin
+mkdir -p ~/bin
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
