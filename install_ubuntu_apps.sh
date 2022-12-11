@@ -6,10 +6,11 @@ set -e
 # dpkg -l <packageName>
 
 mkdir -p ~/bin
+mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras zsh -y
+sudo apt install gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras -y
 sudo snap install postman
 sudo snap install emote
 sudo snap install slack --classic
@@ -32,14 +33,16 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cd ~ && vim +PluginInstall +qall && cd -
 
 # Oh my zsh
-sudo apt-get install fonts-powerline -y
+sudo apt-get install zsh fonts-powerline -y
+sudo chsh -s /bin/zsh $USER
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-echo "source ${PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+echo "source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git
+# And after that, you have to log out from the current user and log in again
 
 # # PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
 # cd ~
