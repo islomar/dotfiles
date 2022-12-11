@@ -68,20 +68,15 @@ cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sd
 # Python
 sudo apt-get install libmysqlclient-dev libpq-dev python-dev -y
 sudo apt install python3-pip python-pip -y
-pip3 install virtualenv
-mkdir ~/.virtualenvs
-pip3 install virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-#Finally, copy at the end of .bashrc
-#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-#export WORKON_HOME=$HOME/.virtualenvs
-#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-#source $HOME/.local/bin/virtualenvwrapper.sh
+curl https://pyenv.run | bash
+# Configure Python with zshrc
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 # brew & pyenv
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install pyenv
 
 # Adobe
 wget ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
