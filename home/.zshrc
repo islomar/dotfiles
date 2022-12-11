@@ -7,20 +7,6 @@ export PATH="$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin:/usr/local/opt/pyt
 GPG_TTY=$(tty)
 export GPG_TTY
 
-
-# Configure Python
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-else
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python/libexec/bin/python
-    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-fi
-source /usr/local/bin/virtualenvwrapper.sh
-
 export FZF_BASE=/usr/local/bin/fzf
 
 # Install Ruby Gems to ~/gems
@@ -180,5 +166,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 source /home/islomar/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
