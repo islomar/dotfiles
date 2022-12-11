@@ -66,9 +66,8 @@ cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sd
 # echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.zshrc
 
 # Python
-sudo apt-get install libmysqlclient-dev libpq-dev python-dev -y
-sudo apt install python3-pip python-pip -y
 curl https://pyenv.run | bash
+pyenv install 3.10
 # Configure Python with zshrc
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
@@ -114,6 +113,14 @@ git config --global user.name "Isidro Lopez"
 git config --global user.email "islomar@gmail.com"
 git config --global core.editor vim
 git config --global commit.gpgsign true
+
+# Samba (sharing folders)
+# https://www.how2shout.com/linux/how-to-install-samba-on-ubuntu-22-04-lts-jammy-linux/
+sudo apt install samba
+sudo systemctl enable --now smbd
+sudo ufw allow samba
+sudo usermod -aG sambashare $USER
+sudo smbpasswd -a $USER
 
 # Visual Studio Code
 # sudo snap install --classic code
