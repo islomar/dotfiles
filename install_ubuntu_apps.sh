@@ -41,26 +41,26 @@ source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git
 
-# PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
-cd ~
-curl -sS https://getcomposer.org/installer -o composer-setup.php
-HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
-php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-rm composer-setup.php
+# # PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
+# cd ~
+# curl -sS https://getcomposer.org/installer -o composer-setup.php
+# HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+# php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+# sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+# rm composer-setup.php
 
-# Install Golang: https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-18-04
-## Check the last release: https://golang.org/dl/
-cd ~
-curl -O https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz
-tar xvf go1.10.3.linux-amd64.tar.gz
-sudo chown -R root:root ./go
-sudo mv go /usr/local
-rm https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz
-cd -
-# Set Go Paths manually (PATH and GOPATH) in ~/.profile
-echo "export GOPATH=$HOME/go" >> ~/.zshrc
-echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.zshrc
+# # Install Golang: https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-18-04
+# ## Check the last release: https://golang.org/dl/
+# cd ~
+# curl -O https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz
+# tar xvf go1.10.3.linux-amd64.tar.gz
+# sudo chown -R root:root ./go
+# sudo mv go /usr/local
+# rm https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz
+# cd -
+# # Set Go Paths manually (PATH and GOPATH) in ~/.profile
+# echo "export GOPATH=$HOME/go" >> ~/.zshrc
+# echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.zshrc
 
 # Python
 sudo apt-get install libmysqlclient-dev libpq-dev python-dev -y
@@ -88,27 +88,21 @@ sudo apt install -f -y
 rm AdbeRdr9.5.5-1_i386linux_enu.deb
 
 # Dropbox
+sudo apt install libpango1.0-0
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-# ~/.dropbox-dist/dropboxd
+~/.dropbox-dist/dropboxd
 
 # Spotify
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 4773BD5E130D1D45
-sudo add-apt-repository "deb http://repository.spotify.com stable non-free"
-sudo apt install spotify-client -y
+sudo snap install spotify
 
 # Docker
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce
+sudo systemctl status docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
@@ -129,9 +123,9 @@ git config --global commit.gpgsign true
 # sudo snap install code
 
 # Chrome
-# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# sudo dpkg -i google-chrome-stable_current_amd64.deb
-# rm google-chrome-stable_current_amd64.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
 
 sudo apt autoremove --purge -y
 sudo apt autoclean
