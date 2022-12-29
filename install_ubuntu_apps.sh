@@ -14,9 +14,15 @@ sudo apt install gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate cur
 sudo snap install postman
 sudo snap install emote
 sudo snap install slack --classic
+sudo snap install helm --classic
 sudo apt-get install smartmontools -y
 sudo apt-get install --no-install-recommends gnome-panel -y
 
+# microk8s (alternative to minikube)
+sudo snap install microk8s --classic
+sudo usermod -a -G microk8s islomar
+sudo chown -f -R islomar ~/.kube
+newgrp microk8s
 
 # Ubuntu themes
 sudo apt install gnome-tweaks -y
