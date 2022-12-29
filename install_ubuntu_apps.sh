@@ -49,6 +49,7 @@ source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git
 # And after that, you have to log out from the current user and log in again
+helm completion zsh > "${fpath[1]}/_helm"
 
 # # PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
 # cd ~
