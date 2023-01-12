@@ -49,31 +49,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 echo "source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git
 # And after that, you have to log out from the current user and log in again
 helm completion zsh > "${fpath[1]}/_helm"
 
-# # PHP Installer (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04)
-# cd ~
-# curl -sS https://getcomposer.org/installer -o composer-setup.php
-# HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
-# php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-# sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-# rm composer-setup.php
-
-# # Install Golang: https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-18-04
-# ## Check the last release: https://golang.org/dl/
-# cd ~
-# curl -O https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz
-# tar xvf go1.10.3.linux-amd64.tar.gz
-# sudo chown -R root:root ./go
-# sudo mv go /usr/local
-# rm https://dl.google.com/go/go1.13.8.linux-amd64.tar.gz
-# cd -
-# # Set Go Paths manually (PATH and GOPATH) in ~/.profile
-# echo "export GOPATH=$HOME/go" >> ~/.zshrc
-# echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.zshrc
 
 # Python
 curl https://pyenv.run | bash
