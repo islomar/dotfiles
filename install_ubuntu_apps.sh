@@ -23,6 +23,7 @@ sudo apt-get install --no-install-recommends gnome-panel -y
 # microk8s (alternative to minikube)
 sudo snap install microk8s --classic
 sudo usermod -a -G microk8s islomar
+mkdir -p ~/.kube
 sudo chown -f -R islomar ~/.kube
 newgrp microk8s
 
