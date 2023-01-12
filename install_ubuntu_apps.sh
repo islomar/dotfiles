@@ -123,6 +123,11 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 cd -
 
+# bat: https://github.com/sharkdp/bat
+sudo apt install bat
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
 sudo apt autoremove --purge -y
 sudo apt autoclean
 
