@@ -1,6 +1,8 @@
 # dotfiles
 All general purpose dot files with preferences and settings.
 
+`git clone git@github.com:islomar/dotfiles.git ~/.dotfiles`
+
 Some references used:
 
 * [CodelyTV](https://github.com/CodelyTV/dotfiles)
