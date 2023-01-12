@@ -105,7 +105,7 @@ git config --global commit.gpgsign true
 
 # Samba (sharing folders)
 # https://www.how2shout.com/linux/how-to-install-samba-on-ubuntu-22-04-lts-jammy-linux/
-sudo apt install samba
+sudo apt install samba -y
 sudo systemctl enable --now smbd
 sudo ufw allow samba
 sudo usermod -aG sambashare $USER
