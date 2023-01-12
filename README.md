@@ -10,6 +10,7 @@ Some references used:
 
 ## OS setups
 * [Ubuntu](./install_ubuntu_apps.sh)
+  * scripts/install-home-files.sh
 * [OSX](./install_osx_apps.sh)
 * Common: 
   * [Install scripts](./install_scripts.sh)
