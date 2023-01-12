@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-export DOTFILES_PATH="$HOME/workspace/dotfiles"
+export DOTFILES_PATH="$HOME/.dotfiles"
 
 
 # diff $HOME/.bashrc $HOME/.dotfiles/home/.bashrc
