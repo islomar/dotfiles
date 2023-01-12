@@ -49,7 +49,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 echo "source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git
+cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git && cd -
 # And after that, you have to log out from the current user and log in again
 helm completion zsh > "${fpath[1]}/_helm"
 
