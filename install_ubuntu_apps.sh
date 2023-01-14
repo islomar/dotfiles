@@ -33,8 +33,6 @@ sudo apt install adwaita-icon-theme-full -y
 sudo apt install arc-theme -y
 sudo apt install numix-gtk-theme numix-icon-theme -y
 
-curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
-
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 # Vundle for vim
@@ -128,9 +126,16 @@ sudo apt install bat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
+# Yubikey
+sudo apt-get install libpam-u2f
+mkdir -p ~/.config/Yubico
+pamu2fcfg > ~/.config/Yubico/u2f_keys
+
 sudo apt autoremove --purge -y
 sudo apt autoclean
 
 # Manual steps
+## Install Jetbrains toolbox
+## Install SyncFile
 ## Generate GPG key: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
 ## Dropbox: set up the automatic boot (if you want it) https://linoxide.com/linux-how-to/install-dropbox-ubuntu/
