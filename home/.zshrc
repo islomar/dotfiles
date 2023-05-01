@@ -127,9 +127,7 @@ export LC_CTYPE=en_US.UTF-8
 alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias cleanup-docker='docker stop $(docker ps -qa) && docker rm $(docker ps -qa) && docker system prune -f && docker volume prune -f'
 alias cdw="cd $HOME/workspace"
-alias cdc="cd $HOME/workspace/codium"
-alias cdp="cd $HOME/workspace/personal"
-alias cdh="cd $HOME/workspace/habitissimo"
+alias cdc="cd $HOME/.dotfiles"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
@@ -147,6 +145,7 @@ alias dc="$HOME/bin/docker-connect.sh"
 alias dl="$HOME/bin/docker-logs.sh"
 alias sof="$HOME/bin/show_open_files.sh"
 alias say="$HOME/bin/say.sh"
+alias openrepo="$HOME/bin/open_repo.sh"
 bash $HOME/bin/docker-aliases.sh
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
