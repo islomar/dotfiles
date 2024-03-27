@@ -40,6 +40,7 @@ Some references used:
 - https://help.elgato.com/hc/en-us/articles/360028232451-Elgato-Stream-Deck-Plugins
 - Run `install_elgato_stream_deck.sh`
 - https://timothycrosley.github.io/streamdeck-ui/ >> Great EXAMPLES
+  - Fork more up-to-date: https://github.com/streamdeck-linux-gui/streamdeck-linux-gui
 - https://onlinux.systems/guides/20220323_how-to-set-up-elgatos-stream-deck-on-ubuntu-linux-2110/
 - Icons:
   - https://www.flaticon.com/authors/anggara/color-lineal-color?author_id=1427&type=standard 
