@@ -15,7 +15,7 @@
                     "1": {
                         "text": "Record OBS",
                         "command": "wmctrl -xa obs",
-                        "keys": "Ctrl+R",
+                        "keys": "ctrl+r",
                         "icon": "/home/islomar/Pictures/StreamDeckIcons/video.solid.png",
                         "write": ""
                     },
@@ -28,7 +28,8 @@
                     "3": {
                         "text": "Pause OBS",
                         "icon": "/home/islomar/Pictures/StreamDeckIcons/video-slash.solid.png",
-                        "keys": "Ctrl+P"
+                        "keys": "ctrl+p",
+                        "command": "wmctrl -xa obs"
                     },
                     "4": {
                         "text": "Screenshot",
@@ -45,9 +46,10 @@
                 },
                 "1": {
                     "0": {
-                        "text": "Focus Meet",
-                        "command": "xdotool search --name '^Meet - .+$' windowactivate ",
-                        "icon": "/home/islomar/Pictures/StreamDeckIcons/google-meet-2923654-2416657.png"
+                        "text": "Unpause OBS recording",
+                        "command": "wmctrl -xa obs",
+                        "icon": "/home/islomar/workspace/dotfiles/images/StreamDeckIcons/Small/play.solid.png",
+                        "keys": "ctrl+u"
                     },
                     "1": {
                         "command": "shutdown -h now",
@@ -55,12 +57,17 @@
                         "text": "Shutdown"
                     },
                     "2": {
-                        "text": "Draw",
-                        "command": "xdotool key alt+super+d",
-                        "icon": "/home/islomar/Pictures/StreamDeckIcons/paint-brush.solid.png",
-                        "keys": ""
+                        "text": "Search Chrome tab",
+                        "command": "",
+                        "icon": "/home/islomar/workspace/dotfiles/images/StreamDeckIcons/Small/search.solid.png",
+                        "keys": "shift+ctrl+a",
+                        "write": ""
                     },
-                    "3": {},
+                    "3": {
+                        "text": "Ksnip",
+                        "command": "ksnip",
+                        "icon": "/home/islomar/Pictures/StreamDeckIcons/ksnip_icon.png"
+                    },
                     "4": {
                         "text": "Previous page",
                         "switch_page": 1
@@ -68,7 +75,7 @@
                     "5": {}
                 }
             },
-            "page": 0
+            "page": 1
         }
     }
 }
