@@ -55,3 +55,28 @@ Some references used:
   - https://github.com/ReimuNotMoe/ydotool
   - https://gabrielstaples.com/ydotool-tutorial/#gsc.tab=0
   - https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h  
+
+## Wacom tablet
+- Model: [One by Wacom, model CTL-672](https://estore.wacom.com/en-de/one-by-wacom-medium-s-ctl-672-s.html)
+  - https://www.wacom.com/en-us/getting-started/one-by-wacom
+- Unpack One by Wacom: https://www.youtube.com/watch?v=GRjwkf0Qbg4
+- https://www.wacom.com/en-es/about-wacom/news-and-events/2020/1436
+
+### Installation
+- https://linuxwacom.github.io/
+- https://help.ubuntu.com/stable/ubuntu-help/wacom.html.en
+- https://github.com/linuxwacom
+
+### Software
+- OpenBoard: https://www.youtube.com/watch?v=4znZqySzUoQ
+- Limnu
+- Pear Deck
+- Kami (web)
+- Collaboard (web)
+- Explain everything (web)
+
+### OpenBoard installation
+- `sudo apt install onboard`
+- `sudo apt --fix-broken install`
+- https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.1/openboard_ubuntu_20.04_1.6.1_amd64.deb
+- `sudo dpkg -i openboard_ubuntu_20.04_1.6.1_amd64.deb`
