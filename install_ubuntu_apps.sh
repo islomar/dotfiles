@@ -132,6 +132,8 @@ sudo apt-get install libpam-u2f
 mkdir -p ~/.config/Yubico
 pamu2fcfg > ~/.config/Yubico/u2f_keys
 
+git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
+
 sudo apt autoremove --purge -y
 sudo apt autoclean
 
