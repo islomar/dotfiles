@@ -12,7 +12,7 @@ mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
+sudo apt install exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
 sudo snap install postman
 sudo snap install emote
 sudo snap install ksnip
