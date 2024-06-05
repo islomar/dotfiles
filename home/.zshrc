@@ -98,7 +98,7 @@ HIST_STAMPS="%F %T "
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z zsh-sdkman kubectl asdf zsh-better-npm-completion)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z zsh-sdkman kubectl asdf poetry zsh-better-npm-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -182,6 +182,10 @@ source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/islomar/.pulumi/bin
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Android configuration
 export ANDROID_HOME=$HOME/Android/Sdk
