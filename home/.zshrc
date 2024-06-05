@@ -131,7 +131,6 @@ export LC_CTYPE=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # My aliases
-alias ls="exa"
 alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias cleanup-docker='docker stop $(docker ps -qa) && docker rm $(docker ps -qa) && docker system prune -f && docker volume prune -f'
 alias cdw="cd $HOME/workspace"
@@ -141,7 +140,9 @@ alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /de
 alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
+alias la="ls -lah"
 alias lg="lazygit"
+alias ls="exa"
 alias gplr="git pull --rebase"
 alias gp="git push || say 'Stop the line!'"
 alias update_git_repos="$HOME/bin/update_all_github_repos.sh"
