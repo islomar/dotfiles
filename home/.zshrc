@@ -98,7 +98,7 @@ HIST_STAMPS="%F %T "
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z zsh-sdkman kubectl asdf)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf docker docker-compose symfony2 z zsh-sdkman kubectl asdf zsh-better-npm-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -131,10 +131,11 @@ export LC_CTYPE=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # My aliases
-#alias ls="exa"
+alias ls="exa"
 alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias cleanup-docker='docker stop $(docker ps -qa) && docker rm $(docker ps -qa) && docker system prune -f && docker volume prune -f'
 alias cdw="cd $HOME/workspace"
+alias cdt="cd $HOME/tmp"
 alias cdc="cd $HOME/.dotfiles"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias please='sudo $(fc -ln -1)'
