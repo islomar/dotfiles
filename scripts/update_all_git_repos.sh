@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Recommendation: create an alias and include it in your $PATH, 
+# Recommendation: create an alias, 
 # so that you can just type `$ update_all_git_repos <your_git_repos_root_folder>`
 
 function main {
