@@ -1,38 +1,36 @@
 #!/bin/bash
 
-# https://www.baeldung.com/linux/bash-for-loop-parallel
-
 
 function main {
-    GITHUB_ROOT_FOLDER=$1
+    GIT_REPOS_ROOT_FOLDER=$1
 
-    if [[ -z $GITHUB_ROOT_FOLDER ]];
+    if [[ -z $GIT_REPOS_ROOT_FOLDER ]];
     then
-        echo `date`" - Missing mandatory arguments: path to your GitHub root folder."
-        echo `date`" - Usage: ./update_all_github_repos.sh [your-root-github-folder]"
+        echo `date`" - Missing mandatory arguments: path to your Git repositoris root folder."
+        echo `date`" - Usage: ./update_all_github_repos.sh [your-root-git-repos-folder]"
         exit 1
     fi
 
-    cd $GITHUB_ROOT_FOLDER
-    for d in */ ; do
-        update_repo $d &
+    cd $GIT_REPOS_ROOT_FOLDER
+    for repo_folder in */ ; do
+        update_repo $repo_folder &
     done
 
     wait
 
-    echo "All git repositories have been updated!"
+    echo -e "\nAll git repositories have been updated!"
 }
 
 function update_repo {
-    echo "$d"
-    cd $d
-    git remote prune origin
-    git stash && git pull --rebase
+    echo "Updating $repo_folder"
+    cd $repo_folder
+    git remote prune origin > /dev/null 2>&1
+    git stash > /dev/null 2>&1 && git pull --rebase
     result=$?
-    git stash pop
+    git stash pop > /dev/null 2>&1
     if [[ $result -ne 0 ]];
         then
-            echo ">>>>> GLUPS!! Error in $d"
+            echo ">>>>> GLUPS!! Error in $repo_folder"
         fi
     cd ..
 }
