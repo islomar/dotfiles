@@ -7,7 +7,7 @@ function main {
     if [[ -z $GIT_REPOS_ROOT_FOLDER ]];
     then
         echo `date`" - Missing mandatory arguments: path to your Git repositoris root folder."
-        echo `date`" - Usage: ./update_all_github_repos.sh [your-root-git-repos-folder]"
+        echo `date`" - Usage: ./update_all_git_repos.sh [your-root-git-repos-folder]"
         exit 1
     fi
 
