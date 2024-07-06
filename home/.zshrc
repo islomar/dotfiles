@@ -14,7 +14,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # If you come from bash you might have to change your $PATH.
-export PATH="$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin:/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$DOTFILES_PATH/bin:$PATH"
+export PATH="$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin:/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$DOTFILES_PATH/bin:$HOME/linuxbrew/.linuxbrew/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
@@ -138,6 +138,8 @@ alias cdw="cd $HOME/workspace"
 alias cdt="cd $HOME/tmp"
 alias cdc="cd $HOME/.dotfiles"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 alias please='sudo $(fc -ln -1)'
 alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"

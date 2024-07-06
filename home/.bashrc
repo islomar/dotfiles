@@ -122,8 +122,8 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/islomar/.sdkman"
-[[ -s "/home/islomar/.sdkman/bin/sdkman-init.sh" ]] && source "/home/islomar/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/home/$USER/.sdkman"
+[[ -s "/home/$USER/.sdkman/bin/sdkman-init.sh" ]] && source "/home/$USER/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # Install Ruby Gems to ~/gems
