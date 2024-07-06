@@ -12,12 +12,11 @@ mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop virtualbox vagrant xclip gnome-shell-pomodoro php-cli php-zip php-mbstring unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
+sudo apt install exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop xclip gnome-shell-pomodoro unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
 sudo snap install postman
 sudo snap install emote
 sudo snap install ksnip
 sudo snap install slack --classic
-sudo snap install helm --classic
 sudo apt-get install smartmontools -y
 sudo apt-get install --no-install-recommends gnome-panel -y
 
@@ -33,8 +32,6 @@ sudo apt install gnome-tweaks -y
 sudo apt install adwaita-icon-theme-full -y
 sudo apt install arc-theme -y
 sudo apt install numix-gtk-theme numix-icon-theme -y
-
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 # Vundle for vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
