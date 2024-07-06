@@ -12,7 +12,7 @@ mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop xclip gnome-shell-pomodoro unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
+sudo apt install libfuse2 bat espeak libespeak-dev mbrola-us2 exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop xclip gnome-shell-pomodoro unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
 sudo snap install postman
 sudo snap install emote
 sudo snap install ksnip
@@ -41,10 +41,9 @@ cd ~ && vim +PluginInstall +qall && cd -
 sudo apt-get install zsh fonts-powerline -y
 sudo chsh -s /bin/zsh $USER
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-echo "source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git && cd -
 # And after that, you have to log out from the current user and log in again
 helm completion zsh > "${fpath[1]}/_helm"
@@ -58,7 +57,7 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
-# brew & pyenv
+# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

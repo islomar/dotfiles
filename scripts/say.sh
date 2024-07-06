@@ -1,2 +1,2 @@
 #!/bin/sh
-espeak -v us-mbrola-1 "$@"
+espeak -v mb-us2 "$@"

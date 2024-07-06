@@ -4,7 +4,7 @@ set -euo pipefail
 sudo apt-get update
 sudo apt-get install streamdeck-ui gnome-screenshot
 
-mkdir ~/Pictures/StreamDeckIcons
+mkdir -p ~/Pictures/StreamDeckIcons
 
 cp -pr images/StreamDeckIcons/Configured/* ~/Pictures/StreamDeckIcons
 
