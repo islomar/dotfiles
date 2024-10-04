@@ -133,7 +133,7 @@ export LC_CTYPE=en_US.UTF-8
 # My aliases
 alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias bundletool="java -jar $HOME/bin/bundletool-all-1.16.0.jar"
-alias cleanup-docker='docker stop $(docker ps -qa) && docker rm $(docker ps -qa) && docker system prune -f && docker volume prune -f'
+alias cleanup-docker='docker stop $(docker ps -qa) || true && docker rm $(docker ps -qa) || true && docker system prune -f && docker volume prune -f'
 alias cdw="cd $HOME/workspace"
 alias cdt="cd $HOME/tmp"
 alias cdc="cd $HOME/.dotfiles"
@@ -146,6 +146,7 @@ alias szsh="source ~/.zshrc"
 alias la="ls -lah"
 alias lg="lazygit"
 alias ls="exa"
+alias lzd='lazydocker'
 alias gplr="git pull --rebase"
 alias gp="git push || say 'Stop the line!'"
 alias update_git_repos="$HOME/bin/update_all_git_repos.sh"
@@ -160,6 +161,11 @@ alias sof="$HOME/bin/show_open_files.sh"
 alias say="$HOME/bin/say.sh"
 alias openrepo="$HOME/bin/open_repo.sh"
 alias gdate="date"
+alias java8="sdk default java 8.0.422-albba; java --version"
+alias java11="sdk default java 11.0.24-amzn; java --version"
+alias java17="sdk default java 17.0.10-amzn; java --version"
+alias java21="sdk default java 21.0.2-amzn; java --version"
+alias java23="sdk default java 23-amzn; java --version"
 
 bash $HOME/bin/docker-aliases.sh
 
