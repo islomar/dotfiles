@@ -201,3 +201,8 @@ export PATH=$PATH:/home/islomar/.pulumi/bin
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Elixir configuration
+ELIXIR_INSTALLS_DIR=$HOME/.elixir-install/installs
+export PATH=$ELIXIR_INSTALLS_DIR/otp/28.1/bin:$PATH
+export PATH=$ELIXIR_INSTALLS_DIR/elixir/1.19.4-otp-28/bin:$PATH
