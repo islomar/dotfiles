@@ -10,7 +10,7 @@ chrome-gnome-shell==0.0.0
 cliapp==1.20180812.1
 cmdtest==0.32+git
 command-not-found==0.3
-cryptography==2.8
+cryptography==39.0.1
 ctop==1.0.0
 cupshelpers==1.0
 dbus-python==1.2.16
