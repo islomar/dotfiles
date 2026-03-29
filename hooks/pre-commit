@@ -3,4 +3,4 @@ set -euo pipefail
 
 PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-bash "$PWD/../scripts/detect-push-without-tests.sh"
+bash "$PWD/../scripts/detect-commit-without-tests.sh"

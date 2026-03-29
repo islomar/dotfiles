@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# To be configured as a pre-commit hook
-# Rejects commits that add/modify source files
-# without also adding/modifying corresponding test files.
+# To be configured as a pre-push hook
+# Rejects pushes that include source-file changes
+# without also including corresponding test-file changes.
 # This encourages developers to include tests with their changes.
 # To add a new language, define appropriate SOURCE, TEST, and IGNORE patterns and call the check function `check_for_tests_in_commit_for_language` for those patterns.
 #
@@ -10,16 +10,16 @@
 set -euo pipefail
 
 function main {
-  get_staged_files
+  get_pushed_files
   PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  "$PWD/detect-files-without-tests.sh" "$STAGED_FILES" "pre-commit"
+  "$PWD/detect-files-without-tests.sh" "$PUSHED_FILES" "pre-push"
   exit 0
 }
 
-function get_staged_files {
-  STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
+function get_pushed_files {
+  PUSHED_FILES=$(git diff HEAD~1 HEAD --name-only)
 
-  if [ -z "$STAGED_FILES" ]; then
+  if [ -z "$PUSHED_FILES" ]; then
     exit 0
   fi
 }
