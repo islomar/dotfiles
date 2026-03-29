@@ -1,3 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+set -euo pipefail
 
-mvn clean verify
+PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+bash "$PWD/../scripts/detect-push-without-tests.sh"
