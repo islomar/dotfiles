@@ -48,7 +48,7 @@ oauthlib==3.1.0
 olefile==0.46
 openshot-qt==2.4.3
 packaging==20.3
-paramiko==2.6.0
+paramiko==2.10.1
 pexpect==4.6.0
 Pillow==7.0.0
 powerline-status==2.7
