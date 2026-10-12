@@ -93,81 +93,13 @@
                 }
             }
         },
-        "1x1": {
-            "states": {
-                "0": {
-                    "labels": {
-                        "bottom": {
-                            "text": "",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        },
-                        "top": {
-                            "text": "Audio",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        }
-                    },
-                    "background": {
-                        "color": [
-                            220,
-                            138,
-                            221,
-                            255
-                        ]
-                    },
-                    "media": {},
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "/home/islomar/.local/bin/obs-ctl prepare-audio \"Audio calls\"",
-                                "detached": false
-                            }
-                        },
-                        {
-                            "id": "com_core447_OBSPlugin::ToggleRecord",
-                            "settings": {
-                                "connection_id": "default",
-                                "custom_icon_record_inactive.png": "/home/islomar/.dotfiles/images/StreamDeckIcons/AudioRecording/audio_rec_off.png",
-                                "custom_icon_record_active.png": "/home/islomar/.dotfiles/images/StreamDeckIcons/AudioRecording/audio_rec_on.png",
-                                "custom_icon_record_resume.png": "/home/islomar/.dotfiles/images/StreamDeckIcons/AudioRecording/audio_rec_paused.png"
-                            }
-                        }
-                    ],
-                    "image-control-action": 1,
-                    "label-control-actions": [
-                        null,
-                        null,
-                        1
-                    ]
-                }
-            }
-        },
         "2x1": {
             "states": {
                 "0": {
                     "labels": {
                         "bottom": {
                             "text": "Previous page",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
+                            "color": null,
                             "font_size": null,
                             "font_family": ""
                         }
@@ -179,7 +111,7 @@
                             "id": "com_core447_DeckPlugin::ChangePage",
                             "settings": {
                                 "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/Page_1.json",
-                                "deck_number": null
+                                "deck_number": "BL06K1B00782"
                             }
                         }
                     ]
