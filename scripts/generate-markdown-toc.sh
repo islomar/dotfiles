@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-function main {
-	require_command "git" "https://git-scm.com/downloads" "sudo apt install git"
+main() {
+	require_command "git" "https://git-scm.com/downloads" \
+		"Install Git using your operating system's package manager"
 
 	repo_root="$(git rev-parse --show-toplevel)"
 	cd "$repo_root"
@@ -11,39 +12,25 @@ function main {
 	update_toc_in_markdown_files
 }
 
-function update_toc_in_markdown_files {
-	local -a markdown_files=()
-	detect_changed_files markdown_files
-
-	if ((${#markdown_files[@]} > 0)); then
-		update_table_of_contents "${markdown_files[@]}"
-	fi
+update_toc_in_markdown_files() {
+	detect_changed_files | update_table_of_contents
 }
 
-function detect_changed_files {
-	local -n changed_files="$1"
-	local changed_files_file
-
-	changed_files_file="$(mktemp)"
-	if ! git diff --cached --name-only -z --diff-filter=ACMRT -- '*.md' '*.markdown' \
-		>"$changed_files_file"; then
-		rm -f "$changed_files_file"
-		return 1
-	fi
-
-	mapfile -d '' -t changed_files <"$changed_files_file"
-	rm -f "$changed_files_file"
+detect_changed_files() {
+	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown'
 }
 
-function update_table_of_contents {
+update_table_of_contents() {
 	local markdown_file
 
-	for markdown_file in "$@"; do
+	while IFS= read -r markdown_file; do
+		[[ -n "$markdown_file" ]] || continue
 		npx --no-install doctoc "$markdown_file"
+		git add -- "$markdown_file"
 	done
 }
 
-function check_node_requirements {
+check_node_requirements() {
 	require_command "node" "https://nodejs.org/" "Install Node.js from the URL above"
 	require_command "npm" "https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" \
 		"Install Node.js and npm from the URL above"
@@ -57,7 +44,7 @@ function check_node_requirements {
 	fi
 }
 
-function require_command {
+require_command() {
 	local command_name="$1"
 	local install_url="$2"
 	local install_command="$3"
@@ -68,6 +55,5 @@ function require_command {
 		exit 1
 	fi
 }
-
 
 main
