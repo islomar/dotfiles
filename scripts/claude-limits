@@ -6,7 +6,8 @@
 # Usage:
 #   claude-limits statusline   Claude Code status line: reads the session JSON on stdin,
 #                              saves the limits to the cache file and prints one line
-#   claude-limits deck         Prints three short lines from the cache file (Stream Deck key)
+#   claude-limits deck         Prints the 5-hour usage and its reset time from the cache file
+#                              (two short lines for a Stream Deck key)
 #
 set -euo pipefail
 
@@ -42,15 +43,14 @@ print_statusline() {
 
 print_deck() {
 	if [[ ! -f "$CACHE_FILE" ]]; then
-		printf 'Claude\nno data\nyet\n'
+		printf 'no data\nyet\n'
 		return
 	fi
 	local limits
 	limits="$(cat "$CACHE_FILE")"
-	printf '5h %s\nto %s\n7d %s\n' \
+	printf '5h %s\nto %s\n' \
 		"$(used_percentage "$limits" five_hour)" \
-		"$(reset_time "$limits" five_hour)" \
-		"$(used_percentage "$limits" seven_day)"
+		"$(reset_time "$limits" five_hour)"
 }
 
 save_limits() {

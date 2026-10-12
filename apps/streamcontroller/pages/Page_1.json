@@ -144,17 +144,21 @@
                                 "display_output": true,
                                 "clear_output": true,
                                 "auto_run": 30,
-                                "label_position": "center"
+                                "label_position": "bottom"
                             }
                         }
                     ],
-                    "image-control-action": 0,
                     "label-control-actions": [
                         0,
                         0,
                         0
                     ],
-                    "background-control-action": 0
+                    "background-control-action": 0,
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/Claude/claude.png",
+                        "size": 0.55,
+                        "valign": -0.65
+                    }
                 }
             }
         },
