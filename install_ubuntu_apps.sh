@@ -60,6 +60,8 @@ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+brew install rumdl vale
+vale sync --config ~/.dotfiles/config/vale/.vale.ini
 
 # Adobe
 wget ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.5-1_i386linux_enu.deb
