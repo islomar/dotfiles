@@ -9,7 +9,7 @@ pipx list --short | cut -d ' ' -f 1 > "$DOTFILES_PATH/langs/python/pipx-packages
 echo "Python apps exported!"
 
 # Export NPM apps
-find /usr/local/lib/node_modules -mindepth 1 -maxdepth 1 ! -name npm -exec basename {} \; > "$DOTFILES_PATH/langs/js/global_modules.txt"
+find /usr/local/lib/node_modules -mindepth 1 -maxdepth 1 ! -name npm -exec basename {} \; | sort > "$DOTFILES_PATH/langs/js/global_modules.txt"
 echo "NPM apps exported!"
 
 unamestr="$(uname)"
