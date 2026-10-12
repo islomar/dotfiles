@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+
+PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+bash "$PWD/../scripts/detect-commit-without-tests.sh"
+bash "$PWD/../scripts/generate-markdown-toc.sh"
