@@ -1,39 +1,6 @@
 {
     "screensaver": {},
     "keys": {
-        "2x0": {
-            "states": {
-                "0": {
-                    "media": {
-                        "size": null,
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/cc_taromaruyuki_BootstrapIcons/icons/speedometer2.png",
-                        "halign": null
-                    },
-                    "actions": [
-                        {
-                            "id": "com_core447_Speedtest::Speedtest",
-                            "settings": {}
-                        }
-                    ],
-                    "image-control-action": null,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "background-control-action": 0,
-                    "labels": {
-                        "top": {
-                            "outline_width": null
-                        },
-                        "bottom": {
-                            "text": "Speedtest",
-                            "outline_width": 2
-                        }
-                    }
-                }
-            }
-        },
         "1x1": {
             "states": {
                 "0": {
@@ -199,6 +166,45 @@
                             }
                         }
                     ]
+                }
+            }
+        },
+        "2x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.dotfiles/scripts/claude-limits deck 7d",
+                                "detached": false,
+                                "display_output": true,
+                                "clear_output": true,
+                                "auto_run": 30,
+                                "label_position": "bottom"
+                            }
+                        }
+                    ],
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/Claude/claude.png",
+                        "size": 0.55,
+                        "valign": -0.65
+                    },
+                    "labels": {
+                        "bottom": {
+                            "font-family": "DejaVu Sans",
+                            "style": "normal",
+                            "font-size": 14.0,
+                            "font-weight": 400,
+                            "text": null
+                        }
+                    }
                 }
             }
         }

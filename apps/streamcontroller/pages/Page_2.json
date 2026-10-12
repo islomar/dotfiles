@@ -1,36 +1,5 @@
 {
     "keys": {
-        "0x0": {
-            "states": {
-                "0": {
-                    "labels": {
-                        "bottom": {
-                            "text": "Unpause OBS recording",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        }
-                    },
-                    "background": {},
-                    "media": {
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/play.solid.png"
-                    },
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "/home/islomar/.local/bin/obs-ctl resume"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
         "1x0": {
             "states": {
                 "0": {
@@ -115,6 +84,40 @@
                             }
                         }
                     ]
+                }
+            }
+        },
+        "2x0": {},
+        "0x0": {
+            "states": {
+                "0": {
+                    "media": {
+                        "size": null,
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/cc_taromaruyuki_BootstrapIcons/icons/speedometer2.png",
+                        "halign": null
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_Speedtest::Speedtest",
+                            "settings": {}
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "top": {
+                            "outline_width": null
+                        },
+                        "bottom": {
+                            "text": "Speedtest",
+                            "outline_width": 2
+                        }
+                    }
                 }
             }
         }
