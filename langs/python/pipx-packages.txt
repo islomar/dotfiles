@@ -1,0 +1,4 @@
+black
+poetry
+streamdeck-linux-gui
+uv

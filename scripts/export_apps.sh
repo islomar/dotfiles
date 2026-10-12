@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# Export Python app
-pip3 freeze > "$DOTFILES_PATH/langs/python/requirements.txt"
+# Export Python apps
+pipx list --short | cut -d ' ' -f 1 > "$DOTFILES_PATH/langs/python/pipx-packages.txt"
 echo "Python apps exported!"
 
 # Export NPM apps

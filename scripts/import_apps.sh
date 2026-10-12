@@ -1,7 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-pip install -r "$DOTFILES_PATH/langs/python/requirements.txt"
+while IFS= read -r package; do
+    pipx install "$package" || echo "Failed to install Python app: $package"
+done < "$DOTFILES_PATH/langs/python/pipx-packages.txt"
 echo "Python apps imported!"
 
 xargs -I_ npm install -g "_" < "$DOTFILES_PATH/langs/js/global_modules.txt"
