@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents** *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+## Contents
 
 - [dotfiles](#dotfiles)
   - [OS setups](#os-setups)
@@ -66,10 +66,13 @@ Some references used:
 - App: [StreamController](https://streamcontroller.github.io/docs/latest/), installed with Flatpak
 - Run `install_elgato_stream_deck.sh`. It installs StreamController, adds the udev rule for the
   device and restores the pages from `apps/streamcontroller/` if StreamController has none.
+- On GNOME, the script also sets up automatic page switching by window: it sets
+  `XDG_CURRENT_DESKTOP=GNOME` for the Flatpak and requests the StreamController GNOME extension.
+  Approve the GNOME dialog, then restart StreamController.
 - In StreamController, open the menu > Open Store and install the OS, Deck and OBS plugins.
-- The OBS buttons contain the placeholder `OBS_WEBSOCKET_PASSWORD`. Replace it with the
-  OBS WebSocket password.
-- `export_apps.sh` exports the current pages to `apps/streamcontroller/` and removes the password.
+- In Settings > Plugins > OBS, enter the OBS WebSocket password.
+- The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
+- `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
 - StreamController adds its own autostart entry.
 - Icons:
   - <https://www.flaticon.com/authors/anggara/color-lineal-color?author_id=1427&type=standard>
