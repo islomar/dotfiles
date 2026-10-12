@@ -1,6 +1,5 @@
 #!/bin/bash
 set -euo pipefail
 
-PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-bash "$PWD/../scripts/detect-commit-without-tests.sh"
+hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+bash "$hook_dir/../scripts/pre-commit.sh"
