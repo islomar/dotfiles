@@ -73,7 +73,7 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	editor = vim
 [push]

@@ -9,8 +9,7 @@
 #
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DEFAULT_VALE_CONFIG="$SCRIPT_DIR/../config/vale/.vale.ini"
+DEFAULT_VALE_CONFIG="${DOTFILES_PATH:-$HOME/.dotfiles}/config/vale/.vale.ini"
 
 main() {
 	require_command "git" "https://git-scm.com/downloads" \

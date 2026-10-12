@@ -1,20 +1,15 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 zmodload zsh/zprof
 # Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+export HOMEBREW_NO_PATH_SHADOW_CHECK=1
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin:/usr/local/opt/python/libexec/bin:/usr/local/sbin:$GOPATH/bin:$HOME/bin:$DOTFILES_PATH/bin:$HOME/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
@@ -135,6 +130,7 @@ alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias bundletool="java -jar $HOME/bin/bundletool-all-1.16.0.jar"
 alias cleanup-docker='docker stop $(docker ps -qa) || true && docker rm $(docker ps -qa) || true && docker system prune -f && docker volume prune -f'
 alias cdw="cd $HOME/workspace"
+alias cdwm="cd $HOME/workspace/my-notes"
 alias cdt="cd $HOME/tmp"
 alias cdc="cd $HOME/.dotfiles"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
@@ -145,7 +141,7 @@ alias vzsh="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias la="ls -lah"
 alias lg="lazygit"
-alias ls="exa"
+alias ls="eza"
 alias lzd='lazydocker'
 alias gplr="git pull --rebase"
 alias gp="git push || say 'Stop the line!'"
@@ -166,6 +162,7 @@ alias java11="sdk default java 11.0.24-amzn; java --version"
 alias java17="sdk default java 17.0.10-amzn; java --version"
 alias java21="sdk default java 21.0.2-amzn; java --version"
 alias java23="sdk default java 23-amzn; java --version"
+alias gsettings="/usr/bin/gsettings"
 
 bash $HOME/bin/docker-aliases.sh
 
@@ -190,9 +187,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # add Pulumi to the PATH
 export PATH=$PATH:/home/islomar/.pulumi/bin
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -202,7 +196,22 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Elixir configuration
 ELIXIR_INSTALLS_DIR=$HOME/.elixir-install/installs
 export PATH=$ELIXIR_INSTALLS_DIR/otp/28.1/bin:$PATH
 export PATH=$ELIXIR_INSTALLS_DIR/elixir/1.19.4-otp-28/bin:$PATH
+
+# vapi
+export VAPI_INSTALL="$HOME/.vapi"
+export PATH="$VAPI_INSTALL/bin:$PATH"
+export MANPATH=""$HOME/.vapi"/share/man:$MANPATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/islomar/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Needed so that llmfit detects the Docker Model Runner
+export DOCKER_MODEL_RUNNER_HOST=http://localhost:12434
