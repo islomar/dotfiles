@@ -7,6 +7,7 @@ export DOTFILES_PATH="$HOME/.dotfiles"
 
 ln -sf $HOME/.dotfiles/home/.bashrc $HOME/.bashrc
 ln -sf $HOME/.dotfiles/home/.zshrc $HOME/.zshrc
+ln -sf $HOME/.dotfiles/home/.p10k.zsh $HOME/.p10k.zsh
 ln -sf $HOME/.dotfiles/home/.vimrc $HOME/.vimrc
 ln -sf $HOME/.dotfiles/home/.gitignore_global $HOME/.gitignore_global
 ln -sf $HOME/.dotfiles/home/.gitattributes $HOME/.gitattributes
