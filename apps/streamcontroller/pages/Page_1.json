@@ -137,12 +137,14 @@
                 "0": {
                     "actions": [
                         {
-                            "id": "dev_enjxz_ClaudeUsage::ClaudeUsage",
+                            "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": ". \"$HOME/.nvm/nvm.sh\" && bunx ccusage",
-                                "token_limit": 0,
-                                "refresh_seconds": 60,
-                                "show_cost": false
+                                "command": "/home/islomar/.dotfiles/scripts/claude-limits deck",
+                                "detached": false,
+                                "display_output": true,
+                                "clear_output": true,
+                                "auto_run": 30,
+                                "label_position": "center"
                             }
                         }
                     ],
@@ -161,7 +163,7 @@
                 "0": {
                     "labels": {
                         "bottom": {
-                            "text": "Screenshot",
+                            "text": "",
                             "color": [
                                 255,
                                 255,

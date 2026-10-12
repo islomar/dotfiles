@@ -21,6 +21,16 @@ ln -sf "$HOME/.dotfiles/scripts/obs-ctl" "$HOME/.local/bin/obs-ctl"
 mkdir -p "$HOME/.config/rumdl"
 ln -sf "$HOME/.dotfiles/config/rumdl/rumdl.toml" "$HOME/.config/rumdl/rumdl.toml"
 
+# Claude Code status line with the plan usage limits, also read by the Stream Deck.
+# Only the statusLine key is set; the rest of settings.json stays as it is.
+claude_settings="$HOME/.claude/settings.json"
+mkdir -p "$(dirname "$claude_settings")"
+[[ -f "$claude_settings" ]] || echo '{}' >"$claude_settings"
+claude_settings_tmp="$(mktemp)"
+jq '.statusLine = {"type": "command", "command": "~/.dotfiles/scripts/claude-limits statusline"}' \
+    "$claude_settings" >"$claude_settings_tmp"
+mv "$claude_settings_tmp" "$claude_settings"
+
 
 unamestr="$(uname)"
 if [[ "$unamestr" == 'Linux' ]]; then

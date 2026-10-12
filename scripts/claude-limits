@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+#
+# Shows the claude.ai plan usage limits (5-hour and weekly windows) that Claude Code
+# receives from Anthropic. Only Pro and Max plans get this data.
+#
+# Usage:
+#   claude-limits statusline   Claude Code status line: reads the session JSON on stdin,
+#                              saves the limits to the cache file and prints one line
+#   claude-limits deck         Prints three short lines from the cache file (Stream Deck key)
+#
+set -euo pipefail
+
+CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/claude-rate-limits.json"
+
+main() {
+	require_command "jq" "https://jqlang.org/download/" "brew install jq"
+	case "${1:-}" in
+	statusline) print_statusline ;;
+	deck) print_deck ;;
+	*)
+		printf 'Usage: %s statusline | deck\n' "$(basename "$0")" >&2
+		exit 2
+		;;
+	esac
+}
+
+print_statusline() {
+	local input model limits
+	input="$(cat)"
+	model="$(jq -r '.model.display_name // "Claude"' <<<"$input")"
+	limits="$(jq -c '.rate_limits // empty' <<<"$input")"
+
+	if [[ -z "$limits" ]]; then
+		printf '[%s]\n' "$model"
+		return
+	fi
+	save_limits "$limits"
+	printf '[%s] 5h %s ↻ %s · 7d %s ↻ %s\n' "$model" \
+		"$(used_percentage "$limits" five_hour)" "$(reset_time "$limits" five_hour)" \
+		"$(used_percentage "$limits" seven_day)" "$(reset_time "$limits" seven_day)"
+}
+
+print_deck() {
+	if [[ ! -f "$CACHE_FILE" ]]; then
+		printf 'Claude\nno data\nyet\n'
+		return
+	fi
+	local limits
+	limits="$(cat "$CACHE_FILE")"
+	printf '5h %s\nto %s\n7d %s\n' \
+		"$(used_percentage "$limits" five_hour)" \
+		"$(reset_time "$limits" five_hour)" \
+		"$(used_percentage "$limits" seven_day)"
+}
+
+save_limits() {
+	local tmp_file
+	mkdir -p "$(dirname "$CACHE_FILE")"
+	tmp_file="$(mktemp "$CACHE_FILE.XXXXXX")"
+	jq -c --argjson now "$(date +%s)" '. + {updated_at: $now}' <<<"$1" >"$tmp_file"
+	mv "$tmp_file" "$CACHE_FILE"
+}
+
+# A window whose reset time has passed starts again at 0%
+used_percentage() {
+	jq -r --arg window "$2" --argjson now "$(date +%s)" '
+		.[$window] as $w
+		| if $w == null then "?"
+		  elif ($w.resets_at // 0) <= $now then "0%"
+		  else "\($w.used_percentage | round)%"
+		  end' <<<"$1"
+}
+
+reset_time() {
+	local resets_at
+	resets_at="$(jq -r --arg window "$2" '.[$window].resets_at // empty' <<<"$1")"
+	if [[ -z "$resets_at" || "$resets_at" -le "$(date +%s)" ]]; then
+		printf -- '-'
+		return
+	fi
+	# The 5-hour window always resets within the next 5 hours, so the time is enough
+	if [[ "$2" == "five_hour" || "$(format_epoch "$resets_at" +%F)" == "$(date +%F)" ]]; then
+		format_epoch "$resets_at" +%H:%M
+	else
+		format_epoch "$resets_at" '+%a %H:%M'
+	fi
+}
+
+# GNU date (Linux) uses -d @epoch, BSD date (macOS) uses -r epoch
+format_epoch() {
+	date -d "@$1" "$2" 2>/dev/null || date -r "$1" "$2"
+}
+
+require_command() {
+	local command_name="$1"
+	local install_url="$2"
+	local install_command="$3"
+
+	if ! command -v "$command_name" >/dev/null 2>&1; then
+		printf 'Missing required tool: %s\nInstall it from: %s\nExample: %s\n' \
+			"$command_name" "$install_url" "$install_command" >&2
+		exit 1
+	fi
+}
+
+main "$@"
