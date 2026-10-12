@@ -11,17 +11,18 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz git-extras rumdl vale
+brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz git-extras rumdl vale shellcheck
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
 brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle rocket vlc
 
 # Vundle for vim
-wget https://raw.githubusercontent.com/islomar/dotfiles/master/.vimrc && cp -pr .vimrc $HOME/
+wget https://raw.githubusercontent.com/islomar/dotfiles/master/.vimrc && cp -pr .vimrc "$HOME/"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cd ~ && vim +PluginInstall +qall && cd -
 
 # SDKMan
 curl -s "https://get.sdkman.io" | bash
+# shellcheck source=/dev/null
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Font Fira Code
@@ -34,8 +35,8 @@ brew tap homebrew/cask-fonts
 brew cask install font-awesome-terminal-fonts
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts && ./install.sh && cd .. && rm -rf fonts
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
 curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
 

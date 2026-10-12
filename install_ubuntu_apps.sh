@@ -39,28 +39,26 @@ cd ~ && vim +PluginInstall +qall && cd -
 
 # Oh my zsh
 sudo apt-get install zsh fonts-powerline -y
-sudo chsh -s /bin/zsh $USER
+sudo chsh -s /bin/zsh "$USER"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/matthieusb/zsh-sdkman.git && cd -
 # And after that, you have to log out from the current user and log in again
-helm completion zsh > "${fpath[1]}/_helm"
+mkdir -p "$HOME/.oh-my-zsh/completions"
+helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
 
 
 # Python
 curl https://pyenv.run | bash
 pyenv install 3.10
-# Configure Python with zshrc
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+# The pyenv setup for zsh is already in home/.zshrc
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install rumdl vale
+brew install rumdl vale shellcheck
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
 
 # Adobe
@@ -87,11 +85,12 @@ sudo apt update
 sudo apt install -y docker-ce
 sudo systemctl status docker
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 newgrp docker
 
 # SDKMan
 curl -s "https://get.sdkman.io" | bash
+# shellcheck source=/dev/null
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Git
@@ -105,8 +104,8 @@ git config --global commit.gpgsign true
 sudo apt install samba -y
 sudo systemctl enable --now smbd
 sudo ufw allow samba
-sudo usermod -aG sambashare $USER
-sudo smbpasswd -a $USER
+sudo usermod -aG sambashare "$USER"
+sudo smbpasswd -a "$USER"
 
 # Visual Studio Code
 # sudo snap install --classic code
