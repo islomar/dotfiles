@@ -12,7 +12,7 @@ mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install libfuse2 bat espeak libespeak-dev mbrola-us2 exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop xclip gnome-shell-pomodoro unzip xournal xboxdrv git-extras gnome-screenshot streamdeck-ui -y
+sudo apt install libfuse2 bat espeak libespeak-dev mbrola-us2 exa gimp telegram-desktop snapd fzf tree tldr jq vim tmux tmate curl git npm yarn maven gitk git-gui silversearcher-ag htop ctop xclip gnome-shell-pomodoro unzip xournal xboxdrv git-extras gnome-screenshot -y
 sudo snap install postman
 sudo snap install emote
 sudo snap install ksnip
