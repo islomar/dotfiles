@@ -1,0 +1,11 @@
+autostart
+Collaboard
+dotfiles
+[Ee]lgato
+Flatpak
+Limnu
+repo
+udev
+Wacom
+Xorg
+ydotool
