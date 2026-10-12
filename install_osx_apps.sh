@@ -11,7 +11,7 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz git-extras rumdl vale shellcheck
+brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz git-extras rumdl vale shellcheck jq
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
 brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle rocket vlc
 
