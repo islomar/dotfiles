@@ -147,7 +147,7 @@
                     ],
                     "background-control-action": 0,
                     "media": {
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/custom_icons/iconos_streamdeck/icons/Large/home.solid.png",
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/Large/home.solid.png",
                         "size": 0.85
                     },
                     "labels": {
