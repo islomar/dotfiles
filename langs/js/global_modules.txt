@@ -1,2 +1,11 @@
-n
-npx
+@anthropic-ai/claude-code
+bun
+corepack
+@google/gemini-cli
+gulp-cli
+next
+omniroute
+@openai/codex
+pnpm
+tdd-guard
+tldr
