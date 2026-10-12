@@ -1,4 +1,5 @@
 {
+    "screensaver": {},
     "keys": {
         "0x0": {
             "states": {
@@ -194,6 +195,5 @@
                 }
             }
         }
-    },
-    "screensaver": {}
+    }
 }
