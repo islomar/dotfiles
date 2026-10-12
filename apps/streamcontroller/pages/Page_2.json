@@ -67,14 +67,20 @@
                 "0": {
                     "labels": {
                         "bottom": {
-                            "text": "Previous page",
+                            "text": "Back",
                             "color": null,
                             "font_size": null,
-                            "font_family": ""
+                            "font_family": "",
+                            "font-family": "DejaVu Sans",
+                            "style": "normal",
+                            "font-size": 14.0,
+                            "font-weight": 400
                         }
                     },
                     "background": {},
-                    "media": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/custom_icons/iconos_streamdeck/icons/Large/home.solid.png"
+                    },
                     "actions": [
                         {
                             "id": "com_core447_DeckPlugin::ChangePage",
@@ -87,7 +93,28 @@
                 }
             }
         },
-        "2x0": {},
+        "2x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_Weather::Weather",
+                            "settings": {
+                                "lat": "38.7406",
+                                "lon": "-0.0111"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
         "0x0": {
             "states": {
                 "0": {
@@ -118,6 +145,27 @@
                             "outline_width": 2
                         }
                     }
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_Battery::BatteryPercentage",
+                            "settings": {
+                                "device": "standard"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
                 }
             }
         }
