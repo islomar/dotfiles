@@ -1,0 +1,25 @@
+{
+    "brightness": {
+        "value": 100
+    },
+    "screensaver": {
+        "enable": true,
+        "time-delay": 0,
+        "brightness": 0,
+        "media-path": null,
+        "loop": false,
+        "fps": 30,
+        "source": "file",
+        "folder-path": "",
+        "rotation-interval": 5
+    },
+    "background": {
+        "media-path": "",
+        "enable": false,
+        "loop": true,
+        "fps": 30,
+        "source": "file",
+        "folder-path": "",
+        "rotation-interval": 5
+    }
+}

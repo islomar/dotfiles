@@ -1,0 +1,132 @@
+[
+    {
+        "name": "obs_new_icon_small-r",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/obs_new_icon_small-r.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/obs_new_icon_small-r.png",
+        "sha256": "c62a45b54360c0529aa9a5acb9a19030bc709c9b680b9ff6a4add597e7bd222b",
+        "id": "26dbd6ea-b31d-4f7f-acff-eb34522d65e1",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/obs_new_icon_small-r.png"
+    },
+    {
+        "name": "video.solid",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/video.solid.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video.solid.png",
+        "sha256": "5bd4564651a13194df8e0b67337dba853749e59d2248cd72964d17620150c353",
+        "id": "b5b2fbb5-84c3-494f-b2c5-9df950d89823",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video.solid.png"
+    },
+    {
+        "name": "video-slash.solid",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/video-slash.solid.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video-slash.solid.png",
+        "sha256": "ea20bc76f7363c9df75f570a9af14f938ba1569470a33b141e4aab1f4bf41ba0",
+        "id": "979a6490-528f-433f-89f1-036f99152a09",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video-slash.solid.png"
+    },
+    {
+        "name": "org.gnome.Screenshot",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/org.gnome.Screenshot.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/org.gnome.Screenshot.png",
+        "sha256": "a99b936bbb5f21f3983d015849a20ea839b29be3a2046735deb2a7de6f86bf07",
+        "id": "0270c185-b0e9-4b61-8a32-622175280458",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/org.gnome.Screenshot.png"
+    },
+    {
+        "name": "Apple_Emoji_update_2018_1_07162018_carousel.jpg.large",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/Apple_Emoji_update_2018_1_07162018_carousel.jpg.large.jpg",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/Apple_Emoji_update_2018_1_07162018_carousel.jpg.large.jpg",
+        "sha256": "ddc4ce537bb340bee6c0094009fed430100896a4b06921e3514fc1eb849a23f6",
+        "id": "f54e35ee-d1f4-4f71-9bdc-ce638f733836",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/Apple_Emoji_update_2018_1_07162018_carousel.jpg.large.jpg"
+    },
+    {
+        "name": "play.solid",
+        "original-path": "/home/islomar/workspace/dotfiles/images/StreamDeckIcons/Small/play.solid.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/play.solid.png",
+        "sha256": "652abbdf8aa8c69ff4675bb24bd15a345aeb8267a63fc63d8fab061dd1cda1ec",
+        "id": "6a346813-5546-4c60-ad10-9f71abe93228",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/play.solid.png"
+    },
+    {
+        "name": "power-off.solid",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/power-off.solid.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/power-off.solid.png",
+        "sha256": "6e4fed971e54815c90029e954454cb3b49d34ceddfeb7754a3fcb63db3cf7f24",
+        "id": "a640f9be-2f08-4592-839c-1e2d60cdcc80",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/power-off.solid.png"
+    },
+    {
+        "name": "search.solid",
+        "original-path": "/home/islomar/workspace/dotfiles/images/StreamDeckIcons/Small/search.solid.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/search.solid.png",
+        "sha256": "98fa25553e0781cf4c62bd89bdc15fde6e73c641d244e338c7a98bac71aec59c",
+        "id": "fa3ddb01-7218-41fd-8dd2-c1dee9513d3a",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/search.solid.png"
+    },
+    {
+        "name": "gradia",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/gradia.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/gradia.png",
+        "sha256": "47bf055c55251c0d2ca86a69a2dfb759a67637a08be70b1dde7f2a2221c1a90c",
+        "id": "5758bae2-ecf7-4fbd-bf2f-05bd9efc2a2b",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/gradia.png"
+    },
+    {
+        "name": "audio_rec",
+        "original-path": "/home/islomar/Pictures/StreamDeckIcons/audio_rec.png",
+        "internal-path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/audio_rec.png",
+        "sha256": "bb71a0ec4558f2600ebd85dc3f685c7c59edf54b44492a23dfa0c86d5a6335a6",
+        "id": "296af22c-8e5c-422f-8572-0f96d280c728",
+        "license": {
+            "name": null,
+            "url": null,
+            "author": null
+        },
+        "thumbnail": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/audio_rec.png"
+    }
+]

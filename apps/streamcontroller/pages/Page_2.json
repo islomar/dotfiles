@@ -1,0 +1,221 @@
+{
+    "keys": {
+        "0x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Unpause OBS recording",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/play.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.local/bin/obs-ctl resume"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Shutdown",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/power-off.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "shutdown -h now"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "2x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Search Chrome tab",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/search.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        29,
+                                        1
+                                    ],
+                                    [
+                                        30,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ],
+                                    [
+                                        29,
+                                        0
+                                    ],
+                                    [
+                                        30,
+                                        0
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "0x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Annotate",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/gradia.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/usr/bin/flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {
+                        "color": [
+                            220,
+                            138,
+                            221,
+                            255
+                        ]
+                    },
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/audio_rec.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/usr/local/bin/obs-cmd --websocket 'obsws://127.0.0.1:4455/OBS_WEBSOCKET_PASSWORD' recording toggle"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "2x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Previous page",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {},
+                    "actions": [
+                        {
+                            "id": "com_core447_DeckPlugin::ChangePage",
+                            "settings": {
+                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/ui_BL06K1B00782_1.json",
+                                "deck_number": null
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

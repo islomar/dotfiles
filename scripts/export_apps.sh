@@ -19,6 +19,19 @@ echo "NPM apps exported!"
 unamestr="$(uname)"
 if [[ "$unamestr" == 'Linux' ]]; then
     echo "Exporting additional Linux apps..."
+    streamcontroller_data="$HOME/.var/app/com.core447.StreamController/data"
+    streamcontroller_export="$DOTFILES_PATH/apps/streamcontroller"
+    if compgen -G "$streamcontroller_data/pages/*.json" >/dev/null; then
+        rm -rf "$streamcontroller_export"
+        mkdir -p "$streamcontroller_export/pages" "$streamcontroller_export/settings" "$streamcontroller_export/Assets"
+        cp -p "$streamcontroller_data"/pages/*.json "$streamcontroller_export/pages/"
+        cp -p "$streamcontroller_data/settings/pages.json" "$streamcontroller_export/settings/"
+        cp -pr "$streamcontroller_data/settings/decks" "$streamcontroller_export/settings/"
+        cp -pr "$streamcontroller_data/Assets/AssetManager" "$streamcontroller_export/Assets/"
+        # Keep the OBS WebSocket password out of the repo
+        sed -i -E "s#(obsws://[^/]+/)[^'\" \\\\]+#\\1OBS_WEBSOCKET_PASSWORD#g" "$streamcontroller_export"/pages/*.json
+        echo "StreamController pages exported!"
+    fi
 elif [[ "$unamestr" == 'Darwin' ]]; then
     echo "Exporting additional Mac apps..."
     brew services stop --all
