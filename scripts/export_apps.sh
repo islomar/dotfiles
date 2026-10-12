@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+DOTFILES_PATH="${DOTFILES_PATH:-$HOME/.dotfiles}"
+HOMEBREW_BUNDLE_FILE_PATH="${HOMEBREW_BUNDLE_FILE_PATH:-$DOTFILES_PATH/osx/Brewfile}"
+
 # Export Python apps
 pipx list --short | cut -d ' ' -f 1 > "$DOTFILES_PATH/langs/python/pipx-packages.txt"
 echo "Python apps exported!"

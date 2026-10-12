@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+DOTFILES_PATH="${DOTFILES_PATH:-$HOME/.dotfiles}"
+HOMEBREW_BUNDLE_FILE_PATH="${HOMEBREW_BUNDLE_FILE_PATH:-$DOTFILES_PATH/osx/Brewfile}"
+
 while IFS= read -r package; do
     pipx install "$package" || echo "Failed to install Python app: $package"
 done < "$DOTFILES_PATH/langs/python/pipx-packages.txt"
