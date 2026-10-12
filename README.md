@@ -69,7 +69,10 @@ Some references used:
 - On GNOME, the script also sets up automatic page switching by window: it sets
   `XDG_CURRENT_DESKTOP=GNOME` for the Flatpak and requests the StreamController GNOME extension.
   Approve the GNOME dialog, then restart StreamController.
-- In StreamController, open the menu > Open Store and install the OS, Deck and OBS plugins.
+- In StreamController, open the menu > Open Store and install what the pages use:
+  - Plugins: OS, Deck, OBS, Clocks, Weather, Battery and Speedtest.
+  - Icon packs: Material Icons and Bootstrap Icons. The pages refer to these icons, and
+    `export_apps.sh` does not export them.
 - In Settings > Plugins > OBS, enter the OBS WebSocket password.
 - The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
 - `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
