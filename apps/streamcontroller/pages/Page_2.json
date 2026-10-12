@@ -117,36 +117,6 @@
                     ]
                 }
             }
-        },
-        "2x0": {
-            "states": {
-                "0": {
-                    "labels": {
-                        "bottom": {
-                            "text": "Next page",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        }
-                    },
-                    "background": {},
-                    "media": {},
-                    "actions": [
-                        {
-                            "id": "com_core447_DeckPlugin::ChangePage",
-                            "settings": {
-                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/Page_3.json",
-                                "deck_number": null
-                            }
-                        }
-                    ]
-                }
-            }
         }
     }
 }
