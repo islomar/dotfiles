@@ -9,10 +9,10 @@ pipx list --short | cut -d ' ' -f 1 > "$DOTFILES_PATH/langs/python/pipx-packages
 echo "Python apps exported!"
 
 # Export NPM apps
-ls -1 /usr/local/lib/node_modules | grep -v npm > "$DOTFILES_PATH/langs/js/global_modules.txt"
+find /usr/local/lib/node_modules -mindepth 1 -maxdepth 1 ! -name npm -exec basename {} \; > "$DOTFILES_PATH/langs/js/global_modules.txt"
 echo "NPM apps exported!"
 
-unamestr=`uname`
+unamestr="$(uname)"
 if [[ "$unamestr" == 'Linux' ]]; then
     echo "Exporting additional Linux apps..."
 elif [[ "$unamestr" == 'Darwin' ]]; then

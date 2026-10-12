@@ -12,7 +12,7 @@ echo "Python apps imported!"
 xargs -I_ npm install -g "_" < "$DOTFILES_PATH/langs/js/global_modules.txt"
 echo "NPM apps imported!"
 
-unamestr=`uname`
+unamestr="$(uname)"
 if [[ "$unamestr" == 'Linux' ]]; then
     echo "Install additional Linux apps..."
 elif [[ "$unamestr" == 'Darwin' ]]; then
