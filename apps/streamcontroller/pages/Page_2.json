@@ -1,36 +1,5 @@
 {
     "keys": {
-        "1x0": {
-            "states": {
-                "0": {
-                    "labels": {
-                        "bottom": {
-                            "text": "Shutdown",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        }
-                    },
-                    "background": {},
-                    "media": {
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/power-off.solid.png"
-                    },
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "shutdown -h now"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
         "2x1": {
             "states": {
                 "0": {
@@ -165,6 +134,40 @@
                             }
                         }
                     ]
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_DeckPlugin::ChangePage",
+                            "settings": {
+                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/OBS Studio.json",
+                                "deck_number": "BL06K1B00782"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/obs_new_icon_small-r.png"
+                    },
+                    "labels": {
+                        "bottom": {
+                            "text": "OBS Studio",
+                            "font-family": "DejaVu Sans",
+                            "style": "normal",
+                            "font-size": 14.0,
+                            "font-weight": 400
+                        }
+                    }
                 }
             }
         }

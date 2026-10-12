@@ -1,1 +1,66 @@
-{}
+{
+    "keys": {
+        "0x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Back",
+                            "color": null,
+                            "font_size": null,
+                            "font_family": "",
+                            "font-family": "DejaVu Sans",
+                            "style": "normal",
+                            "font-size": 14.0,
+                            "font-weight": 400
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/com_core447_MaterialIcons/icons/navigate_before-inv.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_DeckPlugin::ChangePage",
+                            "settings": {
+                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/Page_2.json",
+                                "deck_number": "BL06K1B00782"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Shutdown",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/power-off.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "shutdown -h now"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
