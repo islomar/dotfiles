@@ -37,7 +37,7 @@
                 "0": {
                     "labels": {
                         "bottom": {
-                            "text": "Next page",
+                            "text": "Next",
                             "color": [
                                 255,
                                 255,
@@ -49,7 +49,9 @@
                         }
                     },
                     "background": {},
-                    "media": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/com_core447_MaterialIcons/icons/navigate_next-inv.png"
+                    },
                     "actions": [
                         {
                             "id": "com_core447_DeckPlugin::ChangePage",
