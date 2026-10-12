@@ -4,6 +4,70 @@
         "2x0": {
             "states": {
                 "0": {
+                    "media": {
+                        "size": null,
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/cc_taromaruyuki_BootstrapIcons/icons/speedometer2.png",
+                        "halign": null
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_Speedtest::Speedtest",
+                            "settings": {}
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "top": {
+                            "outline_width": null
+                        },
+                        "bottom": {
+                            "text": "Speedtest",
+                            "outline_width": 2
+                        }
+                    }
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Emojis",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/Apple_Emoji_update_2018_1_07162018_carousel.jpg.large.jpg"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "emote"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "2x1": {
+            "states": {
+                "0": {
                     "labels": {
                         "bottom": {
                             "text": "Next page",
@@ -31,7 +95,68 @@
                 }
             }
         },
-        "1x1": {
+        "0x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_Clocks::DigitalClock",
+                            "settings": {
+                                "show-seconds": true,
+                                "label-position": "center"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "size": 1.06,
+                        "valign": null
+                    },
+                    "background": {
+                        "color": null
+                    },
+                    "labels": {
+                        "center": {
+                            "font-family": "DejaVu Sans",
+                            "style": "normal",
+                            "font-size": 16.0,
+                            "font-weight": 400
+                        }
+                    }
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "dev_enjxz_ClaudeUsage::ClaudeUsage",
+                            "settings": {
+                                "command": ". \"$HOME/.nvm/nvm.sh\" && bunx ccusage",
+                                "token_limit": 0,
+                                "refresh_seconds": 60,
+                                "show_cost": false
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "0x1": {
             "states": {
                 "0": {
                     "labels": {
@@ -65,37 +190,6 @@
                                         0
                                     ]
                                 ]
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        "2x1": {
-            "states": {
-                "0": {
-                    "labels": {
-                        "bottom": {
-                            "text": "Emojis",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        }
-                    },
-                    "background": {},
-                    "media": {
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/Apple_Emoji_update_2018_1_07162018_carousel.jpg.large.jpg"
-                    },
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "emote"
                             }
                         }
                     ]
