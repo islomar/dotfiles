@@ -15,6 +15,9 @@ ln -sf "$HOME/.dotfiles/home/.zshenv" "$HOME/.zshenv"
 ln -sf "$HOME/.dotfiles/home/.tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$HOME/.dotfiles/home/.tmate.conf" "$HOME/.tmate.conf"
 ln -sf "$HOME/.dotfiles/home/.gitconfig" "$HOME/.gitconfig"
+mkdir -p "$HOME/.local/bin"
+# The Stream Deck buttons in apps/streamcontroller run obs-ctl from this path
+ln -sf "$HOME/.dotfiles/scripts/obs-ctl" "$HOME/.local/bin/obs-ctl"
 mkdir -p "$HOME/.config/rumdl"
 ln -sf "$HOME/.dotfiles/config/rumdl/rumdl.toml" "$HOME/.config/rumdl/rumdl.toml"
 

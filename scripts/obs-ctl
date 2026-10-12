@@ -1,0 +1,94 @@
+#!/usr/bin/env -S /home/islomar/.local/bin/uv run --quiet --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["obsws-python>=1.7"]
+# ///
+"""Control OBS recording over its built-in WebSocket (works on Wayland).
+
+Usage: obs-ctl record-toggle | record-start | record-stop | pause | resume | pause-toggle | status | prepare-audio <profile>
+Reads host port and password from OBS's own obs-websocket config, so no secret is duplicated.
+`prepare-audio <profile>` runs before an audio recording: when OBS is not recording, it switches to
+<profile> and hides every source in the current scene, so the MP3 gets a black image instead of the screen.
+"""
+import json
+import pathlib
+import subprocess
+import sys
+import time
+
+import obsws_python as obs
+
+CONFIG = pathlib.Path.home() / ".config/obs-studio/plugin_config/obs-websocket/config.json"
+ACTIONS = {
+    "record-toggle": "toggle_record",
+    "record-start": "start_record",
+    "record-stop": "stop_record",
+    "pause": "pause_record",
+    "resume": "resume_record",
+    "pause-toggle": "toggle_record_pause",
+}
+
+
+def notify(message: str) -> None:
+    subprocess.run(["notify-send", "-t", "1500", "-i", "com.obsproject.Studio", "OBS", message], check=False)
+
+
+def switch_profile(client: obs.ReqClient, name: str) -> bool:
+    if client.get_profile_list().current_profile_name == name:
+        return True
+    client.set_current_profile(name)
+    for _ in range(30):
+        if client.get_profile_list().current_profile_name == name:
+            return True
+        time.sleep(0.1)
+    notify(f"Could not switch to profile {name}")
+    return False
+
+
+def hide_all_sources(client: obs.ReqClient) -> None:
+    scene = client.get_current_program_scene().scene_name
+    for item in client.get_scene_item_list(scene).scene_items:
+        if item["sceneItemEnabled"]:
+            client.set_scene_item_enabled(scene, item["sceneItemId"], False)
+
+
+def prepare_audio(client: obs.ReqClient, profile: str) -> int:
+    if client.get_record_status().output_active:
+        return 0  # This press stops the recording; OBS cannot switch profile while recording
+    if not switch_profile(client, profile):
+        return 1
+    hide_all_sources(client)
+    return 0
+
+
+def main() -> int:
+    is_prepare_audio = len(sys.argv) == 3 and sys.argv[1] == "prepare-audio"
+    if not is_prepare_audio and (len(sys.argv) != 2 or sys.argv[1] not in [*ACTIONS, "status"]):
+        print(__doc__.strip().splitlines()[2], file=sys.stderr)
+        return 2
+    cfg = json.loads(CONFIG.read_text())
+    if not cfg.get("server_enabled"):
+        notify("WebSocket server is off (OBS → Tools → WebSocket Server Settings)")
+        return 1
+    password = cfg.get("server_password") if cfg.get("auth_required") else None
+    try:
+        client = obs.ReqClient(host="localhost", port=cfg.get("server_port", 4455), password=password, timeout=3)
+    except Exception as exc:  # OBS not running or wrong password
+        notify(f"Cannot reach OBS: {exc}")
+        return 1
+    if is_prepare_audio:
+        return prepare_audio(client, sys.argv[2])
+    action = sys.argv[1]
+    if action != "status":
+        getattr(client, ACTIONS[action])()
+    status = client.get_record_status()
+    state = "paused" if status.output_paused else ("recording" if status.output_active else "stopped")
+    if action == "status":
+        print(state)
+    else:
+        notify(f"Recording {state}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
