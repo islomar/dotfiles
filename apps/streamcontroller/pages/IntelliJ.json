@@ -1,0 +1,268 @@
+{
+    "keys": {
+        "0x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Run",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/IntelliJ/run.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        68,
+                                        1
+                                    ],
+                                    [
+                                        68,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ]
+                                ],
+                                "delay": 0.02
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Debug",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/IntelliJ/debug.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        67,
+                                        1
+                                    ],
+                                    [
+                                        67,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ]
+                                ],
+                                "delay": 0.02
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "2x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Update",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/IntelliJ/update_project.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        29,
+                                        1
+                                    ],
+                                    [
+                                        20,
+                                        1
+                                    ],
+                                    [
+                                        20,
+                                        0
+                                    ],
+                                    [
+                                        29,
+                                        0
+                                    ]
+                                ],
+                                "delay": 0.02
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "0x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Search",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/IntelliJ/search_everywhere.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ]
+                                ],
+                                "delay": 0.05
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Action",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/IntelliJ/find_action.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        29,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        30,
+                                        1
+                                    ],
+                                    [
+                                        30,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ],
+                                    [
+                                        29,
+                                        0
+                                    ]
+                                ],
+                                "delay": 0.02
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "settings": {
+        "auto-change": {
+            "enable": true,
+            "wm-class": "jetbrains-idea",
+            "title": ".*",
+            "stay-on-page": false,
+            "decks": [
+                "BL06K1B00782"
+            ]
+        }
+    }
+}

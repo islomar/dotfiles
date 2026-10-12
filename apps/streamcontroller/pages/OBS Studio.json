@@ -1,0 +1,193 @@
+{
+    "keys": {
+        "0x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Open OBS",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/obs_new_icon_small-r.png",
+                        "size": 1.0
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "obs"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Record OBS",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.local/bin/obs-ctl record-toggle"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "2x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Pause OBS",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video-slash.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.local/bin/obs-ctl pause"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        },
+                        "top": {
+                            "text": "Audio",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {
+                        "color": [
+                            220,
+                            138,
+                            221,
+                            255
+                        ]
+                    },
+                    "media": {},
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.local/bin/obs-ctl prepare-audio \"Audio calls\"",
+                                "detached": false
+                            }
+                        },
+                        {
+                            "id": "com_core447_OBSPlugin::ToggleRecord",
+                            "settings": {
+                                "connection_id": "default",
+                                "custom_icon_record_inactive.png": "/home/islomar/.dotfiles/images/StreamDeckIcons/AudioRecording/audio_rec_off.png",
+                                "custom_icon_record_active.png": "/home/islomar/.dotfiles/images/StreamDeckIcons/AudioRecording/audio_rec_on.png",
+                                "custom_icon_record_resume.png": "/home/islomar/.dotfiles/images/StreamDeckIcons/AudioRecording/audio_rec_paused.png"
+                            }
+                        }
+                    ],
+                    "image-control-action": 1,
+                    "label-control-actions": [
+                        null,
+                        null,
+                        1
+                    ]
+                }
+            }
+        },
+        "2x1": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_DeckPlugin::ChangePage",
+                            "settings": {
+                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/Page_1.json",
+                                "deck_number": "BL06K1B00782"
+                            },
+                            "comment": "Go to page 1"
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/custom_icons/iconos_streamdeck/icons/Large/home.solid.png",
+                        "size": 0.85
+                    },
+                    "labels": {
+                        "bottom": {
+                            "text": "Back"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
