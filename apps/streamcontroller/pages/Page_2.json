@@ -209,7 +209,7 @@
                         {
                             "id": "com_core447_DeckPlugin::ChangePage",
                             "settings": {
-                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/ui_BL06K1B00782_1.json",
+                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/Page_1.json",
                                 "deck_number": null
                             }
                         }
