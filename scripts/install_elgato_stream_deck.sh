@@ -7,15 +7,20 @@ STREAMCONTROLLER_DATA="$HOME/.var/app/$STREAMCONTROLLER_ID/data"
 STREAMCONTROLLER_EXPORT="$DOTFILES_PATH/apps/streamcontroller"
 UDEV_RULES_FILE="/etc/udev/rules.d/70-streamdeck.rules"
 UDEV_RULE='SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", TAG+="uaccess"'
+GNOME_EXTENSION_UUID="streamcontroller@core447.com"
 
 main() {
 	install_streamcontroller
 	allow_stream_deck_access
 	restore_streamcontroller_config
+	if [[ "${XDG_CURRENT_DESKTOP:-}" == *GNOME* ]]; then
+		enable_window_detection_on_gnome
+		install_gnome_extension
+	fi
 
 	echo "And... DONE! Next steps in StreamController:"
 	echo "  1. Menu > Open Store: install the OS, Deck and OBS plugins"
-	echo "  2. Replace OBS_WEBSOCKET_PASSWORD in the OBS buttons with your OBS WebSocket password"
+	echo "  2. Settings > Plugins > OBS: enter your OBS WebSocket password"
 }
 
 install_streamcontroller() {
@@ -47,6 +52,36 @@ restore_streamcontroller_config() {
 	mkdir -p "$STREAMCONTROLLER_DATA"
 	cp -pr "$STREAMCONTROLLER_EXPORT/." "$STREAMCONTROLLER_DATA/"
 	echo "StreamController pages restored"
+}
+
+# StreamController detects the active window (for automatic page switching) only when
+# XDG_CURRENT_DESKTOP is exactly "GNOME". Ubuntu sets it to "ubuntu:GNOME".
+enable_window_detection_on_gnome() {
+	flatpak override --user --env=XDG_CURRENT_DESKTOP=GNOME "$STREAMCONTROLLER_ID"
+	echo "StreamController Flatpak override:"
+	flatpak override --user --show "$STREAMCONTROLLER_ID"
+}
+
+# On Wayland, StreamController reads the active window through its GNOME Shell extension.
+# GNOME shows a dialog to approve the installation from extensions.gnome.org.
+install_gnome_extension() {
+	if gnome-extensions info "$GNOME_EXTENSION_UUID" >/dev/null 2>&1; then
+		echo "GNOME extension $GNOME_EXTENSION_UUID is already installed"
+		return
+	fi
+	echo "Approve the installation of the StreamController GNOME extension in the dialog"
+	# The helper process can quit before replying, even when the installation succeeds
+	gdbus call --session --timeout 180 \
+		--dest org.gnome.Shell.Extensions \
+		--object-path /org/gnome/Shell/Extensions \
+		--method org.gnome.Shell.Extensions.InstallRemoteExtension \
+		"$GNOME_EXTENSION_UUID" >/dev/null 2>&1 || true
+	if gnome-extensions info "$GNOME_EXTENSION_UUID" >/dev/null 2>&1; then
+		echo "GNOME extension $GNOME_EXTENSION_UUID installed. Restart StreamController to use it."
+	else
+		printf 'GNOME extension %s is not installed. Install it from extensions.gnome.org\n' \
+			"$GNOME_EXTENSION_UUID" >&2
+	fi
 }
 
 main
