@@ -6,8 +6,8 @@
 # Usage:
 #   claude-limits statusline   Claude Code status line: reads the session JSON on stdin,
 #                              saves the limits to the cache file and prints one line
-#   claude-limits deck         Prints the 5-hour usage and its reset time from the cache file
-#                              (two short lines for a Stream Deck key)
+#   claude-limits deck [5h|7d] Prints the 5-hour (default) or weekly usage and its reset time
+#                              from the cache file (two short lines for a Stream Deck key)
 #
 set -euo pipefail
 
@@ -17,9 +17,9 @@ main() {
 	require_command "jq" "https://jqlang.org/download/" "brew install jq"
 	case "${1:-}" in
 	statusline) print_statusline ;;
-	deck) print_deck ;;
+	deck) print_deck "${2:-5h}" ;;
 	*)
-		printf 'Usage: %s statusline | deck\n' "$(basename "$0")" >&2
+		printf 'Usage: %s statusline | deck [5h|7d]\n' "$(basename "$0")" >&2
 		exit 2
 		;;
 	esac
@@ -42,15 +42,24 @@ print_statusline() {
 }
 
 print_deck() {
+	local label="$1" window
+	case "$label" in
+	5h) window=five_hour ;;
+	7d) window=seven_day ;;
+	*)
+		printf 'Unknown window: %s (use 5h or 7d)\n' "$label" >&2
+		exit 2
+		;;
+	esac
 	if [[ ! -f "$CACHE_FILE" ]]; then
 		printf 'no data\nyet\n'
 		return
 	fi
 	local limits
 	limits="$(cat "$CACHE_FILE")"
-	printf '5h %s\nto %s\n' \
-		"$(used_percentage "$limits" five_hour)" \
-		"$(reset_time "$limits" five_hour)"
+	printf '%s %s\n%s\n' "$label" \
+		"$(used_percentage "$limits" "$window")" \
+		"$(deck_reset_time "$limits" "$window")"
 }
 
 save_limits() {
@@ -86,9 +95,26 @@ reset_time() {
 	fi
 }
 
-# GNU date (Linux) uses -d @epoch, BSD date (macOS) uses -r epoch
+# Short enough for a Stream Deck key: "to 01:30" for the 5-hour window, "Sun 16h" or
+# "Sun 16:30" for the weekly one. Longer labels scroll instead of fitting.
+deck_reset_time() {
+	local resets_at
+	resets_at="$(jq -r --arg window "$2" '.[$window].resets_at // empty' <<<"$1")"
+	if [[ -z "$resets_at" || "$resets_at" -le "$(date +%s)" ]]; then
+		printf -- '-'
+	elif [[ "$2" == "five_hour" ]]; then
+		printf 'to %s' "$(format_epoch "$resets_at" +%H:%M)"
+	elif [[ "$(format_epoch "$resets_at" +%M)" == "00" ]]; then
+		format_epoch "$resets_at" '+%a %Hh'
+	else
+		format_epoch "$resets_at" '+%a %H:%M'
+	fi
+}
+
+# GNU date (Linux) uses -d @epoch, BSD date (macOS) uses -r epoch.
+# LC_ALL=C keeps weekday names in English whatever the system language is.
 format_epoch() {
-	date -d "@$1" "$2" 2>/dev/null || date -r "$1" "$2"
+	LC_ALL=C date -d "@$1" "$2" 2>/dev/null || LC_ALL=C date -r "$1" "$2"
 }
 
 require_command() {

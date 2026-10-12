@@ -37,37 +37,6 @@
                 "0": {
                     "labels": {
                         "bottom": {
-                            "text": "Record OBS",
-                            "color": [
-                                255,
-                                255,
-                                255,
-                                255
-                            ],
-                            "font_size": null,
-                            "font_family": ""
-                        }
-                    },
-                    "background": {},
-                    "media": {
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video.solid.png"
-                    },
-                    "actions": [
-                        {
-                            "id": "com_core447_OSPlugin::RunCommand",
-                            "settings": {
-                                "command": "/home/islomar/.local/bin/obs-ctl record-toggle"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        "2x0": {
-            "states": {
-                "0": {
-                    "labels": {
-                        "bottom": {
                             "text": "Pause OBS",
                             "color": [
                                 255,
@@ -186,6 +155,68 @@
                             "text": "Back"
                         }
                     }
+                }
+            }
+        },
+        "0x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Record OBS",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/video.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.local/bin/obs-ctl record-toggle"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "2x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Unpause OBS recording",
+                            "color": [
+                                255,
+                                255,
+                                255,
+                                255
+                            ],
+                            "font_size": null,
+                            "font_family": ""
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/Assets/AssetManager/Assets/play.solid.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.local/bin/obs-ctl resume"
+                            }
+                        }
+                    ]
                 }
             }
         }
