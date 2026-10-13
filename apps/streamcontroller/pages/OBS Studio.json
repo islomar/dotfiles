@@ -25,7 +25,7 @@
                         {
                             "id": "com_core447_OSPlugin::RunCommand",
                             "settings": {
-                                "command": "obs"
+                                "command": "sh -c 'exec systemd-run --user --scope --unit=app-gnome-com.obsproject.Studio-$$ obs'"
                             }
                         }
                     ]
