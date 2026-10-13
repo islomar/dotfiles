@@ -132,7 +132,7 @@ alias cleanup-docker='docker stop $(docker ps -qa) || true && docker rm $(docker
 alias cdw="cd $HOME/workspace"
 alias cdwm="cd $HOME/workspace/my-notes"
 alias cdt="cd $HOME/tmp"
-alias cdc="cd $HOME/.dotfiles"
+alias cdd="cd $HOME/workspace/dotfiles"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
