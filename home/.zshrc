@@ -133,7 +133,7 @@ alias cdw="cd $HOME/workspace"
 alias cdwm="cd $HOME/workspace/my-notes"
 alias cdt="cd $HOME/tmp"
 alias cdd="cd $HOME/workspace/dotfiles"
-alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
+alias cat="bat --theme=\$([[ \$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null) == \"'prefer-dark'\" ]] && echo default || echo GitHub)"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias please='sudo $(fc -ln -1)'
