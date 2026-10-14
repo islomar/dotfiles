@@ -1,11 +1,17 @@
 autostart
 Collaboard
+config
+doctoc
 dotfiles
 [Ee]lgato
 Flatpak
 Limnu
 repo
+[Rr]ebases?
+rumdl
+stonehenge
 udev
+untrusted
 Wacom
 Xorg
 ydotool

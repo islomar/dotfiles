@@ -4,6 +4,12 @@
 
 - [dotfiles](#dotfiles)
   - [OS setups](#os-setups)
+  - [Git hooks](#git-hooks)
+    - [Setup](#setup)
+    - [Hooks](#hooks)
+    - [Repository hooks](#repository-hooks)
+    - [Requirements](#requirements)
+    - [Skip the hooks](#skip-the-hooks)
   - [Interesting tools](#interesting-tools)
     - [OSX](#osx)
     - [Linux](#linux)
@@ -37,6 +43,74 @@ Some references used:
 - [OSX](./install_osx_apps.sh)
 - Common:
   - [Install scripts](./install_scripts.sh)
+
+## Git hooks
+
+The hooks in [`hooks/`](./hooks) run in every Git repository on the machine.
+
+### Setup
+
+Run [`scripts/configure-global-git-hooks.sh`](./scripts/configure-global-git-hooks.sh).
+It sets `core.hooksPath = ~/.dotfiles/hooks` in the global Git config.
+`~/.gitconfig` links to `home/.gitconfig`, so the setting is also tracked in this repo.
+
+A repository with its own local `core.hooksPath` (for example, one set up by Husky) ignores these hooks.
+
+### Hooks
+
+| Hook | Git runs it | What it runs | Can block |
+|---|---|---|---|
+| `pre-commit` | Before a commit | [`scripts/pre-commit.sh`](./scripts/pre-commit.sh) | Yes |
+| `pre-push` | Before a push | [`scripts/detect-push-without-tests.sh`](./scripts/detect-push-without-tests.sh) | Yes |
+| `post-merge` | After a merge or a fast-forward pull | [`scripts/install-dependencies-on-change.sh`](./scripts/install-dependencies-on-change.sh) | No |
+| `post-rewrite` | After a rebase or `commit --amend` | `install-dependencies-on-change.sh`, on rebase only | No |
+
+`scripts/pre-commit.sh` runs three checks:
+
+1. [`detect-commit-without-tests.sh`](./scripts/detect-commit-without-tests.sh) rejects a commit that changes
+   JS/TS or Elixir source files without a test file.
+2. [`generate-markdown-toc.sh`](./scripts/generate-markdown-toc.sh) updates the doctoc table of contents
+   in staged Markdown files and stages the result.
+3. [`check-markdown.sh --staged`](./scripts/check-markdown.sh) runs rumdl and Vale on staged Markdown files.
+   rumdl fixes what it can and stages the fixes. Vale only reports.
+   Vale uses the repository's `.vale.ini` if present, otherwise [`config/vale/.vale.ini`](./config/vale/.vale.ini).
+
+`install-dependencies-on-change.sh` compares the commit before the pull with `HEAD`
+and runs one command per changed dependency file:
+
+| Changed file | Command |
+|---|---|
+| `pyproject.toml`, `poetry.lock` | `make build` |
+| `package.json`, `yarn.lock` | `yarn install` if `yarn.lock` exists, otherwise `npm install`; then `npm run build` |
+| `mix.exs`, `mix.lock` | `mix deps.get && mix compile` |
+| `.tool-versions` | `asdf install`, then the Elixir setup steps from the stonehenge workflow |
+
+These commands come from the repository you pull.
+A pull in an untrusted repository runs that repository's build and install scripts.
+
+With `pull.rebase = true`, a pull without local commits runs `post-merge`.
+A pull with local commits rebases them and runs `post-rewrite` instead.
+Both run the same dependency check.
+
+### Repository hooks
+
+Git skips `.git/hooks` when `core.hooksPath` has a value.
+Each hook in `hooks/` calls [`scripts/run-local-hook.sh`](./scripts/run-local-hook.sh) at the end,
+which runs the repository's own hook of the same name, if present.
+This covers `pre-commit`, `pre-push`, `post-merge` and `post-rewrite` only.
+Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
+
+### Requirements
+
+- Markdown checks: [rumdl](https://github.com/rvben/rumdl), [Vale](https://vale.sh/) and
+  [doctoc](https://www.npmjs.com/package/doctoc) (`npm install --global doctoc`).
+  Download the Vale styles once with `vale sync --config ~/.dotfiles/config/vale/.vale.ini`.
+- Dependency check: the tools of each project, such as `make`, `npm`, `yarn`, `mix` and `asdf`.
+
+### Skip the hooks
+
+- One commit or push: `git commit --no-verify`, `git push --no-verify`.
+- One pull: `git -c core.hooksPath=/dev/null pull`.
 
 ## Interesting tools
 
