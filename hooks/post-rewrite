@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+# https://git-scm.com/docs/githooks#_post_rewrite
+# `git pull --rebase` with local commits runs this hook instead of post-merge.
+# ORIG_HEAD is the branch tip before the rebase, so the diff holds the upstream changes.
+
+hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Git passes the rewritten commits on stdin. The repo's own hook needs them.
+rewritten_commits="$(cat)"
+
+if [[ "$1" == "rebase" ]]; then
+	bash "$hook_dir/../scripts/install-dependencies-on-change.sh" ORIG_HEAD
+fi
+bash "$hook_dir/../scripts/run-local-hook.sh" post-rewrite "$@" <<< "$rewritten_commits"

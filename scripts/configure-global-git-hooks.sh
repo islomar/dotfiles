@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git config core.hooksPath $HOME/workspace/dotfiles/hooks
+git config --global core.hooksPath '~/.dotfiles/hooks'

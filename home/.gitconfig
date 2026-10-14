@@ -76,6 +76,7 @@
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	editor = vim
+	hooksPath = ~/.dotfiles/hooks
 [push]
 	default = simple
 [difftool "kdiff3"]
