@@ -2,3 +2,8 @@
 line-length = 120
 # The doctoc pre-commit hook puts the table of contents above the first heading
 disable = ["MD041"]
+
+[MD013]
+# Wrapping breaks commands and config lines, and a heading cannot span two lines
+code-blocks = false
+headings = false

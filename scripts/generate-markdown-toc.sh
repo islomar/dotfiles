@@ -9,6 +9,7 @@ main() {
 	cd "$repo_root"
 
 	check_node_requirements
+	require_command "python3" "https://www.python.org/downloads/" "sudo apt install python3"
 	update_toc_in_markdown_files
 }
 
@@ -26,8 +27,33 @@ update_table_of_contents() {
 	while IFS= read -r markdown_file; do
 		[[ -n "$markdown_file" ]] || continue
 		npx --no-install doctoc "$markdown_file"
+		decode_toc_anchors "$markdown_file"
 		git add -- "$markdown_file"
 	done
+}
+
+# doctoc percent-encodes non-ASCII anchors (#d%C3%ADa). GitHub accepts both forms,
+# but rumdl (MD051) only matches the decoded one (#día).
+decode_toc_anchors() {
+	python3 -I - "$1" <<'PYTHON'
+import re
+import sys
+import urllib.parse
+
+path = sys.argv[1]
+with open(path, encoding="utf-8") as file:
+    text = file.read()
+
+
+def decode_anchors(toc):
+    return re.sub(r"\]\(#([^)\s]+)\)", lambda m: "](#" + urllib.parse.unquote(m.group(1)) + ")", toc)
+
+
+decoded = re.sub(r"<!-- START doctoc.*?<!-- END doctoc[^\n]*", lambda m: decode_anchors(m.group(0)), text, flags=re.S)
+if decoded != text:
+    with open(path, "w", encoding="utf-8") as file:
+        file.write(decoded)
+PYTHON
 }
 
 check_node_requirements() {

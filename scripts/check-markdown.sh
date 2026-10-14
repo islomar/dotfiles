@@ -95,11 +95,13 @@ check_prose() {
 	local vale_status=0
 	vale ${vale_args[@]+"${vale_args[@]}"} "$@" || vale_status=$?
 
+	# Vale only reports style issues. It blocks only when it cannot run (exit code 2).
 	if [[ "$vale_status" -eq 2 ]]; then
 		printf 'Vale failed to run. If a style is missing, download it with:\nvale sync %s\n' \
 			"${vale_args[*]:-}" >&2
+		return 2
 	fi
-	return "$vale_status"
+	return 0
 }
 
 require_command() {
