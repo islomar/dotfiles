@@ -9,4 +9,4 @@ set -euo pipefail
 
 hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash "$hook_dir/../scripts/pre-commit.sh"
-bash "$hook_dir/../scripts/run-local-hook.sh" pre-commit "$@"
+bash "$hook_dir/../scripts/run-local-git-hook.sh" pre-commit "$@"
