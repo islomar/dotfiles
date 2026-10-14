@@ -6,6 +6,7 @@
   - [OS setups](#os-setups)
   - [Git hooks](#git-hooks)
     - [Setup](#setup)
+    - [Turn the hooks off in one repository](#turn-the-hooks-off-in-one-repository)
     - [Hooks](#hooks)
     - [Repository hooks](#repository-hooks)
     - [Requirements](#requirements)
@@ -46,15 +47,39 @@ Some references used:
 
 ## Git hooks
 
-The hooks in [`hooks/`](./hooks) run in every Git repository on the machine.
+The hooks in [`hooks/`](./hooks) run in every repository on the machine, or only in the repositories you choose.
 
 ### Setup
 
-Run [`scripts/configure-global-git-hooks.sh`](./scripts/configure-global-git-hooks.sh).
-It sets `core.hooksPath = ~/.dotfiles/hooks` in the global Git config.
-`~/.gitconfig` links to `home/.gitconfig`, so the setting is also tracked in this repo.
+Both options set `core.hooksPath`. A repository's local value overrides the global one.
 
-A repository with its own local `core.hooksPath` (for example, one set up by Husky) ignores these hooks.
+| Option | Script | Where the setting goes |
+|---|---|---|
+| Every repository | [`scripts/configure-global-git-hooks.sh`](./scripts/configure-global-git-hooks.sh) | Global Git config: `core.hooksPath = ~/.dotfiles/hooks` |
+| One repository | [`scripts/configure-local-git-hooks.sh [repository-path]`](./scripts/configure-local-git-hooks.sh) | That repository's `.git/config` |
+
+`~/.gitconfig` links to `home/.gitconfig`, which already contains the global setting.
+A machine that links `home/.gitconfig` gets the hooks in every repository.
+To use only the local option, remove `hooksPath` from `home/.gitconfig` on that machine.
+
+`configure-local-git-hooks.sh` uses the current directory if you pass no path.
+It does not replace an existing local `core.hooksPath`, such as one set by Husky,
+because that turns off the other tool's hooks.
+It prints the command to replace it anyway.
+To undo it, run `git config --unset core.hooksPath` in the repository.
+
+A repository with its own local `core.hooksPath` ignores the global hooks.
+
+### Turn the hooks off in one repository
+
+With the global option, run this in the repository:
+
+```bash
+git config core.hooksPath .git/hooks
+```
+
+Git then runs only the repository's own hooks from `.git/hooks`.
+To turn the global hooks back on, run `git config --unset core.hooksPath`.
 
 ### Hooks
 
