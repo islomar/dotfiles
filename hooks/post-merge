@@ -1,12 +1,10 @@
 #!/bin/bash
 #
 # Git runs this after a merge, including a fast-forward `git pull`. Its exit code does not undo the merge.
-# Runs scripts/install-dependencies-on-change.sh against HEAD@{1}, the tip before the merge.
-# Then runs the repo's own .git/hooks/post-merge, if present.
+# All logic lives in scripts/post-merge.sh. This file only forwards the arguments and stdin.
 # https://git-scm.com/docs/githooks#_post_merge
 #
 set -euo pipefail
 
 hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-bash "$hook_dir/../scripts/install-dependencies-on-change.sh" 'HEAD@{1}'
-bash "$hook_dir/../scripts/run-local-git-hook.sh" post-merge "$@"
+exec bash "$hook_dir/../scripts/post-merge.sh" "$@"

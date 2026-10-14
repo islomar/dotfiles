@@ -1,21 +1,10 @@
 #!/bin/bash
 #
-# Git runs this after `git commit --amend` ($1 = amend) and `git rebase` ($1 = rebase).
-# Its exit code does not undo the rewrite.
-# Stdin: one line per rewritten commit (<old sha> <new sha>).
-# On rebase, runs scripts/install-dependencies-on-change.sh against ORIG_HEAD, the tip before the rebase.
-# `git pull --rebase` with local commits runs this hook instead of post-merge.
-# Then runs the repo's own .git/hooks/post-rewrite, if present.
+# Git runs this after `git commit --amend` and `git rebase`. Its exit code does not undo the rewrite.
+# All logic lives in scripts/post-rewrite.sh. This file only forwards the arguments and stdin.
 # https://git-scm.com/docs/githooks#_post_rewrite
 #
 set -euo pipefail
 
 hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Git passes the rewritten commits on stdin. The repo's own hook needs them.
-rewritten_commits="$(cat)"
-
-if [[ "$1" == "rebase" ]]; then
-	bash "$hook_dir/../scripts/install-dependencies-on-change.sh" ORIG_HEAD
-fi
-bash "$hook_dir/../scripts/run-local-git-hook.sh" post-rewrite "$@" <<< "$rewritten_commits"
+exec bash "$hook_dir/../scripts/post-rewrite.sh" "$@"
