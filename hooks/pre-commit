@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# Git runs this before it creates a commit. A non-zero exit blocks the commit.
+# Runs scripts/pre-commit.sh: test detection, doctoc TOC update, rumdl and Vale on staged Markdown.
+# Then runs the repo's own .git/hooks/pre-commit, if present.
+# Skip with: git commit --no-verify
+#
 set -euo pipefail
 
 hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

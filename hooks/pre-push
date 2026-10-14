@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# Git runs this before it pushes. A non-zero exit blocks the push.
+# Stdin: one line per pushed ref (<local ref> <local sha> <remote ref> <remote sha>).
+# Runs scripts/detect-push-without-tests.sh, then the repo's own .git/hooks/pre-push, if present.
+# Skip with: git push --no-verify
+#
 set -euo pipefail
 
 PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

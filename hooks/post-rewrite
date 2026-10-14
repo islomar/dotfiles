@@ -1,8 +1,14 @@
 #!/bin/bash
-set -euo pipefail
-# https://git-scm.com/docs/githooks#_post_rewrite
+#
+# Git runs this after `git commit --amend` ($1 = amend) and `git rebase` ($1 = rebase).
+# Its exit code does not undo the rewrite.
+# Stdin: one line per rewritten commit (<old sha> <new sha>).
+# On rebase, runs scripts/install-dependencies-on-change.sh against ORIG_HEAD, the tip before the rebase.
 # `git pull --rebase` with local commits runs this hook instead of post-merge.
-# ORIG_HEAD is the branch tip before the rebase, so the diff holds the upstream changes.
+# Then runs the repo's own .git/hooks/post-rewrite, if present.
+# https://git-scm.com/docs/githooks#_post_rewrite
+#
+set -euo pipefail
 
 hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
