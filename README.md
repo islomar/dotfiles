@@ -98,9 +98,10 @@ The script holds all the logic.
 1. [`detect-commit-without-tests.sh`](./scripts/detect-commit-without-tests.sh) rejects a commit that changes
    JS/TS or Elixir source files without a test file.
 2. [`generate-markdown-toc.sh`](./scripts/generate-markdown-toc.sh) updates the doctoc table of contents
-   in staged Markdown files and stages the result.
+   in staged Markdown files and stages the result. It decodes percent-encoded anchors (`#d%C3%ADa` to `#día`),
+   because rumdl only accepts the decoded form.
 3. [`check-markdown.sh --staged`](./scripts/check-markdown.sh) runs rumdl and Vale on staged Markdown files.
-   rumdl fixes what it can and stages the fixes. Vale only reports.
+   rumdl fixes what it can and stages the fixes. Vale only reports: it blocks the commit only when it cannot run.
    Vale uses the repository's `.vale.ini` if present, otherwise [`config/vale/.vale.ini`](./config/vale/.vale.ini).
 
 `install-dependencies-on-change.sh` compares the commit before the pull with `HEAD`
