@@ -95,7 +95,7 @@ Both run the same dependency check.
 ### Repository hooks
 
 Git skips `.git/hooks` when `core.hooksPath` has a value.
-Each hook in `hooks/` calls [`scripts/run-local-hook.sh`](./scripts/run-local-hook.sh) at the end,
+Each hook in `hooks/` calls [`scripts/run-local-git-hook.sh`](./scripts/run-local-git-hook.sh) at the end,
 which runs the repository's own hook of the same name, if present.
 This covers `pre-commit`, `pre-push`, `post-merge` and `post-rewrite` only.
 Other hooks in `.git/hooks`, such as `commit-msg`, do not run.

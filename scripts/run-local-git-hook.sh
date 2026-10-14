@@ -3,7 +3,7 @@
 # Runs the repository's own hook from .git/hooks, if present.
 # A global core.hooksPath makes Git skip .git/hooks, so the global hooks call this to chain to it.
 #
-# Usage: run-local-hook.sh <hook-name> [hook args...]
+# Usage: run-local-git-hook.sh <hook-name> [hook args...]
 #
 set -euo pipefail
 

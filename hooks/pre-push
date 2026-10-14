@@ -18,4 +18,4 @@ replay_pushed_refs() {
 }
 
 replay_pushed_refs | bash "$PWD/../scripts/detect-push-without-tests.sh"
-replay_pushed_refs | bash "$PWD/../scripts/run-local-hook.sh" pre-push "$@"
+replay_pushed_refs | bash "$PWD/../scripts/run-local-git-hook.sh" pre-push "$@"

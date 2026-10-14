@@ -9,4 +9,4 @@ set -euo pipefail
 
 hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash "$hook_dir/../scripts/install-dependencies-on-change.sh" 'HEAD@{1}'
-bash "$hook_dir/../scripts/run-local-hook.sh" post-merge "$@"
+bash "$hook_dir/../scripts/run-local-git-hook.sh" post-merge "$@"

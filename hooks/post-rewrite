@@ -18,4 +18,4 @@ rewritten_commits="$(cat)"
 if [[ "$1" == "rebase" ]]; then
 	bash "$hook_dir/../scripts/install-dependencies-on-change.sh" ORIG_HEAD
 fi
-bash "$hook_dir/../scripts/run-local-hook.sh" post-rewrite "$@" <<< "$rewritten_commits"
+bash "$hook_dir/../scripts/run-local-git-hook.sh" post-rewrite "$@" <<< "$rewritten_commits"
