@@ -6,6 +6,7 @@ dotfiles
 [Ee]lgato
 Flatpak
 Limnu
+O'Reilly
 repo
 [Rr]ebases?
 rumdl
