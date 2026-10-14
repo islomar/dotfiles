@@ -12,5 +12,10 @@ PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Git passes the pushed refs on stdin. Both hooks need them.
 pushed_refs="$(cat)"
 
-bash "$PWD/../scripts/detect-push-without-tests.sh" <<< "$pushed_refs"
-bash "$PWD/../scripts/run-local-hook.sh" pre-push "$@" <<< "$pushed_refs"
+# A here-string adds a newline, so empty input would reach the scripts as one blank ref line.
+replay_pushed_refs() {
+	[[ -z "$pushed_refs" ]] || printf '%s\n' "$pushed_refs"
+}
+
+replay_pushed_refs | bash "$PWD/../scripts/detect-push-without-tests.sh"
+replay_pushed_refs | bash "$PWD/../scripts/run-local-hook.sh" pre-push "$@"
