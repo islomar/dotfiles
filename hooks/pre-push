@@ -3,4 +3,8 @@ set -euo pipefail
 
 PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-bash "$PWD/../scripts/detect-push-without-tests.sh"
+# Git passes the pushed refs on stdin. Both hooks need them.
+pushed_refs="$(cat)"
+
+bash "$PWD/../scripts/detect-push-without-tests.sh" <<< "$pushed_refs"
+bash "$PWD/../scripts/run-local-hook.sh" pre-push "$@" <<< "$pushed_refs"
