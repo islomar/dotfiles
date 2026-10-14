@@ -1,21 +1,11 @@
 #!/bin/bash
 #
 # Git runs this before it pushes. A non-zero exit blocks the push.
-# Stdin: one line per pushed ref (<local ref> <local sha> <remote ref> <remote sha>).
-# Runs scripts/detect-push-without-tests.sh, then the repo's own .git/hooks/pre-push, if present.
 # Skip with: git push --no-verify
+# All logic lives in scripts/pre-push.sh. This file only forwards the arguments and stdin.
+# https://git-scm.com/docs/githooks#_pre_push
 #
 set -euo pipefail
 
-PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Git passes the pushed refs on stdin. Both hooks need them.
-pushed_refs="$(cat)"
-
-# A here-string adds a newline, so empty input would reach the scripts as one blank ref line.
-replay_pushed_refs() {
-	[[ -z "$pushed_refs" ]] || printf '%s\n' "$pushed_refs"
-}
-
-replay_pushed_refs | bash "$PWD/../scripts/detect-push-without-tests.sh"
-replay_pushed_refs | bash "$PWD/../scripts/run-local-git-hook.sh" pre-push "$@"
+hook_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec bash "$hook_dir/../scripts/pre-push.sh" "$@"

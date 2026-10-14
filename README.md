@@ -83,12 +83,15 @@ To turn the global hooks back on, run `git config --unset core.hooksPath`.
 
 ### Hooks
 
-| Hook | Git runs it | What it runs | Can block |
-|---|---|---|---|
-| `pre-commit` | Before a commit | [`scripts/pre-commit.sh`](./scripts/pre-commit.sh) | Yes |
-| `pre-push` | Before a push | [`scripts/detect-push-without-tests.sh`](./scripts/detect-push-without-tests.sh) | Yes |
-| `post-merge` | After a merge or a fast-forward pull | [`scripts/install-dependencies-on-change.sh`](./scripts/install-dependencies-on-change.sh) | No |
-| `post-rewrite` | After a rebase or `commit --amend` | `install-dependencies-on-change.sh`, on rebase only | No |
+Each file in `hooks/` only calls the script with its name in `scripts/`, passing on its arguments and stdin.
+The script holds all the logic.
+
+| Hook | Git runs it | Script | What the script runs | Can block |
+|---|---|---|---|---|
+| `pre-commit` | Before a commit | [`pre-commit.sh`](./scripts/pre-commit.sh) | The checks below | Yes |
+| `pre-push` | Before a push | [`pre-push.sh`](./scripts/pre-push.sh) | [`detect-push-without-tests.sh`](./scripts/detect-push-without-tests.sh) | Yes |
+| `post-merge` | After a merge or a fast-forward pull | [`post-merge.sh`](./scripts/post-merge.sh) | [`install-dependencies-on-change.sh`](./scripts/install-dependencies-on-change.sh) | No |
+| `post-rewrite` | After a rebase or `commit --amend` | [`post-rewrite.sh`](./scripts/post-rewrite.sh) | `install-dependencies-on-change.sh`, on rebase only | No |
 
 `scripts/pre-commit.sh` runs three checks:
 
@@ -120,7 +123,7 @@ Both run the same dependency check.
 ### Repository hooks
 
 Git skips `.git/hooks` when `core.hooksPath` has a value.
-Each hook in `hooks/` calls [`scripts/run-local-git-hook.sh`](./scripts/run-local-git-hook.sh) at the end,
+Each hook script calls [`scripts/run-local-git-hook.sh`](./scripts/run-local-git-hook.sh) at the end,
 which runs the repository's own hook of the same name, if present.
 This covers `pre-commit`, `pre-push`, `post-merge` and `post-rewrite` only.
 Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
