@@ -151,6 +151,12 @@ Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
 - The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
 - `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
 - StreamController adds its own autostart entry.
+- Google Meet controls: [streamdeck-googlemeet](https://github.com/ChrisRegado/streamdeck-googlemeet).
+  - Browser extension, version 1.6.3: Chrome and Firefox builds on the
+    [release page](https://github.com/ChrisRegado/streamdeck-googlemeet/releases/tag/v1.6.3).
+  - The extension connects to a Stream Deck plugin on `ws://127.0.0.1:2394`.
+    The project ships that plugin for the Elgato Stream Deck software, not for StreamController.
+    Without a program listening on that port, the extension does nothing.
 - Icons:
   - <https://www.flaticon.com/authors/anggara/color-lineal-color?author_id=1427&type=standard>
   - <https://www.dropbox.com/s/a1zt9q4tv47sam4/72.zip?dl=0>
