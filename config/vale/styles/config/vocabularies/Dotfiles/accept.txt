@@ -19,6 +19,7 @@ Limnu
 LLMs?
 Manus
 MVPs?
+npm
 O'Reilly
 Ollama
 Postgres
@@ -29,7 +30,9 @@ Speedtest
 stdin
 Tasker('s)?
 udev
+untracked
 untrusted
+virtualenvs
 VSCode
 Wacom
 Xorg
