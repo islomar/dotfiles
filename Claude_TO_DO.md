@@ -36,5 +36,5 @@ When a task is done, tick it and add the commit hash.
   - Removed `tdd-guard` from `langs/js/global_modules.txt`.
 - [x] **`apps/` and the "no tests" check** (`scripts/detect-files-without-tests.sh`). Commit `ffbc483`.
   - The check reads an optional `.no-tests-ignore` at the repository root: one extended regex per line.
-    Matching paths are left out before it looks for tests.
+    It leaves out matching paths before it looks for tests.
   - This repository's `.no-tests-ignore` contains `^apps/`. Other repositories have no such file and keep the full check.
