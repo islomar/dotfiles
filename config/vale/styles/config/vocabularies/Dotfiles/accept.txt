@@ -7,8 +7,10 @@ config
 Coolors
 dotfiles
 evals?
+Fairphone
 Figma('s)?
 Flatpak
+Huawei
 IDEs
 Junie
 KAgent
@@ -25,12 +27,14 @@ Repo[Mm]ix
 rumdl
 Speedtest
 stdin
+Tasker('s)?
 udev
 untrusted
 VSCode
 Wacom
 Xorg
 ydotool
+Zepp
 [Aa]gentic
 [Dd]oc[Tt]oc
 [Ee]lgato

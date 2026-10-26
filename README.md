@@ -15,6 +15,7 @@
     - [OSX](#osx)
     - [Linux](#linux)
   - [IntelliJ settings](#intellij-settings)
+  - [Android: Tasker step automation](#android-tasker-step-automation)
   - [How to set up my Stream Deck Mini](#how-to-set-up-my-stream-deck-mini)
     - [ydotool](#ydotool)
   - [Wacom tablet](#wacom-tablet)
@@ -164,6 +165,11 @@ Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
 
 - I'm using the "IDE Settings Sync" plugin, which syncs the IDE settings on every instance where I'm logged in.
 - Still, the exported settings are included in this repo as a ZIP file
+
+## Android: Tasker step automation
+
+Tasker writes 25,000 steps per day into Health Connect.
+Setup for a new phone, the ADB helper script and the Tasker backup are in [`apps/tasker`](./apps/tasker/README.md).
 
 ## How to set up my Stream Deck Mini
 
