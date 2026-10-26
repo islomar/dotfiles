@@ -1,0 +1,651 @@
+<TaskerData sr="" dvi="1" tv="6.6.20">
+	<Profile sr="prof3" ve="2">
+		<cdate>1792529292037</cdate>
+		<edate>1793044116030</edate>
+		<flags>8</flags>
+		<id>3</id>
+		<mid0>7</mid0>
+		<Time sr="con0">
+			<fh>23</fh>
+			<fm>50</fm>
+			<th>23</th>
+			<tm>50</tm>
+		</Time>
+	</Profile>
+	<Profile sr="prof8" ve="2">
+		<cdate>1792531633259</cdate>
+		<edate>1793044117136</edate>
+		<flags>10</flags>
+		<id>8</id>
+		<mid0>7</mid0>
+		<Event sr="con0" ve="2">
+			<code>1000</code>
+		</Event>
+	</Profile>
+	<Project sr="proj0" ve="2">
+		<cdate>1792529018976</cdate>
+		<mdate>1793044755288</mdate>
+		<name>Base</name>
+		<pids>3,8</pids>
+		<tids>4,7</tids>
+		<Img sr="icon" ve="2">
+			<nme>mw_action_home</nme>
+		</Img>
+	</Project>
+	<Task sr="task4">
+		<cdate>1793050000000</cdate>
+		<edate>1793050000000</edate>
+		<id>4</id>
+		<nme>Inventario pasos</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>129</code>
+			<label>Rango -6</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 6);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act10" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act11" ve="7">
+			<code>129</code>
+			<label>Resumen -3</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -3: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act12" ve="7">
+			<code>129</code>
+			<label>Rango -2</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 2);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act13" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act14" ve="7">
+			<code>129</code>
+			<label>Resumen -2</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -2: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act15" ve="7">
+			<code>129</code>
+			<label>Rango -1</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 1);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act16" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act17" ve="7">
+			<code>129</code>
+			<label>Resumen -1</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -1: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act18" ve="7">
+			<code>129</code>
+			<label>Rango -0</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 0);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act19" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>129</code>
+			<label>Resumen -6</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -6: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act20" ve="7">
+			<code>129</code>
+			<label>Resumen -0</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -0: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>129</code>
+			<label>Rango -5</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 5);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>129</code>
+			<label>Resumen -5</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -5: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>129</code>
+			<label>Rango -4</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 4);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>1187787926</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>End Timestamp: %finlectura
+Class of the type of Health Record: StepsRecord
+Start Timestamp: %iniciolectura</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<endTime>%finlectura</endTime>
+					<endTime-type>java.lang.String</endTime-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Read Data
+Data will be returned as a JSON object, see HealthConnectClient.readRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.read.ReadDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>endTime recordType startTime</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+					<startTime>%iniciolectura</startTime>
+					<startTime-type>java.lang.String</startTime-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.read.ReadDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>129</code>
+			<label>Resumen -4</label>
+			<Str sr="arg0" ve="3">var linea;
+try {
+  var res = JSON.parse(healthconnectresult);
+  var t = res.records.filter(function (x) {
+    return x.metadata.dataOrigin.packageName === "com.rafapps.taskerhealthconnect";
+  });
+  linea = new Date(Number(iniciolectura)).toDateString() +
+    " | total=" + res.records.length +
+    " | page=" + (res.pageToken ? "MORE" : "end") +
+    " | tasker=" + t.length + "\n";
+  t.forEach(function (x) { linea += "  " + JSON.stringify(x) + "\n"; });
+} catch (err) {
+  linea = "dia -4: ERROR " + err + "\n";
+}
+writeFile("/sdcard/Download/pasos_inventario.txt", linea, true);</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>129</code>
+			<label>Rango -3</label>
+			<Str sr="arg0" ve="3">var a = new Date();
+var d = new Date(a.getFullYear(), a.getMonth(), a.getDate() - 3);
+var e = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+var iniciolectura = String(d.getTime());
+var finlectura = String(e.getTime());</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+	</Task>
+	<Task sr="task7">
+		<cdate>1793050000000</cdate>
+		<edate>1793044764726</edate>
+		<id>7</id>
+		<nme>Registrar 25000 pasos</nme>
+		<pri>6</pri>
+		<Action sr="act0" ve="7">
+			<code>129</code>
+			<label>Calcular pendientes</label>
+			<Str sr="arg0" ve="3">var ahora = new Date();
+
+function clave(d) {
+  return d.getFullYear() + "-" +
+    ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+    ("0" + d.getDate()).slice(-2);
+}
+
+// Los días hasta el 25-10 tienen registros sin clientRecordId; reescribirlos los duplicaría.
+var desde = "2026-10-25";
+
+var pendientes = [];
+
+for (var i = 6; i &gt;= 0; i--) {
+  var dia = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate() - i);
+  var k = clave(dia);
+  if (k &lt;= desde) continue;
+
+  var fin = new Date(dia.getFullYear(), dia.getMonth(), dia.getDate(), 23, 50);
+  // No registrar hoy antes de las 23:50.
+  if (fin.getTime() &gt; ahora.getTime()) continue;
+
+  // Se reescriben todos los días cada vez: clientRecordId hace que
+  // Health Connect actualice en vez de duplicar, y repone días borrados.
+  pendientes.push({
+    startTime: dia.getTime(),
+    endTime: fin.getTime(),
+    count: 25000,
+    metadata: { clientRecordId: "pasos-" + k, clientRecordVersion: 1 }
+  });
+}
+
+var pasosjson = JSON.stringify(pendientes);
+var haypendientes = pendientes.length ? "1" : "0";</Str>
+			<Str sr="arg1" ve="3"/>
+			<Int sr="arg2" val="1"/>
+			<Int sr="arg3" val="45"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>37</code>
+			<coll>false</coll>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%haypendientes</lhs>
+					<op>2</op>
+					<rhs>1</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>1907095388</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<com.twofortyfouram.locale.intent.extra.BLURB>JSON Object or List of Objects to write: %pasosjson
+Class of the type of Health Record: StepsRecord</com.twofortyfouram.locale.intent.extra.BLURB>
+					<com.twofortyfouram.locale.intent.extra.BLURB-type>java.lang.String</com.twofortyfouram.locale.intent.extra.BLURB-type>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%healthconnectresult
+Write Data Response
+Data will be returned as a JSON object, see HealthConnectClient.insertRecords API for the response format.&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%err
+Error Code
+If there's an error, contains an error code&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%errmsg
+Error Message
+If there's an error, contains an error message&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>com.rafapps.taskerhealthconnect.write.WriteDataInput</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_INPUT_CLASS-type>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>com.rafapps.taskerhealthconnect.write.WriteDataActionRunner</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS>
+					<net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>java.lang.String</net.dinglisch.android.tasker.extras.ACTION_RUNNER_CLASS-type>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>true</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE>
+					<net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>java.lang.Boolean</net.dinglisch.android.tasker.extras.EXTRA_WAS_CONFIGURED_BEFORE-type>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>recordInput recordType</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS>
+					<net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>java.lang.String</net.dinglisch.android.tasker.extras.VARIABLE_REPLACE_KEYS-type>
+					<net.dinglisch.android.tasker.subbundled>true</net.dinglisch.android.tasker.subbundled>
+					<net.dinglisch.android.tasker.subbundled-type>java.lang.Boolean</net.dinglisch.android.tasker.subbundled-type>
+					<recordInput>%pasosjson</recordInput>
+					<recordInput-type>java.lang.String</recordInput-type>
+					<recordType>StepsRecord</recordType>
+					<recordType-type>java.lang.String</recordType-type>
+				</Vals>
+			</Bundle>
+			<Str sr="arg1" ve="3">com.rafapps.taskerhealthconnect</Str>
+			<Str sr="arg2" ve="3">com.rafapps.taskerhealthconnect.write.WriteDataActivity</Str>
+			<Int sr="arg3" val="60"/>
+			<Int sr="arg4" val="1"/>
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>38</code>
+		</Action>
+	</Task>
+</TaskerData>
