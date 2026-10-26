@@ -7,5 +7,4 @@ next
 omniroute
 @openai/codex
 pnpm
-tdd-guard
 tldr
