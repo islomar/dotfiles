@@ -15,12 +15,6 @@ When a task is done, tick it and add the commit hash.
 
 ## Open
 
-- [ ] **Make the global git hooks opt-in** (`home/.gitconfig`)
-  - `home/.gitconfig` contains `hooksPath = ~/.dotfiles/hooks`,
-    so any machine that links it gets the hooks in every repository.
-  - Move machine-specific settings such as `hooksPath` into an untracked file
-    that `~/.gitconfig` loads with `[include]`.
-  - Make `scripts/configure-global-git-hooks.sh` write to that file.
 - [ ] **`apps/` and the "no tests" check** (`scripts/detect-files-without-tests.sh`)
   - Commits and pushes that change `apps/chrome-extension-v1.6.3/` need `--no-verify`.
   - An ignore pattern for `apps/` would also skip `apps/` in other repositories, because the hooks are global.
