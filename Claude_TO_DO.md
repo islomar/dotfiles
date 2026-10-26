@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents** *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+## Contents
 
 - [Claude to-do](#claude-to-do)
   - [Open](#open)
@@ -15,9 +15,6 @@ When a task is done, tick it and add the commit hash.
 
 ## Open
 
-- [ ] I see the existence of ~/workspace/my-notes/AI/Hugging_Face_MCP_Course/src/.venv/
-  - Add any .venv to .gitignore global, as well as other equivalent languages folders
-  - Delete from anywhere in this repository
 - [ ] **tdd-guard leftovers** (`~/.claude/settings.json`, npm)
   - Decide whether to remove the deny rule `Read(.claude/tdd-guard/**)`. tdd-guard no longer runs.
   - Run `npm uninstall -g tdd-guard`.
@@ -35,12 +32,14 @@ When a task is done, tick it and add the commit hash.
   - Repositories with their own `commit-msg` or `prepare-commit-msg` in `.git/hooks` stop running them
     under the global `core.hooksPath`.
   - Add a hook file and a script for each, following the pattern of the other four hooks.
-- [ ] **`cat` output too dark on a black terminal** (`bat` config, dotfiles shell aliases)
-  - `cat` runs `bat`: an earlier error in this session printed `[bat error]` for a `cat` command.
-  - The bat theme makes file content hard to read on a black background.
-  - Dotfiles commit `0e934e2` ("Pick bat theme from GNOME color scheme instead of macOS defaults")
-    chooses the theme. Check which theme it picks with a dark GNOME color scheme.
-  - Pick a high-contrast dark theme (try `bat --list-themes`), set it with `BAT_THEME` or in `bat`'s config,
-    and make sure the setting is tracked in dotfiles.
 
 ## Done
+
+- [x] **Ignore virtualenvs and other language folders globally** (`home/.gitignore_global`). Commit `39c7fe6`.
+  - Added Python entries (`.venv/`, `venv/`, `__pycache__/`, `*.py[cod]`, tool caches) and Elixir entries (`.elixir_ls/`, `/_build/`, `/deps/`).
+  - `/_build/` and `/deps/` match only at a repository root, so a `deps/` folder deeper in another project is not hidden.
+  - `~/workspace/my-notes/AI/Hugging_Face_MCP_Course/src/.venv/` was never tracked. It can be deleted to free disk space.
+- [x] **`cat` output too dark on a black terminal** (`home/.zshrc`). Commit `730b327`.
+  - The old alias picked the light `GitHub` theme because GNOME `color-scheme` is `'default'` on this machine.
+  - The alias is now `bat --theme=auto`. bat 0.25 reads the terminal background and uses `BAT_THEME_DARK` (`Monokai Extended`)
+    or `BAT_THEME_LIGHT` (`GitHub`).
