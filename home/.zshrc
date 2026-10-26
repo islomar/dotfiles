@@ -133,7 +133,10 @@ alias cdw="cd $HOME/workspace"
 alias cdwm="cd $HOME/workspace/my-notes"
 alias cdt="cd $HOME/tmp"
 alias cdd="cd $HOME/workspace/dotfiles"
-alias cat="bat --theme=\$([[ \$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null) == \"'prefer-dark'\" ]] && echo default || echo GitHub)"
+# bat queries the terminal background and picks the matching theme
+export BAT_THEME_DARK="Monokai Extended"
+export BAT_THEME_LIGHT="GitHub"
+alias cat="bat --theme=auto"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias please='sudo $(fc -ln -1)'
