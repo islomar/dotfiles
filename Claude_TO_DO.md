@@ -38,7 +38,7 @@ When a task is done, tick it and add the commit hash.
 - [x] **Ignore virtualenvs and other language folders globally** (`home/.gitignore_global`). Commit `39c7fe6`.
   - Added Python entries (`.venv/`, `venv/`, `__pycache__/`, `*.py[cod]`, tool caches) and Elixir entries (`.elixir_ls/`, `/_build/`, `/deps/`).
   - `/_build/` and `/deps/` match only at a repository root, so a `deps/` folder deeper in another project is not hidden.
-  - `~/workspace/my-notes/AI/Hugging_Face_MCP_Course/src/.venv/` was never tracked. It can be deleted to free disk space.
+  - `~/workspace/my-notes/AI/Hugging_Face_MCP_Course/src/.venv/` was never tracked. Delete it to free disk space.
 - [x] **`cat` output too dark on a black terminal** (`home/.zshrc`). Commit `730b327`.
   - The old alias picked the light `GitHub` theme because GNOME `color-scheme` is `'default'` on this machine.
   - The alias is now `bat --theme=auto`. bat 0.25 reads the terminal background and uses `BAT_THEME_DARK` (`Monokai Extended`)
