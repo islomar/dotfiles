@@ -20,6 +20,7 @@ Limnu
 LLMs?
 Manus
 MVPs?
+npm
 O'Reilly
 Ollama
 Postgres
@@ -31,7 +32,9 @@ stdin
 stonehenge
 Tasker('s)?
 udev
+untracked
 untrusted
+virtualenvs
 VSCode
 Wacom
 Xorg
