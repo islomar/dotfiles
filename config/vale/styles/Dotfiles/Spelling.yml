@@ -1,0 +1,7 @@
+# Accepts words from Vale's default English dictionary and the Spanish one in config/dictionaries
+extends: spelling
+message: "Did you really mean '%s'?"
+level: warning
+append: true
+dictionaries:
+  - es_ES

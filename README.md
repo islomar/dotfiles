@@ -134,6 +134,9 @@ Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
 - Markdown checks: [rumdl](https://github.com/rvben/rumdl), [Vale](https://vale.sh/) and
   [doctoc](https://www.npmjs.com/package/doctoc) (`npm install --global doctoc`).
   Download the Vale styles once with `vale sync --config ~/.dotfiles/config/vale/.vale.ini`.
+  Spell checking accepts English and Spanish. The Spanish dictionary lives in
+  [`config/vale/styles/config/dictionaries`](./config/vale/styles/config/dictionaries), so it needs no extra install.
+  It comes from the LibreOffice dictionaries (Debian package `hunspell-es`), tri-licensed under GPL, LGPL and MPL.
 - Dependency check: the tools of each project, such as `make`, `npm`, `yarn`, `mix` and `asdf`.
 
 ### Skip the hooks

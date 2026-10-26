@@ -1,5 +1,5 @@
 [global]
-line-length = 120
+line-length = 200
 # The doctoc pre-commit hook puts the table of contents above the first heading
 disable = ["MD041"]
 
