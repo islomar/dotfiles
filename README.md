@@ -100,7 +100,7 @@ The script holds all the logic.
    JS/TS or Elixir source files without a test file.
    `pre-push` runs the same check on the pushed commits. A repository can leave paths out of it with a
    `.no-tests-ignore` file at its root: one extended regex per line, matched against paths relative to the root.
-   Blank lines and lines that start with `#` are skipped. This repository's [`.no-tests-ignore`](./.no-tests-ignore)
+   The check skips blank lines and lines that start with `#`. This repository's [`.no-tests-ignore`](./.no-tests-ignore)
    leaves out `^apps/`.
 2. [`generate-markdown-toc.sh`](./scripts/generate-markdown-toc.sh) updates the doctoc table of contents
    in staged Markdown files and stages the result. It decodes percent-encoded anchors (`#d%C3%ADa` to `#día`),
