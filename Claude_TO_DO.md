@@ -15,10 +15,6 @@ When a task is done, tick it and add the commit hash.
 
 ## Open
 
-- [ ] **`apps/` and the "no tests" check** (`scripts/detect-files-without-tests.sh`)
-  - Commits and pushes that change `apps/chrome-extension-v1.6.3/` need `--no-verify`.
-  - An ignore pattern for `apps/` would also skip `apps/` in other repositories, because the hooks are global.
-    Find a way to limit it to this repository.
 - [ ] **Chain more hook types** (`hooks/`, `scripts/run-local-git-hook.sh`)
   - Repositories with their own `commit-msg` or `prepare-commit-msg` in `.git/hooks` stop running them
     under the global `core.hooksPath`.
@@ -38,3 +34,7 @@ When a task is done, tick it and add the commit hash.
   - Removed the deny rule `Read(.claude/tdd-guard/**)`. No repository under `~/workspace` has a `.claude/tdd-guard/` folder.
   - Uninstalled the npm copy and the Homebrew copy (1.1.0).
   - Removed `tdd-guard` from `langs/js/global_modules.txt`.
+- [x] **`apps/` and the "no tests" check** (`scripts/detect-files-without-tests.sh`). Commit `ffbc483`.
+  - The check reads an optional `.no-tests-ignore` at the repository root: one extended regex per line.
+    Matching paths are left out before it looks for tests.
+  - This repository's `.no-tests-ignore` contains `^apps/`. Other repositories have no such file and keep the full check.
