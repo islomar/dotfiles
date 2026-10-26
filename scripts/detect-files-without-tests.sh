@@ -26,9 +26,14 @@ ELIXIR_IGNORE_PATTERN='(\.config\.|\.formatter\.|\.credo\.|\.dialyzer\.|\.exs$|/
 PRE_COMMIT_ERROR_MESSAGE="❌  pre-commit: No test files found in this commit!"
 PRE_PUSH_ERROR_MESSAGE="❌  pre-push: No test files found in commits being pushed!"
 
+# Optional file at the repository root: one extended regex per line, matched against paths relative to the root.
+# Blank lines and lines starting with # are skipped. Matching files are left out of the check.
+REPOSITORY_IGNORE_FILE_NAME=".no-tests-ignore"
+
 function main {
   STAGED_FILES=$1
   GIT_PHASE_FOR_SEARCHING_FILES=$2 # "pre-commit" or "pre-push"
+  remove_files_ignored_by_repository
   if [ -z "$STAGED_FILES" ]; then
     echo "No files detected"
     exit 0
@@ -37,6 +42,30 @@ function main {
   check_for_tests_for_language_patterns "$JS_TS_SOURCE_PATTERN" "$JS_TS_TEST_PATTERN" "$JS_TS_IGNORE_PATTERN" "$JS_TS_ERROR_MESSAGE"
   check_for_tests_for_language_patterns "$ELIXIR_SOURCE_PATTERN" "$ELIXIR_TEST_PATTERN" "$ELIXIR_IGNORE_PATTERN" "$ELIXIR_ERROR_MESSAGE"
   exit 0
+}
+
+function remove_files_ignored_by_repository {
+  local IGNORE_FILE
+  IGNORE_FILE="$(git rev-parse --show-toplevel)/$REPOSITORY_IGNORE_FILE_NAME"
+  if [ ! -f "$IGNORE_FILE" ]; then
+    return
+  fi
+
+  local PATTERNS
+  PATTERNS=$(grep -vE '^[[:space:]]*(#|$)' "$IGNORE_FILE" || true)
+  if [ -z "$PATTERNS" ]; then
+    return
+  fi
+
+  # grep exits 1 when every file is ignored, and 2 on an invalid pattern
+  local KEPT_FILES
+  local GREP_STATUS=0
+  KEPT_FILES=$(grep -vE -f <(echo "$PATTERNS") <<< "$STAGED_FILES") || GREP_STATUS=$?
+  if [ "$GREP_STATUS" -gt 1 ]; then
+    echo "❌  Invalid pattern in $IGNORE_FILE"
+    exit 1
+  fi
+  STAGED_FILES="$KEPT_FILES"
 }
 
 function check_for_tests_for_language_patterns {

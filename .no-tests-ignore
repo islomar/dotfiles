@@ -1,0 +1,5 @@
+# Paths the "no tests" check in scripts/detect-files-without-tests.sh skips.
+# One extended regex per line, matched against paths relative to the repository root.
+
+# Third-party Chrome extension, loaded unpacked by Chrome
+^apps/
