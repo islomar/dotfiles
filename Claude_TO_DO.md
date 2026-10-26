@@ -15,9 +15,6 @@ When a task is done, tick it and add the commit hash.
 
 ## Open
 
-- [ ] **tdd-guard leftovers** (`~/.claude/settings.json`, npm)
-  - Decide whether to remove the deny rule `Read(.claude/tdd-guard/**)`. tdd-guard no longer runs.
-  - Run `npm uninstall -g tdd-guard`.
 - [ ] **Make the global git hooks opt-in** (`home/.gitconfig`)
   - `home/.gitconfig` contains `hooksPath = ~/.dotfiles/hooks`,
     so any machine that links it gets the hooks in every repository.
@@ -43,3 +40,7 @@ When a task is done, tick it and add the commit hash.
   - The old alias picked the light `GitHub` theme because GNOME `color-scheme` is `'default'` on this machine.
   - The alias is now `bat --theme=auto`. bat 0.25 reads the terminal background and uses `BAT_THEME_DARK` (`Monokai Extended`)
     or `BAT_THEME_LIGHT` (`GitHub`).
+- [x] **tdd-guard leftovers** (`~/.claude/settings.json`, npm, Homebrew). Commit `bad8ca7`.
+  - Removed the deny rule `Read(.claude/tdd-guard/**)`. No repository under `~/workspace` has a `.claude/tdd-guard/` folder.
+  - Uninstalled the npm copy and the Homebrew copy (1.1.0).
+  - Removed `tdd-guard` from `langs/js/global_modules.txt`.
