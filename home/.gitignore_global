@@ -11,6 +11,21 @@ pnpm-debug.log*
 lerna-debug.log*
 .history/
 
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# Elixir (anchored to the repository root, where mix creates them)
+/_build/
+/deps/
+.elixir_ls/
+
 # macOS
 .DS_Store
 **/.DS_Store
