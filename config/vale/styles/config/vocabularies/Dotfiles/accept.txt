@@ -1,3 +1,4 @@
+Almer[ií]a
 Anthropic('s)?
 APIs
 autostart
@@ -5,9 +6,15 @@ Braintrust
 Codely
 Collaboard
 config
+Connascence
 Coolors
+Crafters
+Dani
+dojos?
 dotfiles
+Edu
 evals?
+eXtreme
 Fairphone
 Figma('s)?
 Flatpak
@@ -16,6 +23,8 @@ IDEs
 Junie
 KAgent
 Kiro
+Kongsberg
+Latorre
 Limnu
 LLMs?
 Manus
@@ -28,6 +37,7 @@ Replit
 Repo[Mm]ix
 rumdl
 Speedtest
+Spotify
 stdin
 stonehenge
 Tasker('s)?
