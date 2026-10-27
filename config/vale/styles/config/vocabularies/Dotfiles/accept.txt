@@ -1,12 +1,19 @@
+Almer[ií]a
 Anthropic('s)?
 APIs
 autostart
 Codely
 Collaboard
 config
+Connascence
 Coolors
+Crafters
+Dani
+dojos?
 dotfiles
+Edu
 evals?
+eXtreme
 Fairphone
 Figma('s)?
 Flatpak
@@ -15,6 +22,7 @@ IDEs
 Junie
 KAgent
 Kiro
+Latorre
 Limnu
 LLMs?
 Manus
@@ -27,6 +35,7 @@ Replit
 Repo[Mm]ix
 rumdl
 Speedtest
+Spotify
 stdin
 Tasker('s)?
 udev
