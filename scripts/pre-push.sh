@@ -7,6 +7,7 @@
 set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$script_dir/load-tool-paths.sh"
 
 # Git passes the pushed refs on stdin. Both scripts need them.
 pushed_refs="$(cat)"

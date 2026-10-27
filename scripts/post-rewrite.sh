@@ -10,6 +10,7 @@
 set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$script_dir/load-tool-paths.sh"
 
 # Git passes the rewritten commits on stdin. The repo's own hook needs them.
 rewritten_commits="$(cat)"
