@@ -7,6 +7,7 @@
 set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$script_dir/load-tool-paths.sh"
 
 bash "$script_dir/install-dependencies-on-change.sh" 'HEAD@{1}'
 bash "$script_dir/run-local-git-hook.sh" post-merge "$@"
