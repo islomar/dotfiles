@@ -130,6 +130,9 @@ export SDKMAN_DIR="/home/$USER/.sdkman"
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
+# Every script in the dotfiles scripts/ folder runs by name
+export PATH="$HOME/.dotfiles/scripts:$PATH"
+
 complete -C /usr/bin/terraform terraform
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
