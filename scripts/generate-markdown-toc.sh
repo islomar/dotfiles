@@ -17,8 +17,10 @@ update_toc_in_markdown_files() {
 	detect_changed_files | update_table_of_contents
 }
 
+# config/claude/ holds Claude Code instructions, which Claude Code loads in full at every
+# session start. A table of contents there only adds text, so those files are skipped.
 detect_changed_files() {
-	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown'
+	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown' ':(exclude)config/claude/*'
 }
 
 update_table_of_contents() {

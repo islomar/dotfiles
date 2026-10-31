@@ -21,6 +21,11 @@ ln -sf "$HOME/.dotfiles/scripts/obs-ctl" "$HOME/.local/bin/obs-ctl"
 mkdir -p "$HOME/.config/rumdl"
 ln -sf "$HOME/.dotfiles/config/rumdl/rumdl.toml" "$HOME/.config/rumdl/rumdl.toml"
 
+# Claude Code global instructions. RTK.md sits next to CLAUDE.md because CLAUDE.md imports it with @RTK.md.
+mkdir -p "$HOME/.claude"
+ln -sf "$HOME/.dotfiles/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+ln -sf "$HOME/.dotfiles/config/claude/RTK.md" "$HOME/.claude/RTK.md"
+
 # Claude Code status line with the plan usage limits, also read by the Stream Deck.
 # Only the statusLine key is set; the rest of settings.json stays as it is.
 claude_settings="$HOME/.claude/settings.json"
