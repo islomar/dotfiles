@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+# Password-protected folders with gocryptfs. One shared password, stored in 1Password.
+#
+# Usage:
+#   encrypted-folders unlock [folder…]  Unlock the given protected folders, or all of them (1Password asks for approval)
+#   encrypted-folders lock [folder…]    Lock the given protected folders, or all of them
+#   encrypted-folders status            Show which folders are locked or unlocked
+#   encrypted-folders protect <folder>  Encrypt <folder> in place and add it to the list
+#
+# Each protected folder <parent>/<name> keeps its path. Its encrypted data lives next to it in
+# <parent>/.<name>.gocryptfs. While locked, the folder is an empty mount point.
+# Unlocked folders lock themselves after $IDLE without use.
+#
+# Personal settings live outside this repository, in ~/.config/encrypted-folders/:
+#   config   OP_REF="op://<vault>/<item>/password"  and optionally IDLE="15m"
+#   folders  one absolute folder path per line
+# Requires: gocryptfs, fusermount3, rsync, 1Password CLI (op) with desktop app integration.
+
+set -uo pipefail
+
+CONF_DIR="$HOME/.config/encrypted-folders"
+LIST="$CONF_DIR/folders"
+IDLE="15m"
+# shellcheck source=/dev/null
+[ -f "$CONF_DIR/config" ] && source "$CONF_DIR/config"
+: "${OP_REF:?Set OP_REF in $CONF_DIR/config}"
+touch "$LIST"
+
+store_of() { echo "$(dirname "$1")/.$(basename "$1").gocryptfs"; }
+
+# Write the password to a RAM-only file readable by the current user, and remove it on exit.
+make_passfile() {
+  PASSFILE="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/encrypted-folders.$$"
+  (umask 077; op read "$OP_REF" | tr -d '\n' > "$PASSFILE") || { echo "Could not read the password from 1Password." >&2; exit 1; }
+  trap 'shred -u "$PASSFILE" 2>/dev/null; rm -f "$PASSFILE"' EXIT
+}
+
+# Print the folders to act on: the arguments (resolved to their real path, so links such as
+# /mnt/data work), or every listed folder when there are no arguments. Exits if an argument
+# is not a protected folder.
+selected_folders() {
+  if [ $# -eq 0 ]; then grep -v '^$' "$LIST"; return; fi
+  local a r
+  for a in "$@"; do
+    r="$(realpath -m "$a")"
+    grep -qxF "$r" "$LIST" || { echo "Not a protected folder: $a" >&2; echo "See: encrypted-folders status" >&2; exit 1; }
+    echo "$r"
+  done
+}
+
+cmd_unlock() {
+  local targets; targets="$(selected_folders "$@")" || exit 1
+  make_passfile
+  local ok=0 fail=0 m
+  while IFS= read -r m; do
+    [ -z "$m" ] && continue
+    if mountpoint -q "$m"; then ok=$((ok + 1)); continue; fi
+    if gocryptfs -q -idle "$IDLE" -passfile "$PASSFILE" "$(store_of "$m")" "$m"; then
+      ok=$((ok + 1))
+    else
+      echo "FAILED: $m" >&2; fail=$((fail + 1))
+    fi
+  done <<< "$targets"
+  echo "Unlocked: $ok   Failed: $fail   (each folder locks itself after $IDLE idle)"
+}
+
+cmd_lock() {
+  local targets; targets="$(selected_folders "$@")" || exit 1
+  local busy=0 m
+  while IFS= read -r m; do
+    [ -z "$m" ] && continue
+    mountpoint -q "$m" || continue
+    fusermount3 -u "$m" 2>/dev/null || { echo "IN USE (close files or terminals there): $m" >&2; busy=$((busy + 1)); }
+  done <<< "$targets"
+  echo "Locked. Still open because in use: $busy"
+}
+
+cmd_status() {
+  local m
+  while IFS= read -r m; do
+    [ -z "$m" ] && continue
+    if mountpoint -q "$m"; then echo "UNLOCKED  $m"; else echo "locked    $m"; fi
+  done < "$LIST"
+}
+
+# Encrypt a folder in place. The original is deleted only after every file in the encrypted
+# copy is byte-identical and survives a lock/unlock cycle. Any failure restores the original.
+cmd_protect() {
+  local M; M="$(realpath -e "${1:?Usage: encrypted-folders protect <folder>}")" || exit 1
+  local N; N="$(basename "$M")"
+  local C; C="$(store_of "$M")"
+  local T; T="$(dirname "$M")/.$N.plain-migrating"
+  log() { echo "[$(date +%T)] $N: $*"; }
+  rollback() {
+    log "ROLLBACK: $1"
+    mountpoint -q "$M" && fusermount3 -u "$M"
+    if [ -d "$T" ]; then
+      rmdir "$M" 2>/dev/null || mv "$M" "$M.failed-$$"
+      mv "$T" "$M"
+    fi
+    rm -rf "$C"
+    exit 1
+  }
+
+  [ -d "$M" ] || { log "not a directory"; exit 1; }
+  grep -qxF "$M" "$LIST" && { log "already protected"; exit 1; }
+  { [ -e "$C" ] || [ -e "$T" ]; } && { log "$C or $T already exists"; exit 1; }
+  mountpoint -q "$M" && { log "already a mount point"; exit 1; }
+
+  make_passfile
+  local n1 n2 n3 diffs
+  n1=$(find "$M" -type f | wc -l)
+  log "start: $n1 files, $(du -sh "$M" | cut -f1)"
+  mv "$M" "$T" || exit 1
+  mkdir "$C" "$M" || rollback "mkdir"
+  chmod 700 "$C"
+  gocryptfs -init -q -passfile "$PASSFILE" "$C" > /dev/null || rollback "init"
+  gocryptfs -q -passfile "$PASSFILE" "$C" "$M" || rollback "mount"
+  rsync -aHAX "$T"/ "$M"/ || rollback "copy"
+  log "copied, verifying byte by byte"
+  diffs=$(rsync -aHAXnci --delete "$T"/ "$M"/ | grep -v '^\.d' | head -5)
+  [ -z "$diffs" ] || rollback "content differs: $diffs"
+  n2=$(find "$M" -type f | wc -l)
+  [ "$n2" -eq "$n1" ] || rollback "file count $n2 != $n1"
+  fusermount3 -u "$M" || rollback "lock"
+  [ -z "$(ls -A "$M")" ] || rollback "folder not empty after lock"
+  gocryptfs -q -passfile "$PASSFILE" "$C" "$M" || rollback "unlock test"
+  n3=$(find "$M" -type f | wc -l)
+  fusermount3 -u "$M" || rollback "lock after test"
+  [ "$n3" -eq "$n1" ] || rollback "after unlock test $n3 != $n1"
+  rm -rf "$T"
+  echo "$M" >> "$LIST"
+  log "DONE: $n1 files encrypted and verified; unencrypted copy removed; folder is locked"
+  echo "Remember to exclude '$M' (not its .gocryptfs store) from backup tools." >&2
+}
+
+case "${1:-}" in
+  unlock) shift; cmd_unlock "$@" ;;
+  lock) shift; cmd_lock "$@" ;;
+  status) cmd_status ;;
+  protect) shift; cmd_protect "$@" ;;
+  *) sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+esac
