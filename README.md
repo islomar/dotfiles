@@ -193,6 +193,8 @@ Setup for a new phone, the ADB helper script and the Tasker backup are in [`apps
 - The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
 - `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
 - StreamController adds its own autostart entry.
+- Focus the browser tab that plays sound: [`apps/focus-audible-tab-extension`](./apps/focus-audible-tab-extension/README.md).
+  An OS plugin **Hotkey** action sends `Alt+Shift+M`. The browser must have focus.
 - Google Meet controls: [streamdeck-googlemeet](https://github.com/ChrisRegado/streamdeck-googlemeet).
   - Version 1.6.3. The [release page](https://github.com/ChrisRegado/streamdeck-googlemeet/releases/tag/v1.6.3)
     has the Chrome extension, the Firefox extension and the Stream Deck plugin.

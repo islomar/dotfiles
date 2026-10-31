@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Audible Tab",
+  "version": "1.0.0",
+  "description": "Switches to the tab that plays sound. Each press moves to the next one.",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "focus-next-audible-tab": {
+      "suggested_key": { "default": "Alt+Shift+M" },
+      "description": "Focus the next tab that plays sound"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "focus-audible-tab@islomar",
+      "strict_min_version": "121.0"
+    }
+  }
+}
