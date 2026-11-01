@@ -21,6 +21,10 @@ ln -sf "$HOME/.dotfiles/scripts/obs-ctl" "$HOME/.local/bin/obs-ctl"
 mkdir -p "$HOME/.config/rumdl"
 ln -sf "$HOME/.dotfiles/config/rumdl/rumdl.toml" "$HOME/.config/rumdl/rumdl.toml"
 
+# JetBrains Toolbox shell scripts on PATH for the desktop session (takes effect at the next login).
+mkdir -p "$HOME/.config/environment.d"
+ln -sf "$HOME/.dotfiles/config/environment.d/999-jetbrains-toolbox.conf" "$HOME/.config/environment.d/999-jetbrains-toolbox.conf"
+
 # Claude Code global instructions. RTK.md sits next to CLAUDE.md because CLAUDE.md imports it with @RTK.md.
 mkdir -p "$HOME/.claude"
 ln -sf "$HOME/.dotfiles/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
