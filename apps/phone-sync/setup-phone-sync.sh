@@ -137,7 +137,14 @@ set_gui_password() {
 		return
 	fi
 	syncthing cli config gui user set "$GUI_USER"
-	syncthing cli config gui password set "$password"
+	# Keep the password and the API key out of process arguments: the body comes from stdin
+	# and the header from a pipe. Syncthing stores the bcrypt hash of a plain-text password.
+	local api_key
+	api_key="$(syncthing cli config gui apikey get)"
+	PASSWORD="$password" python3 -c 'import json,os; print(json.dumps({"password": os.environ["PASSWORD"]}))' |
+		curl -sf -X PATCH -H @<(printf 'X-API-Key: %s\n' "$api_key") \
+			-H 'Content-Type: application/json' --data-binary @- \
+			http://127.0.0.1:8384/rest/config/gui >/dev/null
 }
 
 add_phone_device() {
