@@ -106,7 +106,7 @@ The phone is in Spanish. Labels below are the Spanish ones.
 ### Telegram
 
 Telegram keeps received images in `Android/data`, which no other app can read on Android 11 and later.
-Turn on Ajustes, Datos y almacenamiento, Guardar en Galería, for private chats, groups and channels.
+Turn on Ajustes, Datos y almacenamiento, Guardar en Galería, for private chats only. Groups and channels add noise.
 Images saved before that stay only in Telegram's cloud.
 
 ## Daily use
