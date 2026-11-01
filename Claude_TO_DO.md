@@ -97,28 +97,28 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 - [x] **Reorganize the data disk**. 2026-10-31.
   - App configs, Files bookmarks, Chrome bookmarks and Déjà Dup paths were updated.
 - [x] **Password-protect sensitive folders with gocryptfs** (`scripts/encrypted-folders`).
-  Commit `a6403c4`. 2026-11-01.
+  Commit `a13813d`. 2026-11-01.
   - `status` and `unlock` flag files saved into a locked folder.
     The folder list is in `~/.config/encrypted-folders/folders`, outside this repository.
 - [x] **Version the global Claude Code instructions** (`config/claude/`).
-  Commit `ec64270`. 2026-11-01.
+  Commit `9401a81`. 2026-11-01.
 - [x] **Shrink course videos over 500 MB to HEVC** (83 GB to 50 GB). 2026-11-01.
 - [x] **Ignore virtualenvs and other language folders globally** (`home/.gitignore_global`).
-  Commit `164129d`.
+  Commit `a355a38`.
   - Added Python entries (`.venv/`, `venv/`, `__pycache__/`, `*.py[cod]`, tool caches) and Elixir entries (`.elixir_ls/`, `/_build/`, `/deps/`).
   - `/_build/` and `/deps/` match only at a repository root, so a `deps/` folder deeper in another project is not hidden.
 - [x] **`cat` output too dark on a black terminal** (`home/.zshrc`).
-  Commit `d7d27d9`.
+  Commit `70b5d39`.
   - The old alias picked the light `GitHub` theme because GNOME `color-scheme` is `'default'` on this machine.
   - The alias is now `bat --theme=auto`. bat 0.25 reads the terminal background and uses `BAT_THEME_DARK` (`Monokai Extended`) or `BAT_THEME_LIGHT` (`GitHub`).
 - [x] **tdd-guard leftovers** (`~/.claude/settings.json`, npm, Homebrew).
-  Commit `3166016`.
+  Commit `774ae4e`.
   - Removed the deny rule `Read(.claude/tdd-guard/**)`.
     No repository under `~/workspace` has a `.claude/tdd-guard/` folder.
   - Uninstalled the npm copy and the Homebrew copy (1.1.0).
   - Removed `tdd-guard` from `langs/js/global_modules.txt`.
 - [x] **`apps/` and the "no tests" check** (`scripts/detect-files-without-tests.sh`).
-  Commit `4635910`.
+  Commit `c30fc0b`.
   - The check reads an optional `.no-tests-ignore` at the repository root: one extended regex per line.
     It leaves out matching paths before it looks for tests.
   - This repository's `.no-tests-ignore` contains `^apps/`.
