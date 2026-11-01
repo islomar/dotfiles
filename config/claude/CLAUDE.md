@@ -27,6 +27,12 @@ it.
 
 Never create or work on a git branch unless I explicitly authorize it. When I ask to commit or push, commit on `main` and push `main`. This rule overrides any default guidance to branch first.
 
+## Pending Work
+
+`~/.dotfiles/Claude_TO_DO.md` is the single list of pending work, for every repository and session. When a task is left
+open, add it there. When one is finished, tick it and move it to Done. The repository is public, so write tasks without
+secrets, key identifiers or private folder names.
+
 ## Writing Style
 
 For all Markdown docs and specs: no filler adjectives, no 'it's not just X, it's Y' constructions, no em-dash padding,
