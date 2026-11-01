@@ -34,10 +34,20 @@ This rule overrides any default guidance to branch first.
 
 ## Pending Work
 
-`~/.dotfiles/Claude_TO_DO.md` is the single list of pending work, for every repository and session.
-When a task is left open, add it there.
-When one is finished, tick it and move it to Done.
-The repository is public, so write tasks without secrets, key identifiers or private folder names.
+Pending work lives in two files, for every repository and session:
+
+- `~/.dotfiles/Claude_TO_DO.md`: the public list, in a public repository.
+- `~/.config/claude-todo-private.md`: private details, outside any repository.
+  Never copy its content into a repository.
+
+When asked what is pending, read both files.
+When a task is left open, add it to the public list.
+When one is finished, tick it and move it to Done, in both files if it appears in both.
+
+The public list follows the rules at the top of that file.
+It has no secrets, key identifiers, private folder names, names of other people, or the security state of any machine or account.
+It never names a company or project I worked for, or my private workspaces.
+Anything that breaks these rules goes in the private file, and the public list points to it.
 
 ## Writing Style
 

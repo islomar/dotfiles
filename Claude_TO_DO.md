@@ -27,10 +27,6 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 
 ### Backups
 
-- [ ] **Prune the Déjà Dup repository**
-  - Ready: the first snapshot exists since 2026-11-01 14:12.
-  - Two failed runs left unreferenced data in the remote repository.
-    `restic prune` removes it and frees space.
 - [ ] **Decide which data-disk folders go to the cloud backup**
   - The folder list is in the private to-do file.
 - [ ] **Shrink the cloud backup once an external disk takes the daily backups** (important)
@@ -78,6 +74,9 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 
 ## Done
 
+- [x] **Prune the Déjà Dup repository**. 2026-11-01.
+  - Removed 28.7 GiB left by the failed runs; 155 GiB remain.
+    `restic check` found no errors.
 - [x] **First cloud backup (Déjà Dup)**. 2026-11-01.
   - Snapshot saved at 14:12 after 50 minutes; about 71 GiB uploaded.
     Earlier runs had failed with HTTP 500 or had been stopped.
