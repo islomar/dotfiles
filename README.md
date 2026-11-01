@@ -118,7 +118,7 @@ and runs one command per changed dependency file:
 | `pyproject.toml`, `poetry.lock` | `make build` |
 | `package.json`, `yarn.lock` | `yarn install` if `yarn.lock` exists, otherwise `npm install`; then `npm run build` |
 | `mix.exs`, `mix.lock` | `mix deps.get && mix compile` |
-| `.tool-versions` | `asdf install`, then the Elixir setup steps |
+| `.tool-versions` | `asdf install`, then the Elixir setup steps in `scripts/install-dependencies-on-change.sh` |
 
 These commands come from the repository you pull.
 A pull in an untrusted repository runs that repository's build and install scripts.

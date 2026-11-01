@@ -38,3 +38,15 @@ __pycache__/
 /**/**/private-*
 
 **/.claude/settings.local.json
+
+# Secrets
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.git-credentials
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
