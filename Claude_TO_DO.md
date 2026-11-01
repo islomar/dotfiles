@@ -72,9 +72,9 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 - [ ] **Chain more hook types** (`hooks/`, `scripts/run-local-git-hook.sh`)
   - Repositories with their own `commit-msg` or `prepare-commit-msg` in `.git/hooks` stop running them under the global `core.hooksPath`.
   - Add a hook file and a script for each, following the pattern of the other four hooks.
-- [ ] **Scan commits for secrets with gitleaks** (`scripts/pre-commit.sh`)
-  - Needs `brew install gitleaks`.
-  - Run a full-history scan first, then add the staged-files check to the hook.
+- [ ] **Fix the pre-push hook on large pushes** (`scripts/detect-push-without-tests.sh`)
+  - It passes the file list as one argument. Above 128 KiB the script fails with `Argument list too long` and blocks the push.
+  - Pass the list on stdin or in a temporary file.
 
 ## Done
 
@@ -126,3 +126,5 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 - [x] **Security assessment of this repository**. 2026-11-01.
   - No live credentials found in the tree or history.
   - Removed the old IDE export and other work references; enabled GitHub secret scanning and push protection.
+  - Rewrote the history to remove the same references and recreated the GitHub repository.
+  - Added a gitleaks scan of staged changes to the pre-commit hook (`scripts/detect-secrets.sh`).

@@ -58,7 +58,7 @@ pyenv install 3.10
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install rumdl vale shellcheck
+brew install rumdl vale shellcheck gitleaks
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
 
 # Adobe

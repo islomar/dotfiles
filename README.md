@@ -95,18 +95,20 @@ The script holds all the logic.
 | `post-merge` | After a merge or a fast-forward pull | [`post-merge.sh`](./scripts/post-merge.sh) | [`install-dependencies-on-change.sh`](./scripts/install-dependencies-on-change.sh) | No |
 | `post-rewrite` | After a rebase or `commit --amend` | [`post-rewrite.sh`](./scripts/post-rewrite.sh) | `install-dependencies-on-change.sh`, on rebase only | No |
 
-`scripts/pre-commit.sh` runs three checks:
+`scripts/pre-commit.sh` runs four checks:
 
-1. [`detect-commit-without-tests.sh`](./scripts/detect-commit-without-tests.sh) rejects a commit that changes
+1. [`detect-secrets.sh`](./scripts/detect-secrets.sh) rejects a commit when [gitleaks](https://github.com/gitleaks/gitleaks)
+   finds a secret in the staged changes. It only warns when gitleaks is not installed.
+2. [`detect-commit-without-tests.sh`](./scripts/detect-commit-without-tests.sh) rejects a commit that changes
    JS/TS or Elixir source files without a test file.
    `pre-push` runs the same check on the pushed commits. A repository can leave paths out of it with a
    `.no-tests-ignore` file at its root: one extended regex per line, matched against paths relative to the root.
    The check skips blank lines and lines that start with `#`. This repository's [`.no-tests-ignore`](./.no-tests-ignore)
    leaves out `^apps/`.
-2. [`generate-markdown-toc.sh`](./scripts/generate-markdown-toc.sh) updates the doctoc table of contents
+3. [`generate-markdown-toc.sh`](./scripts/generate-markdown-toc.sh) updates the doctoc table of contents
    in staged Markdown files and stages the result. It decodes percent-encoded anchors (`#d%C3%ADa` to `#día`),
    because rumdl only accepts the decoded form.
-3. [`check-markdown.sh --staged`](./scripts/check-markdown.sh) runs rumdl and Vale on staged Markdown files.
+4. [`check-markdown.sh --staged`](./scripts/check-markdown.sh) runs rumdl and Vale on staged Markdown files.
    rumdl fixes what it can and stages the fixes. Vale only reports: it blocks the commit only when it cannot run.
    Vale uses the repository's `.vale.ini` if present, otherwise [`config/vale/.vale.ini`](./config/vale/.vale.ini).
 
@@ -137,6 +139,7 @@ Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
 
 ### Requirements
 
+- Secret scan: [gitleaks](https://github.com/gitleaks/gitleaks).
 - Markdown checks: [rumdl](https://github.com/rvben/rumdl), [Vale](https://vale.sh/) and
   [doctoc](https://www.npmjs.com/package/doctoc) (`npm install --global doctoc`).
   Download the Vale styles once with `vale sync --config ~/.dotfiles/config/vale/.vale.ini`.
