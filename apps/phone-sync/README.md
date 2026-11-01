@@ -119,8 +119,8 @@ Images saved before that stay only in Telegram's cloud.
 
 - The backup is on `nvme0n1p3`, the same SSD as `/home`. It protects against deletion, not against disk failure.
 - The Homebrew `gio` in `PATH` has no gvfs support. Use `/usr/bin/gio` for `sftp://` paths.
-- Docker ports skip ufw. The compose files of PostgreSQL and MariaDB in two course repositories now bind to `127.0.0.1`.
-  Those edits live uncommitted in the course repositories. This script does not cover them.
+- Docker ports skip ufw. PostgreSQL and MariaDB in two CodelyTV course repositories bind to `127.0.0.1` through a `compose.override.yml` with `ports: !override`.
+  Each repository lists that file in `.git/info/exclude`, so `git pull` never touches it. This script does not create it.
 
 ## Troubleshooting
 
