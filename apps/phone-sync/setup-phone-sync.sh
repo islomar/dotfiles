@@ -34,15 +34,11 @@ UNITS=(phone-photos-backup.service phone-photos-backup.timer)
 # Folder IDs must match the folders shared from Syncthing-Fork on the phone.
 # Format: id|label|subfolder of PHONE_ROOT
 FOLDERS=(
-	"lx275-06ulv|Phone Camera|Camera"
 	"hokzg-fgwdm|Phone DCIM|DCIM"
 	"urlkm-15fxo|Phone Pictures|Pictures"
 	"4vvc4-tx4sw|Phone WhatsApp Images|WhatsApp"
 	"t4956-okmrh|Phone Telegram Images|Telegram"
 )
-# DCIM/Camera arrives through its own folder. Ignore it in DCIM so it is not copied twice.
-DCIM_FOLDER_ID="hokzg-fgwdm"
-DCIM_IGNORE="/Camera"
 
 main() {
 	case "${1:-}" in
@@ -169,7 +165,6 @@ add_folders() {
 			continue
 		fi
 		mkdir -p "$path"
-		[[ "$id" == "$DCIM_FOLDER_ID" ]] && printf '%s\n' "$DCIM_IGNORE" >"$path/.stignore"
 		syncthing cli config folders add --id "$id" --label "$label" --path "$path" --type receiveonly --paused
 		syncthing cli config folders "$id" devices add --device-id "$phone_id"
 		syncthing cli config folders "$id" ignore-delete set true

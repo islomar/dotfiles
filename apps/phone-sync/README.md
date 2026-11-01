@@ -53,8 +53,7 @@ A photo deleted on the phone stays on the PC.
 
 | Folder ID | Phone path, under `/storage/emulated/0/` | PC path, under `~/Pictures/Phone/` |
 |---|---|---|
-| `lx275-06ulv` | `DCIM/Camera` | `Camera` |
-| `hokzg-fgwdm` | `DCIM`, with `/Camera` ignored on the PC | `DCIM` |
+| `hokzg-fgwdm` | `DCIM`, including `Camera` | `DCIM` |
 | `urlkm-15fxo` | `Pictures` | `Pictures` |
 | `4vvc4-tx4sw` | `Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images` | `WhatsApp` |
 | `t4956-okmrh` | `Android/media/org.telegram.messenger/Telegram/Telegram Images` | `Telegram` |
@@ -99,7 +98,7 @@ The phone is in Spanish. Labels below are the Spanish ones.
 2. Grant all-files access: Ajustes, Aplicaciones, Syncthing-Fork, Permisos, Archivos y contenido multimedia, Permitir la gestión de todos los archivos.
 3. Set battery to Sin restricciones.
 4. Add the PC device ID from 1Password.
-5. Add the five folders from the table above, type Solo enviar, shared with the PC.
+5. Add the four folders from the table above, type Solo enviar, shared with the PC.
    The folder picker cannot open `Android/media`.
    For WhatsApp and Telegram, use ☰, Interfaz web, Agregar carpeta, and type the full path.
    On a new phone, Syncthing-Fork creates new folder IDs. Change the IDs in the web interface to the ones above, or update `FOLDERS` in the script.
