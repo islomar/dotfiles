@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily backup of phone photos inbox
+
+[Timer]
+OnCalendar=daily
+OnStartupSec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

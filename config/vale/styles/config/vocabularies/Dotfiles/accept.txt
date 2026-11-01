@@ -57,3 +57,11 @@ Zepp
 [Rr]epo
 [Rr]ollouts?
 [Ww]ireframes?
+Syncthing
+GSConnect
+dconf
+ufw
+udp
+[Dd]ashcam
+subfolders
+gvfs

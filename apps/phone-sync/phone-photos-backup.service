@@ -1,0 +1,9 @@
+[Unit]
+Description=Copy phone photos from ~/Pictures/Phone to /mnt/data (append-only, never deletes)
+ConditionPathIsDirectory=/mnt/data/phone-backup
+
+[Service]
+Type=oneshot
+Nice=10
+IOSchedulingClass=idle
+ExecStart=/usr/bin/rsync -a --exclude=.stfolder --exclude=.stignore --exclude=.stversions --exclude=~syncthing~*.tmp %h/Pictures/Phone/ /mnt/data/phone-backup/

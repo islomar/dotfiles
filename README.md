@@ -16,6 +16,7 @@
     - [Linux](#linux)
   - [IntelliJ settings](#intellij-settings)
   - [Android: Tasker step automation](#android-tasker-step-automation)
+  - [Phone photo sync](#phone-photo-sync)
   - [How to set up my Stream Deck Mini](#how-to-set-up-my-stream-deck-mini)
     - [ydotool](#ydotool)
   - [Wacom tablet](#wacom-tablet)
@@ -174,6 +175,11 @@ Other hooks in `.git/hooks`, such as `commit-msg`, do not run.
 
 Tasker writes 25,000 steps per day into Health Connect.
 Setup for a new phone, the ADB helper script and the Tasker backup are in [`apps/tasker`](./apps/tasker/README.md).
+
+## Phone photo sync
+
+KDE Connect, Syncthing and a daily backup between the Fairphone 6 and this PC.
+Summary, setup script and phone steps are in [`apps/phone-sync`](./apps/phone-sync/README.md).
 
 ## How to set up my Stream Deck Mini
 
