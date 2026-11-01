@@ -7,12 +7,7 @@
   - [What runs where](#what-runs-where)
     - [PC](#pc)
     - [Syncthing folders](#syncthing-folders)
-    - [1Password, vault `Personal`](#1password-vault-personal)
-  - [Set up the PC](#set-up-the-pc)
-  - [Set up the phone](#set-up-the-phone)
-    - [KDE Connect](#kde-connect)
-    - [Syncthing-Fork](#syncthing-fork)
-    - [Telegram](#telegram)
+    - [1Password](#1password)
   - [Daily use](#daily-use)
   - [Limits](#limits)
   - [Troubleshooting](#troubleshooting)
@@ -60,54 +55,12 @@ A photo deleted on the phone stays on the PC.
 
 WhatsApp videos are not synced.
 
-Backup target: `/mnt/data/phone-backup/`, same subfolders.
+Backup target: `BACKUP_DIR` in `~/.config/phone-sync/config`, same subfolders.
+This file is not in the repository. Create it before `setup`, with one line: `BACKUP_DIR=<folder>`.
 
-### 1Password, vault `Personal`
+### 1Password
 
-| Item | Content |
-|---|---|
-| `Syncthing GUI (Ubuntu PC)` | GUI login, URL, PC and phone device IDs, folder notes |
-| `Syncthing PC identity cert.pem (Ubuntu PC)` | PC Syncthing certificate |
-| `Syncthing PC identity key.pem (Ubuntu PC)` | PC Syncthing private key |
-
-The script restores `cert.pem` and `key.pem` on a new install.
-The PC keeps its device ID, and the phone reconnects without changes.
-
-## Set up the PC
-
-1. Sign in to the 1Password CLI: `op vault list` must work.
-2. Run `./setup-phone-sync.sh setup`. It asks for `sudo` for apt and ufw.
-3. Run `./setup-phone-sync.sh doctor`. The phone shows `connected: True` when both devices share the Wi-Fi.
-
-Without 1Password, pass the phone device ID: `./setup-phone-sync.sh setup <device-id>`.
-Syncthing then creates a new identity, and the phone needs the new PC device ID.
-
-## Set up the phone
-
-The phone is in Spanish. Labels below are the Spanish ones.
-
-### KDE Connect
-
-1. Install KDE Connect. Pair with the PC `executive`.
-2. Open the device, ⋮, Configuración de complementos.
-3. Turn on Exponer el sistema de archivos and add `DCIM` and `Pictures`.
-
-### Syncthing-Fork
-
-1. Install Syncthing-Fork.
-2. Grant all-files access: Ajustes, Aplicaciones, Syncthing-Fork, Permisos, Archivos y contenido multimedia, Permitir la gestión de todos los archivos.
-3. Set battery to Sin restricciones.
-4. Add the PC device ID from 1Password.
-5. Add the four folders from the table above, type Solo enviar, shared with the PC.
-   The folder picker cannot open `Android/media`.
-   For WhatsApp and Telegram, use ☰, Interfaz web, Agregar carpeta, and type the full path.
-   On a new phone, Syncthing-Fork creates new folder IDs. Change the IDs in the web interface to the ones above, or update `FOLDERS` in the script.
-
-### Telegram
-
-Telegram keeps received images in `Android/data`, which no other app can read on Android 11 and later.
-Turn on Ajustes, Datos y almacenamiento, Guardar en Galería, for private chats only. Groups and channels add noise.
-Images saved before that stay only in Telegram's cloud.
+The GUI login, the device IDs and the PC Syncthing identity are in 1Password. The script names the items.
 
 ## Daily use
 

@@ -27,7 +27,7 @@ SYNCTHING_STATE="$HOME/.local/state/syncthing"
 GUI_USER="islomar"
 PHONE_NAME="Fairphone 6"
 PHONE_ROOT="$HOME/Pictures/Phone"
-BACKUP_DIR="/mnt/data/phone-backup"
+BACKUP_CONFIG="$HOME/.config/phone-sync/config"
 UNIT_DIR="$HOME/.config/systemd/user"
 UNITS=(phone-photos-backup.service phone-photos-backup.timer)
 
@@ -175,13 +175,21 @@ add_folders() {
 
 install_backup_timer() {
 	step "Backup timer"
-	[[ -d "$BACKUP_DIR" ]] || echo "Warning: $BACKUP_DIR does not exist. The timer skips runs until it does."
+	local backup_dir
+	backup_dir="$(read_backup_dir)"
+	[[ -n "$backup_dir" ]] || die "Set BACKUP_DIR=<folder> in $BACKUP_CONFIG"
+	[[ -d "$backup_dir" ]] || echo "Warning: $backup_dir does not exist. The timer skips runs until it does."
 	mkdir -p "$UNIT_DIR"
 	for unit in "${UNITS[@]}"; do
 		cp "$SCRIPT_DIR/$unit" "$UNIT_DIR/$unit"
 	done
 	systemctl --user daemon-reload
 	systemctl --user enable --now phone-photos-backup.timer
+}
+
+read_backup_dir() {
+	[[ -f "$BACKUP_CONFIG" ]] || return 0
+	sed -n 's/^BACKUP_DIR=//p' "$BACKUP_CONFIG" | tail -n 1
 }
 
 doctor() {
@@ -219,6 +227,7 @@ except Exception:
 
 	step "Backup"
 	systemctl --user list-timers phone-photos-backup.timer --no-pager | head -2
+	echo "backup config: $([[ -n "$(read_backup_dir)" ]] && echo "OK" || echo "MISSING BACKUP_DIR in $BACKUP_CONFIG")"
 	echo "last run: $(systemctl --user show phone-photos-backup.service -p Result --value)"
 }
 

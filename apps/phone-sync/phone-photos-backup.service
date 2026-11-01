@@ -1,9 +1,10 @@
 [Unit]
-Description=Copy phone photos from ~/Pictures/Phone to /mnt/data (append-only, never deletes)
-ConditionPathIsDirectory=/mnt/data/phone-backup
+Description=Copy phone photos from ~/Pictures/Phone to the backup folder (append-only, never deletes)
 
 [Service]
 Type=oneshot
 Nice=10
 IOSchedulingClass=idle
-ExecStart=/usr/bin/rsync -a --exclude=.stfolder --exclude=.stignore --exclude=.stversions --exclude=~syncthing~*.tmp %h/Pictures/Phone/ /mnt/data/phone-backup/
+EnvironmentFile=%h/.config/phone-sync/config
+ExecCondition=/usr/bin/test -d ${BACKUP_DIR}
+ExecStart=/usr/bin/rsync -a --exclude=.stfolder --exclude=.stignore --exclude=.stversions --exclude=~syncthing~*.tmp %h/Pictures/Phone/ ${BACKUP_DIR}/
