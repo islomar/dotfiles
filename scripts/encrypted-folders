@@ -10,6 +10,8 @@
 # Each protected folder <parent>/<name> keeps its path. Its encrypted data lives next to it in
 # <parent>/.<name>.gocryptfs. While locked, the folder is an empty mount point.
 # Unlocked folders lock themselves after $IDLE without use.
+# status and unlock warn when a locked folder holds files saved while it was locked (they are not
+# encrypted); unlock refuses to mount over them.
 #
 # Personal settings live outside this repository, in ~/.config/encrypted-folders/:
 #   config   OP_REF="op://<vault>/<item>/password"  and optionally IDLE="15m"
@@ -48,13 +50,28 @@ selected_folders() {
   done
 }
 
+# A locked folder is an empty mount point. Anything inside it was saved while the folder was
+# locked: it is NOT encrypted, and unlocking would hide it under the encrypted contents.
+stray_count() { find "$1" -mindepth 1 -maxdepth 1 2>/dev/null | wc -l; }
+
+stray_warning() {
+  echo "WARNING: $1 is locked but holds $2 unencrypted item(s), saved while it was locked." >&2
+  echo "  They are readable without the password. To fix: move them out, unlock the folder," >&2
+  echo "  move them back in, then lock it again." >&2
+}
+
 cmd_unlock() {
   local targets; targets="$(selected_folders "$@")" || exit 1
   make_passfile
-  local ok=0 fail=0 m
+  local ok=0 fail=0 m n
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     if mountpoint -q "$m"; then ok=$((ok + 1)); continue; fi
+    n=$(stray_count "$m")
+    if [ "$n" -gt 0 ]; then
+      stray_warning "$m" "$n"
+      echo "NOT UNLOCKED: $m" >&2; fail=$((fail + 1)); continue
+    fi
     if gocryptfs -q -idle "$IDLE" -passfile "$PASSFILE" "$(store_of "$m")" "$m"; then
       ok=$((ok + 1))
     else
@@ -76,10 +93,20 @@ cmd_lock() {
 }
 
 cmd_status() {
-  local m
+  local m n
   while IFS= read -r m; do
     [ -z "$m" ] && continue
-    if mountpoint -q "$m"; then echo "UNLOCKED  $m"; else echo "locked    $m"; fi
+    if mountpoint -q "$m"; then
+      echo "UNLOCKED  $m"
+    else
+      n=$(stray_count "$m")
+      if [ "$n" -gt 0 ]; then
+        echo "locked, $n UNENCRYPTED item(s) inside  $m"
+        stray_warning "$m" "$n"
+      else
+        echo "locked    $m"
+      fi
+    fi
   done < "$LIST"
 }
 
