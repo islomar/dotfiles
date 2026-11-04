@@ -87,8 +87,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 - [ ] **Review the blog cookie policy**
   - Check the 2-year cookie durations and "Google Ireland Limited", which were written from memory.
   - Add how long Google keeps the data, from the GA retention setting.
-- [ ] **Check for a VigLink setting in the Disqus admin**
-  - If VigLink can be turned off, remove it from the Disqus notice and the cookie policy.
 - [ ] **Fix empty meta descriptions on blog posts**
   - `<!-- DOCTOC SKIP -->` at the top of a post leaves its description empty. Move the marker to the end of the file.
   - Confirmed on `my-ethical-stance` and `some-interview-questions-as-interviewee`. Check the other pages that use the marker.
@@ -98,6 +96,9 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ## Done
 
+- [x] **Turn off VigLink on the blog's Disqus comments**. 2026-11-05, commit `5f661b6`.
+  - Affiliate links and Tracking are off in the Disqus admin. VigLink no longer loads.
+    The Disqus notice and cookie policy now describe what still loads.
 - [x] **Prune the Déjà Dup repository**. 2026-11-01.
   - Removed 28.7 GiB left by the failed runs; 155 GiB remain.
     `restic check` found no errors.
