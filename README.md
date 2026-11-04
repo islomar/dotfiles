@@ -200,6 +200,9 @@ Summary, setup script and phone steps are in [`apps/phone-sync`](./apps/phone-sy
     `export_apps.sh` does not export them.
 - In Settings > Plugins > OBS, enter the OBS WebSocket password.
 - The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
+- The lock key on Page 4 runs `scripts/encrypted-folders`.
+  One action shows the state every 5 seconds (`deck`). The other runs `toggle` on a press.
+  A press locks every folder if any is unlocked. Otherwise it unlocks them all, with 1Password approval.
 - `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
 - StreamController adds its own autostart entry.
 - Focus the browser tab that plays sound: [`apps/focus-audible-tab-extension`](./apps/focus-audible-tab-extension/README.md).

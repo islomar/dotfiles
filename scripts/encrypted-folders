@@ -5,6 +5,8 @@
 #   encrypted-folders unlock [folder…]  Unlock the given protected folders, or all of them (1Password asks for approval)
 #   encrypted-folders lock [folder…]    Lock the given protected folders, or all of them
 #   encrypted-folders status            Show which folders are locked or unlocked
+#   encrypted-folders toggle            Lock all if any folder is unlocked, otherwise unlock all, and notify
+#   encrypted-folders deck              Print a short state label for a Stream Deck key
 #   encrypted-folders protect <folder>  Encrypt <folder> in place and add it to the list
 #
 # Each protected folder <parent>/<name> keeps its path. Its encrypted data lives next to it in
@@ -26,7 +28,8 @@ IDLE="15m"
 # shellcheck source=/dev/null
 [ -f "$CONF_DIR/config" ] && source "$CONF_DIR/config"
 : "${OP_REF:?Set OP_REF in $CONF_DIR/config}"
-touch "$LIST"
+[ -f "$LIST" ] || touch "$LIST"
+TOGGLE_LOCK="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/encrypted-folders.toggle.lock"
 
 store_of() { echo "$(dirname "$1")/.$(basename "$1").gocryptfs"; }
 
@@ -67,6 +70,7 @@ cmd_unlock() {
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     if mountpoint -q "$m"; then ok=$((ok + 1)); continue; fi
+    if [ ! -d "$m" ]; then echo "MISSING (moved or renamed?): $m" >&2; fail=$((fail + 1)); continue; fi
     n=$(stray_count "$m")
     if [ "$n" -gt 0 ]; then
       stray_warning "$m" "$n"
@@ -96,7 +100,9 @@ cmd_status() {
   local m n
   while IFS= read -r m; do
     [ -z "$m" ] && continue
-    if mountpoint -q "$m"; then
+    if [ ! -d "$m" ]; then
+      echo "MISSING   $m (moved or renamed? Fix the path in $LIST)"
+    elif mountpoint -q "$m"; then
       echo "UNLOCKED  $m"
     else
       n=$(stray_count "$m")
@@ -108,6 +114,51 @@ cmd_status() {
       fi
     fi
   done < "$LIST"
+}
+
+# Count unlocked folders from the kernel's mount table. This never touches the mounted folders:
+# polling them could count as use and stop the idle auto-lock. Mount paths encode spaces as \040.
+mounted_count() {
+  awk 'NR == FNR { if ($0 != "") listed[$0]; next }
+       { path = $5; gsub(/\\040/, " ", path); if (path in listed) n++ }
+       END { print n + 0 }' "$LIST" /proc/self/mountinfo
+}
+
+cmd_deck() {
+  local total open
+  flock -n "$TOGGLE_LOCK" true 2>/dev/null || { echo "Wait"; return; }
+  total=$(grep -c . "$LIST")
+  open=$(mounted_count)
+  if [ "$open" -eq 0 ]; then echo "Locked"; else echo "Open $open/$total"; fi
+}
+
+notify() { notify-send -t 5000 -i "$1" "Encrypted folders" "$2"; }
+
+# The notification shows counts only: it can appear on a shared screen, so it never names a folder.
+toggle_now() {
+  local out rc
+  out="$(mktemp -p "${XDG_RUNTIME_DIR:-/tmp}" encrypted-folders.XXXXXX)" || exit 1
+  # Output goes to a file: a pipe could stay open in the gocryptfs background process.
+  if [ "$(mounted_count)" -gt 0 ]; then
+    ( cmd_lock ) > "$out" 2>&1; rc=$?
+  else
+    ( cmd_unlock ) > "$out" 2>&1; rc=$?
+  fi
+  if [ "$rc" -ne 0 ] || grep -qE 'Failed: [1-9]|in use: [1-9]' "$out"; then
+    notify dialog-warning "$(tail -n 1 "$out") Run: encrypted-folders status"
+  else
+    notify changes-prevent "$(tail -n 1 "$out")"
+  fi
+  rm -f "$out"
+}
+
+# The transient systemd scope keeps gocryptfs alive when the caller's service stops. The Stream Deck
+# app starts commands inside flatpak-session-helper.service. flock -o keeps the lock out of gocryptfs.
+cmd_toggle() {
+  local rc=0
+  flock -n -o -E 75 "$TOGGLE_LOCK" \
+    systemd-run --user --scope --collect --quiet -- "$(realpath "$0")" toggle-now || rc=$?
+  if [ "$rc" -eq 75 ]; then notify dialog-information "Still working on the last press."; fi
 }
 
 # Encrypt a folder in place. The original is deleted only after every file in the encrypted
@@ -165,6 +216,9 @@ case "${1:-}" in
   unlock) shift; cmd_unlock "$@" ;;
   lock) shift; cmd_lock "$@" ;;
   status) cmd_status ;;
+  toggle) cmd_toggle ;;
+  toggle-now) toggle_now ;;
+  deck) cmd_deck ;;
   protect) shift; cmd_protect "$@" ;;
-  *) sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
+  *) sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;
 esac
