@@ -124,10 +124,8 @@ sudo apt install bat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
-# Yubikey
-sudo apt-get install libpam-u2f
-mkdir -p ~/.config/Yubico
-pamu2fcfg > ~/.config/Yubico/u2f_keys
+# Yubikey: plug in the key first
+~/.dotfiles/scripts/setup-yubikey-pam.sh setup
 
 git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
 

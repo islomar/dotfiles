@@ -17,6 +17,7 @@
   - [IntelliJ settings](#intellij-settings)
   - [Android: Tasker step automation](#android-tasker-step-automation)
   - [Phone photo sync](#phone-photo-sync)
+  - [YubiKey](#yubikey)
   - [How to set up my Stream Deck Mini](#how-to-set-up-my-stream-deck-mini)
     - [ydotool](#ydotool)
   - [Wacom tablet](#wacom-tablet)
@@ -183,6 +184,33 @@ Setup for a new phone, the ADB helper script and the Tasker backup are in [`apps
 
 KDE Connect, Syncthing and a daily backup between the Fairphone 6 and this PC.
 Summary, setup script and phone steps are in [`apps/phone-sync`](./apps/phone-sync/README.md).
+
+## YubiKey
+
+A touch on the key replaces the password in `sudo` and in polkit pop-ups.
+The password stays as a fallback.
+Login and the lock screen keep the password, because a login without it leaves the GNOME keyring locked.
+
+Plug in the key, then run [`scripts/setup-yubikey-pam.sh`](./scripts/setup-yubikey-pam.sh):
+
+| Command | What it does |
+|---|---|
+| `setup` | Installs the packages, creates a credential if needed, and configures PAM and polkit. Safe to re-run. |
+| `enroll` | Replaces your credential. Run it after a hostname change, because the credential is tied to the hostname. |
+| `doctor` | Shows the state of every part and changes nothing. |
+
+The script keeps the credential in `/etc/Yubico/u2f_keys`, which only root can change.
+Each machine creates its own credential, so this repository holds no key data.
+
+Limits:
+
+- A touch does not unlock the GNOME keyring, `gocryptfs` folders or apps with their own password.
+- A touch with no FIDO prompt active types an OTP code into the focused window and presses Enter.
+- With the key plugged in, `sudo` and pop-ups wait for a touch before they offer the password.
+- Polkit 127 and later need a sandbox exception, in `/etc/systemd/system/polkit-agent-helper@.service.d/u2f.conf`.
+- Do not add pam_u2f's `debug` option to `/etc/pam.d/polkit-1`. It put the polkit helper in a restart loop.
+
+To undo the setup, restore the files from the newest folder in `/var/backups/yubikey-pam`, delete the sandbox exception, and run `sudo systemctl daemon-reload`.
 
 ## How to set up my Stream Deck Mini
 
