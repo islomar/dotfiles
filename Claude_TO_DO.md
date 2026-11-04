@@ -8,6 +8,7 @@
     - [Security](#security)
     - [System](#system)
     - [This repository](#this-repository)
+    - [Blog](#blog)
   - [Done](#done)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -21,12 +22,13 @@ When a task is done, tick it, move it to Done, and add the commit hash or the da
 This repository is public.
 Describe tasks without secrets, key identifiers, private folder names, names of other people, or the security state of any machine or account.
 Never name a company or project the user worked for, and never name their private workspaces.
-Details that break these rules go in `~/.config/claude-todo-private.md`, which is outside this repository.
+Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.md`, in a private repository.
 
 ## Open
 
 ### Backups
 
+- [ ] **Work through the Backups section of the private to-do file** (urgent) (`~/workspace/dotfiles-private/claude-todo.md`)
 - [ ] **Decide which data-disk folders go to the cloud backup**
   - The folder list is in the private to-do file.
 - [ ] **Shrink the cloud backup once an external disk takes the daily backups** (important)
@@ -36,7 +38,7 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
   - Steps: agree the new Déjà Dup include list with the user;
     apply it with `/usr/bin/gsettings`;
     run a backup and confirm a new snapshot;
-    then remove old snapshots and run `restic prune` to free storage.
+    then remove old snapshots, run `restic prune`, and empty the cloud trash. Pruned files go to the trash and still count against the quota.
   - Check that the external disk backup covers every folder removed from the cloud before removing it.
 - [ ] **Check the first full phone-photo backup** (`apps/phone-sync`). Due 2026-11-02.
   - Run `apps/phone-sync/setup-phone-sync.sh doctor`. The backup's last run must show `success`.
@@ -53,7 +55,7 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 
 ### Security
 
-- [ ] **Work through the Security section of the private to-do file** (`~/.config/claude-todo-private.md`)
+- [ ] **Work through the Security section of the private to-do file** (`~/workspace/dotfiles-private/claude-todo.md`)
 
 ### System
 
@@ -62,6 +64,11 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
   - Purge the leftover `rc` package of 7.0.0-34 and `/lib/modules/7.0.0-34-generic`.
   - After the reboot, check that `ollama list` shows its 8 models.
     The `/etc/fstab` bind mount for the models moved on 2026-11-01 and has not been tested at boot.
+- [ ] **Decide whether to turn off OTP mode on the YubiKey**
+  - A touch with no FIDO prompt active types a code into the focused window and presses Enter.
+  - Turning it off needs `ykman`, which is not installed. Check first that no service uses Yubico OTP.
+- [ ] **Run `scripts/setup-yubikey-pam.sh setup` for real**
+  - `doctor` and the PAM and credential logic are tested. The `setup` and `enroll` paths are not, because they need `sudo` and a touch.
 
 ### This repository
 
@@ -71,6 +78,23 @@ Details that break these rules go in `~/.config/claude-todo-private.md`, which i
 - [ ] **Fix the pre-push hook on large pushes** (`scripts/detect-push-without-tests.sh`)
   - It passes the file list as one argument. Above 128 KiB the script fails with `Argument list too long` and blocks the push.
   - Pass the list on stdin or in a temporary file.
+
+### Blog
+
+- [ ] **Confirm the cookie banner with real Google Analytics on islomar.es**
+  - In a private window, click Accept and confirm the visit appears in the GA Realtime report.
+  - Click Reject under "Cookie settings" and confirm `_ga` and `_ga_6N4V44FDYV` are gone. Automated tests passed with GA data requests blocked (commit `16766a8`).
+- [ ] **Review the blog cookie policy**
+  - Check the 2-year cookie durations and "Google Ireland Limited", which were written from memory.
+  - Add how long Google keeps the data, from the GA retention setting.
+- [ ] **Check for a VigLink setting in the Disqus admin**
+  - If VigLink can be turned off, remove it from the Disqus notice and the cookie policy.
+- [ ] **Fix empty meta descriptions on blog posts**
+  - `<!-- DOCTOC SKIP -->` at the top of a post leaves its description empty. Move the marker to the end of the file.
+  - Confirmed on `my-ethical-stance` and `some-interview-questions-as-interviewee`. Check the other pages that use the marker.
+- [ ] **Reconsider vanilla-cookieconsent for the blog banner**
+  - Trigger: a second cookie category is added, or an accessibility check finds problems with the banner.
+  - Rerun the consent withdrawal test against the real GA script before switching.
 
 ## Done
 
