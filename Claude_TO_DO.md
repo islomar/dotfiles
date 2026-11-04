@@ -87,15 +87,14 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 - [ ] **Review the blog cookie policy**
   - Check the 2-year cookie durations and "Google Ireland Limited", which were written from memory.
   - Add how long Google keeps the data, from the GA retention setting.
-- [ ] **Fix empty meta descriptions on blog posts**
-  - `<!-- DOCTOC SKIP -->` at the top of a post leaves its description empty. Move the marker to the end of the file.
-  - Confirmed on `my-ethical-stance` and `some-interview-questions-as-interviewee`. Check the other pages that use the marker.
 - [ ] **Reconsider vanilla-cookieconsent for the blog banner**
   - Trigger: a second cookie category is added, or an accessibility check finds problems with the banner.
   - Rerun the consent withdrawal test against the real GA script before switching.
 
 ## Done
 
+- [x] **Fix empty meta descriptions on blog posts**. 2026-11-05, commit `337e833`.
+  - Moved `<!-- DOCTOC SKIP -->` to the end of the two affected posts. Other pages fall back to the site description.
 - [x] **Turn off VigLink on the blog's Disqus comments**. 2026-11-05, commit `5f661b6`.
   - Affiliate links and Tracking are off in the Disqus admin. VigLink no longer loads.
     The Disqus notice and cookie policy now describe what still loads.
