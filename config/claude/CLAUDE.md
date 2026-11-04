@@ -37,12 +37,14 @@ This rule overrides any default guidance to branch first.
 Pending work lives in two files, for every repository and session:
 
 - `~/.dotfiles/Claude_TO_DO.md`: the public list, in a public repository.
-- `~/.config/claude-todo-private.md`: private details, outside any repository.
-  Never copy its content into a repository.
+- `~/workspace/dotfiles-private/claude-todo.md`: private details, in a private repository.
+  Never copy its content into a public repository.
+  Real secrets stay in 1Password and never go in that file.
 
 When asked what is pending, read both files.
 When a task is left open, add it to the public list.
 When one is finished, tick it and move it to Done, in both files if it appears in both.
+Whenever the private file changes, commit it on `main` of its repository and push.
 
 The public list follows the rules at the top of that file.
 It has no secrets, key identifiers, private folder names, names of other people, or the security state of any machine or account.
