@@ -61,6 +61,355 @@
                     ]
                 }
             }
+        },
+        "0x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_cuflt_pomodoro::Pomodoro",
+                            "settings": {}
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        56,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ],
+                                    [
+                                        56,
+                                        0
+                                    ],
+                                    [
+                                        56,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ],
+                                    [
+                                        56,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        56,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ],
+                                    [
+                                        50,
+                                        1
+                                    ]
+                                ]
+                            },
+                            "comment": "Multiple hits will go through all the tabs with sound"
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "bottom": {
+                            "text": "Focus tab"
+                        }
+                    },
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/com_axolotlmaid_FontAwesomeIcons/icons/white/volume-high.svg"
+                    }
+                }
+            }
+        },
+        "2x1": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Next"
+                        }
+                    },
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/com_core447_MaterialIcons/icons/navigate_next-inv.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_DeckPlugin::ChangePage",
+                            "settings": {
+                                "selected_page": "/home/islomar/.var/app/com.core447.StreamController/data/pages/Page_4.json",
+                                "deck_number": "BL06K1B00782"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "2x0": {
+            "states": {
+                "0": {
+                    "media": {
+                        "size": null,
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/cc_taromaruyuki_BootstrapIcons/icons/speedometer2.png",
+                        "halign": null
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_Speedtest::Speedtest",
+                            "settings": {}
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "top": {
+                            "outline_width": null
+                        },
+                        "bottom": {
+                            "text": "Speedtest",
+                            "outline_width": 2
+                        }
+                    }
+                }
+            }
         }
     }
 }

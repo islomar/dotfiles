@@ -52,60 +52,6 @@
                 }
             }
         },
-        "0x0": {
-            "states": {
-                "0": {
-                    "media": {
-                        "size": null,
-                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/cc_taromaruyuki_BootstrapIcons/icons/speedometer2.png",
-                        "halign": null
-                    },
-                    "actions": [
-                        {
-                            "id": "com_core447_Speedtest::Speedtest",
-                            "settings": {}
-                        }
-                    ],
-                    "image-control-action": null,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "background-control-action": 0,
-                    "labels": {
-                        "top": {
-                            "outline_width": null
-                        },
-                        "bottom": {
-                            "text": "Speedtest",
-                            "outline_width": 2
-                        }
-                    }
-                }
-            }
-        },
-        "1x1": {
-            "states": {
-                "0": {
-                    "actions": [
-                        {
-                            "id": "com_core447_Battery::BatteryPercentage",
-                            "settings": {
-                                "device": "standard"
-                            }
-                        }
-                    ],
-                    "image-control-action": 0,
-                    "label-control-actions": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "background-control-action": 0
-                }
-            }
-        },
         "0x1": {
             "states": {
                 "0": {
@@ -167,6 +113,102 @@
                             "font-size": 14.0,
                             "font-weight": 400
                         }
+                    }
+                }
+            }
+        },
+        "0x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::Hotkey",
+                            "settings": {
+                                "keys": [
+                                    [
+                                        29,
+                                        1
+                                    ],
+                                    [
+                                        42,
+                                        1
+                                    ],
+                                    [
+                                        35,
+                                        1
+                                    ],
+                                    [
+                                        35,
+                                        0
+                                    ],
+                                    [
+                                        29,
+                                        0
+                                    ],
+                                    [
+                                        42,
+                                        0
+                                    ]
+                                ]
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/cc_taromaruyuki_BootstrapIcons/icons/eyeglasses.png"
+                    },
+                    "labels": {
+                        "bottom": {
+                            "text": "Mark as read",
+                            "font-family": "DejaVu Sans",
+                            "style": "normal",
+                            "font-size": 11.0,
+                            "font-weight": 400
+                        }
+                    }
+                }
+            }
+        },
+        "1x1": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.dotfiles/scripts/encrypted-folders deck",
+                                "detached": false,
+                                "display_output": true,
+                                "clear_output": false,
+                                "auto_run": 5,
+                                "label_position": "bottom"
+                            }
+                        },
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.dotfiles/scripts/encrypted-folders toggle",
+                                "detached": true
+                            }
+                        }
+                    ],
+                    "image-control-action": null,
+                    "label-control-actions": [
+                        null,
+                        null,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "path": "/home/islomar/.dotfiles/images/StreamDeckIcons/Large/lock.solid.png",
+                        "size": 0.55,
+                        "valign": -0.65
                     }
                 }
             }
