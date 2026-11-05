@@ -81,23 +81,10 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### Blog
 
-- [ ] **Confirm the cookie banner with real Google Analytics on islomar.es**
-  - In a private window, click Accept and confirm the visit appears in the GA Realtime report.
-  - Click Reject under "Cookie settings" and confirm `_ga` and `_ga_6N4V44FDYV` are gone. Automated tests passed with GA data requests blocked (commit `16766a8`).
-- [ ] **Review the blog cookie policy**
-  - Check the 2-year cookie durations and "Google Ireland Limited", which were written from memory.
-  - Add how long Google keeps the data, from the GA retention setting.
-- [ ] **Reconsider vanilla-cookieconsent for the blog banner**
-  - Trigger: a second cookie category is added, or an accessibility check finds problems with the banner.
-  - Rerun the consent withdrawal test against the real GA script before switching.
+Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
-- [x] **Fix empty meta descriptions on blog posts**. 2026-11-05, commit `337e833`.
-  - Moved `<!-- DOCTOC SKIP -->` to the end of the two affected posts. Other pages fall back to the site description.
-- [x] **Turn off VigLink on the blog's Disqus comments**. 2026-11-05, commit `5f661b6`.
-  - Affiliate links and Tracking are off in the Disqus admin. VigLink no longer loads.
-    The Disqus notice and cookie policy now describe what still loads.
 - [x] **Prune the Déjà Dup repository**. 2026-11-01.
   - Removed 28.7 GiB left by the failed runs; 155 GiB remain.
     `restic check` found no errors.
