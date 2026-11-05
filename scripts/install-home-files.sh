@@ -21,6 +21,15 @@ ln -sf "$HOME/.dotfiles/scripts/obs-ctl" "$HOME/.local/bin/obs-ctl"
 mkdir -p "$HOME/.config/rumdl"
 ln -sf "$HOME/.dotfiles/config/rumdl/rumdl.toml" "$HOME/.config/rumdl/rumdl.toml"
 
+# doctoc at a pinned version, for the Claude Code hook that updates Markdown tables of contents.
+# A fixed path keeps npx from running a doctoc found in the node_modules of the project being edited.
+if command -v npm >/dev/null; then
+    npm install --silent --prefix "$HOME/.local/share/doctoc" doctoc@2.5.0
+    ln -sf "$HOME/.local/share/doctoc/node_modules/.bin/doctoc" "$HOME/.local/bin/doctoc"
+else
+    echo "Skipping doctoc: npm is not installed." >&2
+fi
+
 # JetBrains Toolbox shell scripts on PATH for the desktop session (takes effect at the next login).
 mkdir -p "$HOME/.config/environment.d"
 ln -sf "$HOME/.dotfiles/config/environment.d/999-jetbrains-toolbox.conf" "$HOME/.config/environment.d/999-jetbrains-toolbox.conf"
