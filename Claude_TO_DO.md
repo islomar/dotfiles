@@ -78,10 +78,14 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 Agent-driven pipeline that builds the Codurance "corporate hotel booking" kata (React, FastAPI, Jira, Cloud Run).
 Phases: base and walking skeleton, guardrails, skills, implement workflow, spec, manual calibration, orchestrator, raise the dial.
 
-- [ ] **Phase 0: preconditions**
-  - Pick the repository name.
-  - User checks that GCP billing is enabled, creates the Jira project `CHB`, and logs in with `gcloud` and `acli`.
-- [ ] **Phase 1: create the public repository, walking skeleton, CI and Cloud Run deploy**
+Repository: `islomar/corporate-hotel-booking-software-factory`.
+
+- [ ] **Phase 0: get `acli` authenticated against the Jira site** (the browser login did not stick)
+- [ ] **Phase 1: finish the deploy** (repository, skeleton, CI, deploy identity and budget are done)
+  - User runs the first `gcloud run deploy` with public access. Auto mode blocks that command.
+  - Then push the local deploy-workflow commit and check the live smoke test.
+  - Then turn on the `main` ruleset with the `backend`, `frontend` and `e2e` checks.
+- [ ] **Decide the agent's GitHub identity** (GitHub App or bot account). Blocks the Phase 2 review rules.
 - [ ] **Add a curated export of the planning session to `docs/sessions/` in the new repository**
 - [ ] **Learn evals: build an eval set that replays finished tickets through a changed workflow** (later phase)
 
