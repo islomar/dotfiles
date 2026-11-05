@@ -30,15 +30,19 @@ mkdir -p "$HOME/.claude"
 ln -sf "$HOME/.dotfiles/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 ln -sf "$HOME/.dotfiles/config/claude/RTK.md" "$HOME/.claude/RTK.md"
 
-# Claude Code status line with the plan usage limits, also read by the Stream Deck.
-# Only the statusLine key is set; the rest of settings.json stays as it is.
+# Claude Code settings: hooks (sounds in sounds/), plugins, and the status line read by the Stream Deck.
+# The file lives in the private repository ~/workspace/dotfiles-private, because it holds machine details.
+# A settings.json that is a regular file is kept as settings.json.bak before it is replaced by the link.
 claude_settings="$HOME/.claude/settings.json"
-mkdir -p "$(dirname "$claude_settings")"
-[[ -f "$claude_settings" ]] || echo '{}' >"$claude_settings"
-claude_settings_tmp="$(mktemp)"
-jq '.statusLine = {"type": "command", "command": "~/.dotfiles/scripts/claude-limits statusline"}' \
-    "$claude_settings" >"$claude_settings_tmp"
-mv "$claude_settings_tmp" "$claude_settings"
+claude_settings_private="$HOME/workspace/dotfiles-private/claude/settings.json"
+if [[ -f "$claude_settings_private" ]]; then
+    if [[ -f "$claude_settings" && ! -L "$claude_settings" ]]; then
+        mv "$claude_settings" "$claude_settings.bak"
+    fi
+    ln -sf "$claude_settings_private" "$claude_settings"
+else
+    echo "Skipping Claude Code settings: clone the private repository to ~/workspace/dotfiles-private first." >&2
+fi
 
 
 unamestr="$(uname)"

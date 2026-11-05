@@ -67,6 +67,10 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 - [ ] **Fix the pre-push hook on large pushes** (`scripts/detect-push-without-tests.sh`)
   - It passes the file list as one argument. Above 128 KiB the script fails with `Argument list too long` and blocks the push.
   - Pass the list on stdin or in a temporary file.
+- [ ] **Check that the Claude Code settings symlink survives a settings change** (the file is in the private repository)
+  - After the next "always allow" answer or `/config` change, run `readlink ~/.claude/settings.json`.
+  - Empty output means Claude Code replaced the link with a regular file.
+    Then move the new content back into the repository and restore the link.
 
 ### Blog
 
