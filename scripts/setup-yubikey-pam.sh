@@ -139,7 +139,7 @@ has_credential() {
 
 # Keeps the lines of other users. The key must be touched here.
 write_credential() {
-	echo "Touch the key when it blinks."
+	echo "If the key has a FIDO2 PIN, enter it when asked. Then touch the key when it blinks."
 	local credential new_file
 	credential="$(pamu2fcfg -u "$USER")"
 	new_file="$(mktemp)"

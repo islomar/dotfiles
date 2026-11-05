@@ -205,7 +205,9 @@ Each machine creates its own credential, so this repository holds no key data.
 Limits:
 
 - A touch does not unlock the GNOME keyring, `gocryptfs` folders or apps with their own password.
-- A touch with no FIDO prompt active types an OTP code into the focused window and presses Enter.
+- If the key has a FIDO2 PIN, `setup` and `enroll` ask for it before the touch. `sudo` and pop-ups still ask for a touch only.
+- With Yubico OTP on, a touch with no FIDO prompt active types a code into the focused window and presses Enter.
+  Turn it off with `ykman config usb --disable OTP` and `ykman config nfc --disable OTP`.
 - With the key plugged in, `sudo` and pop-ups wait for a touch before they offer the password.
 - Polkit 127 and later need a sandbox exception, in `/etc/systemd/system/polkit-agent-helper@.service.d/u2f.conf`.
 - Do not add pam_u2f's `debug` option to `/etc/pam.d/polkit-1`. It put the polkit helper in a restart loop.

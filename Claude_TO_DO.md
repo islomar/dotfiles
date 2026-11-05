@@ -59,9 +59,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### System
 
-- [ ] **Run `scripts/setup-yubikey-pam.sh setup` for real**
-  - `doctor` and the PAM and credential logic are tested. The `setup` and `enroll` paths are not, because they need `sudo` and a touch.
-
 ### This repository
 
 - [ ] **Chain more hook types** (`hooks/`, `scripts/run-local-git-hook.sh`)
@@ -77,6 +74,10 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Run `scripts/setup-yubikey-pam.sh setup` and `enroll` for real**. 2026-11-05.
+  - `setup` on the configured machine made a backup, kept the credential and left one rule per PAM file. `doctor` found no problems.
+  - `enroll` replaced the credential. `pamu2fcfg` asked for the key's FIDO2 PIN before the touch; the new credential still needs only a touch.
+  - `sudo -v` and `pkexec /usr/bin/true` both worked with a touch.
 - [x] **Turn off OTP mode on the YubiKey**. 2026-11-05.
   - Ran `ykman config usb --disable OTP` and `ykman config nfc --disable OTP`. A touch no longer types a code.
   - Slot 1 still holds the factory credential. `ykman config usb --enable OTP` brings it back if a service needs Yubico OTP.
