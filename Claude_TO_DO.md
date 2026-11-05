@@ -59,14 +59,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### System
 
-- [ ] **Kernel cleanup** (needs sudo)
-  - Running 7.0.0-38; 7.0.0-42 is installed, so reboot first.
-  - Purge the leftover `rc` package of 7.0.0-34 and `/lib/modules/7.0.0-34-generic`.
-  - After the reboot, check that `ollama list` shows its 8 models.
-    The `/etc/fstab` bind mount for the models moved on 2026-11-01 and has not been tested at boot.
-- [ ] **Decide whether to turn off OTP mode on the YubiKey**
-  - A touch with no FIDO prompt active types a code into the focused window and presses Enter.
-  - Turning it off needs `ykman`, which is not installed. Check first that no service uses Yubico OTP.
 - [ ] **Run `scripts/setup-yubikey-pam.sh setup` for real**
   - `doctor` and the PAM and credential logic are tested. The `setup` and `enroll` paths are not, because they need `sudo` and a touch.
 
@@ -85,6 +77,13 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Turn off OTP mode on the YubiKey**. 2026-11-05.
+  - Ran `ykman config usb --disable OTP` and `ykman config nfc --disable OTP`. A touch no longer types a code.
+  - Slot 1 still holds the factory credential. `ykman config usb --enable OTP` brings it back if a service needs Yubico OTP.
+- [x] **Kernel cleanup**. 2026-11-05.
+  - Rebooted into 7.0.0-42. `ollama list` shows its 8 models, so the `/etc/fstab` bind mount works at boot.
+  - Purged the `rc` packages of 7.0.0-34 (image, modules, ZFS modules) and `/lib/modules/7.0.0-34-generic`.
+  - 7.0.0-38 stays installed as the fallback kernel.
 - [x] **Prune the Déjà Dup repository**. 2026-11-01.
   - Removed 28.7 GiB left by the failed runs; 155 GiB remain.
     `restic check` found no errors.
