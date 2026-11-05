@@ -1,0 +1,142 @@
+#!/usr/bin/python3 -I
+"""Export a Claude Code session transcript (JSONL) to Markdown.
+
+Keeps only the user's prompts and the assistant's visible text replies.
+Drops tool calls, tool results, thinking, sidechains and command noise.
+
+Usage:
+  As a SessionEnd hook: reads the hook JSON from stdin.
+  By hand:              claude-session-export <transcript.jsonl> [output-dir]
+
+Output dir defaults to $CLAUDE_SESSION_EXPORT_DIR or
+~/workspace/my-notes-private/claude-sessions. Files are grouped by the
+project folder the session ran in and overwritten on each run, so a
+resumed session updates its own file.
+"""
+import json
+import os
+import re
+import sys
+from pathlib import Path
+
+DEFAULT_DIR = Path.home() / "workspace" / "my-notes-private" / "claude-sessions"
+NOISE_PREFIXES = (
+    "<local-command-caveat>",
+    "<local-command-stdout>",
+    "<local-command-stderr>",
+    "<command-name>",
+    "<system-reminder>",
+    "<task-notification>",
+)
+
+
+def user_text(content):
+    if isinstance(content, str):
+        text = content.strip()
+    elif isinstance(content, list):
+        parts = [b.get("text", "") for b in content if b.get("type") == "text"]
+        text = "\n".join(parts).strip()
+    else:
+        return ""
+    if not text or text.startswith(NOISE_PREFIXES):
+        return ""
+    return text
+
+
+def assistant_text(content):
+    if not isinstance(content, list):
+        return ""
+    return "\n\n".join(
+        b.get("text", "").strip() for b in content if b.get("type") == "text"
+    ).strip()
+
+
+def parse(transcript):
+    turns, title, cwd, first_ts = [], None, None, None
+    with open(transcript, encoding="utf-8") as fh:
+        for line in fh:
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            kind = rec.get("type")
+            if kind == "ai-title":
+                title = rec.get("aiTitle") or rec.get("title") or title
+                continue
+            if kind not in ("user", "assistant") or rec.get("isSidechain") or rec.get("isMeta"):
+                continue
+            cwd = cwd or rec.get("cwd")
+            first_ts = first_ts or rec.get("timestamp")
+            content = (rec.get("message") or {}).get("content")
+            text = user_text(content) if kind == "user" else assistant_text(content)
+            if not text:
+                continue
+            if turns and turns[-1][0] == kind:
+                turns[-1] = (kind, turns[-1][1] + "\n\n" + text)
+            else:
+                turns.append((kind, text))
+    return turns, title, cwd, first_ts
+
+
+def slug(text, limit=60):
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", text or "").strip("-").lower()
+    return s[:limit].strip("-") or "session"
+
+
+def demote_headings(text, levels=2):
+    """Push Markdown headings down so they nest under Prompt/Answer."""
+    lines, in_fence = [], False
+    for line in text.splitlines():
+        if line.lstrip().startswith(("```", "~~~")):
+            in_fence = not in_fence
+        elif not in_fence and re.match(r"#{1,6} ", line):
+            line = "#" * levels + line
+        lines.append(line)
+    return "\n".join(lines)
+
+
+def render(turns, title, session_id, cwd, first_ts):
+    out = [f"# {title or 'Claude Code session'}", ""]
+    out += [f"- Session: `{session_id}`", f"- Started: {first_ts}", f"- Folder: `{cwd}`", ""]
+    n = 0
+    for kind, text in turns:
+        if kind == "user":
+            n += 1
+            out += ["---", "", f"## Prompt {n}", ""]
+        else:
+            out += [f"## Answer {n}", ""]
+        out += [demote_headings(text), ""]
+    return "\n".join(out)
+
+
+def main():
+    if len(sys.argv) > 1:
+        transcript = Path(sys.argv[1])
+        out_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else None
+    else:
+        hook = json.load(sys.stdin)
+        transcript = Path(hook["transcript_path"])
+        out_dir = None
+    out_dir = out_dir or Path(os.environ.get("CLAUDE_SESSION_EXPORT_DIR", DEFAULT_DIR))
+    session_id = transcript.stem
+    turns, title, cwd, first_ts = parse(transcript)
+    if not turns:
+        return 0
+    project = Path(cwd).name if cwd else "unknown"
+    day = (first_ts or "")[:10] or "undated"
+    target_dir = out_dir / project
+    target_dir.mkdir(parents=True, exist_ok=True)
+    for old in target_dir.glob(f"*_{session_id[:8]}_*.md"):
+        old.unlink()
+    target = target_dir / f"{day}_{session_id[:8]}_{slug(title)}.md"
+    target.write_text(render(turns, title, session_id, cwd, first_ts), encoding="utf-8")
+    print(target)
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except Exception as exc:  # never break session shutdown
+        print(f"claude-session-export: {exc}", file=sys.stderr)
+        sys.exit(0)
