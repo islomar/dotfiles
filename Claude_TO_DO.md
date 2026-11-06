@@ -8,7 +8,6 @@
     - [Security](#security)
     - [System](#system)
     - [This repository](#this-repository)
-    - [Software factory pilot](#software-factory-pilot)
     - [Blog](#blog)
   - [Done](#done)
 
@@ -73,22 +72,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - Empty output means Claude Code replaced the link with a regular file.
     Then move the new content back into the repository and restore the link.
 
-### Software factory pilot
-
-Agent-driven pipeline that builds the Codurance "corporate hotel booking" kata (React, FastAPI, Jira, Cloud Run).
-Phases: base and walking skeleton, guardrails, skills, implement workflow, spec, manual calibration, orchestrator, raise the dial.
-
-Repository: `islomar/corporate-hotel-booking-software-factory`.
-
-- [ ] **Phase 0: get `acli` authenticated against the Jira site** (the browser login did not stick)
-- [ ] **Phase 1: finish the deploy** (repository, skeleton, CI, deploy identity and budget are done)
-  - User runs the first `gcloud run deploy` with public access. Auto mode blocks that command.
-  - Then push the local deploy-workflow commit and check the live smoke test.
-  - Then turn on the `main` ruleset with the `backend`, `frontend` and `e2e` checks.
-- [ ] **Decide the agent's GitHub identity** (GitHub App or bot account). Blocks the Phase 2 review rules.
-- [ ] **Add a curated export of the planning session to `docs/sessions/` in the new repository**
-- [ ] **Learn evals: build an eval set that replays finished tickets through a changed workflow** (later phase)
-
 ### Blog
 
 Blog tasks live in `_TODO.md` in the blog's repository.
@@ -99,6 +82,7 @@ Blog tasks live in `_TODO.md` in the blog's repository.
   - `cleanupPeriodDays` is 3650 in the Claude Code settings.
   - A `SessionEnd` hook runs `scripts/claude-session-export`. The output folder is in the private to-do file.
 - [x] **Install the gcloud and Atlassian (`acli`) CLIs and upgrade uv**. 2026-11-05.
+  - Projects that use these CLIs track their own work in their own repositories.
   - gcloud lives in `~/.local/share/google-cloud-sdk`, linked from `~/.local/bin`. `acli` is in `~/.local/bin`. uv is managed by pipx.
 - [x] **Run `scripts/setup-yubikey-pam.sh setup` and `enroll` for real**. 2026-11-05.
   - `setup` on the configured machine made a backup, kept the credential and left one rule per PAM file. `doctor` found no problems.
