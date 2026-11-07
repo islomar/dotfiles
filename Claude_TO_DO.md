@@ -59,6 +59,11 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### System
 
+- [ ] **Finish the TV remote script** (the script is in the private repository, `tv/tv`)
+  - Find the app IDs for Movistar Plus+ and RTVE Play. The TV does not return its app list, so probe more IDs or read them in developer mode.
+  - Test `open` with a URL, `src`, `off` and `on` with the user in front of the TV.
+  - `on` needs "Power on with mobile" enabled on the TV. Check that the wired MAC matches the one in the script.
+
 ### This repository
 
 - [ ] **Chain more hook types** (`hooks/`, `scripts/run-local-git-hook.sh`)
