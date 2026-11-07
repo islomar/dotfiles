@@ -8,6 +8,7 @@
     - [Security](#security)
     - [System](#system)
     - [This repository](#this-repository)
+    - [Personal](#personal)
     - [Blog](#blog)
   - [Done](#done)
 
@@ -71,6 +72,10 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - After the next "always allow" answer or `/config` change, run `readlink ~/.claude/settings.json`.
   - Empty output means Claude Code replaced the link with a regular file.
     Then move the new content back into the repository and restore the link.
+
+### Personal
+
+- [ ] **Work through the dated personal item in the private to-do file** (due 2026-11-09) (`~/workspace/dotfiles-private/claude-todo.md`)
 
 ### Blog
 
