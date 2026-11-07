@@ -59,9 +59,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### System
 
-- [ ] **Finish the TV remote script** (the script is in the private repository, `tv/tv`)
-  - Test `src hdmi1` with the user in front of the TV. If the TV ignores `KEY_HDMI1`, switch input with `KEY_SOURCE` and the arrow keys.
-
 ### This repository
 
 - [ ] **Chain more hook types** (`hooks/`, `scripts/run-local-git-hook.sh`)
@@ -81,6 +78,8 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Finish the TV remote script** (the script is in the private repository, `tv/tv`). 2026-11-07.
+  - Input switching was dropped: the TV ignores the HDMI keys and has nothing connected.
 - [x] **Keep Claude Code sessions and export them to Markdown**. 2026-11-05.
   - `cleanupPeriodDays` is 3650 in the Claude Code settings.
   - A `SessionEnd` hook runs `scripts/claude-session-export`. The output folder is in the private to-do file.
