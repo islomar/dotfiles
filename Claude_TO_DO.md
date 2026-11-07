@@ -18,7 +18,7 @@
 
 The single list of pending work for Claude Code, across all repositories and sessions.
 Start a session with "work through Claude_TO_DO.md".
-When a task is done, tick it, move it to Done, and add the commit hash or the date.
+When you finish a task, tick it, move it to Done, and add the commit hash or the date.
 
 This repository is public.
 Describe tasks without secrets, key identifiers, private folder names, names of other people, or the security state of any machine or account.
@@ -50,7 +50,7 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - Done when a Déjà Dup snapshot after 2026-11-01 14:12 restores a file from `~/Pictures/Phone/WhatsApp`.
   - Keep `~/Pictures/Phone` in the include list when the task above shrinks the cloud backup.
 - [ ] **Review FreeFileSync before its next run**
-  - The data disk was reorganized on 2026-10-31.
+  - Reorganized the data disk on 2026-10-31.
     The preview will show large deletions and copies.
   - The steps for the backup disk are in the private to-do file.
 
@@ -84,13 +84,13 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 ## Done
 
 - [x] **Finish the TV remote script** (the script is in the private repository, `tv/tv`). 2026-11-07.
-  - Input switching was dropped: the TV ignores the HDMI keys and has nothing connected.
+  - Dropped input switching: the TV ignores the HDMI keys and has nothing connected.
 - [x] **Keep Claude Code sessions and export them to Markdown**. 2026-11-05.
   - `cleanupPeriodDays` is 3650 in the Claude Code settings.
   - A `SessionEnd` hook runs `scripts/claude-session-export`. The output folder is in the private to-do file.
 - [x] **Install the gcloud and Atlassian (`acli`) CLIs and upgrade uv**. 2026-11-05.
   - Projects that use these CLIs track their own work in their own repositories.
-  - gcloud lives in `~/.local/share/google-cloud-sdk`, linked from `~/.local/bin`. `acli` is in `~/.local/bin`. uv is managed by pipx.
+  - gcloud lives in `~/.local/share/google-cloud-sdk`, linked from `~/.local/bin`. `acli` is in `~/.local/bin`. pipx manages uv.
 - [x] **Run `scripts/setup-yubikey-pam.sh setup` and `enroll` for real**. 2026-11-05.
   - `setup` on the configured machine made a backup, kept the credential and left one rule per PAM file. `doctor` found no problems.
   - `enroll` replaced the credential. `pamu2fcfg` asked for the key's FIDO2 PIN before the touch; the new credential still needs only a touch.
@@ -107,11 +107,11 @@ Blog tasks live in `_TODO.md` in the blog's repository.
     `restic check` found no errors.
 - [x] **First cloud backup (Déjà Dup)**. 2026-11-01.
   - Snapshot saved at 14:12 after 50 minutes; about 71 GiB uploaded.
-    Earlier runs had failed with HTTP 500 or had been stopped.
+    Earlier runs had failed with HTTP 500 or had stopped partway.
 - [x] **Move the program folders on the data disk**. 2026-11-01.
   - `ollama-models`: moved, `/etc/fstab` bind mount updated.
   - `jetbrains-apps`: moved with Toolbox closed; paths rewritten in Toolbox state, channels, scripts and app launchers.
-  - `docker-desktop`: deleted, it was a leftover of an uninstalled Docker Desktop.
+  - `docker-desktop`: deleted, a leftover of an uninstalled Docker Desktop.
   - Toolbox shell scripts on PATH for the desktop session (`config/environment.d/999-jetbrains-toolbox.conf`).
     Named `999-*` because `/etc/environment` resets PATH in `99-environment.conf`.
 - [x] **Small clean-ups after the reorganization**. 2026-11-01.
@@ -122,7 +122,7 @@ Blog tasks live in `_TODO.md` in the blog's repository.
   - Deleted Homebrew's GNOME settings keyfile.
     Always use `/usr/bin/gsettings` or `dconf`: Homebrew's `gsettings` writes a file GNOME ignores.
 - [x] **Reorganize the data disk**. 2026-10-31.
-  - App configs, Files bookmarks, Chrome bookmarks and Déjà Dup paths were updated.
+  - Updated app configs, Files bookmarks, Chrome bookmarks and Déjà Dup paths.
 - [x] **Password-protect sensitive folders with gocryptfs** (`scripts/encrypted-folders`).
   Commit `a13813d`. 2026-11-01.
   - `status` and `unlock` flag files saved into a locked folder.
