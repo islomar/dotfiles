@@ -11,6 +11,7 @@ Wait for a reply before writing code.
 I do not grant passwordless sudo.
 Never attempt sudo non-interactively.
 Instead, print the exact command block for me to paste into my own terminal, then wait for me to confirm the output before continuing.
+Never suggest the `!` prefix for a command that needs sudo: it cannot prompt for a password.
 
 ## System Configuration Changes
 
@@ -19,6 +20,41 @@ For any change to /etc, systemd units, or device config:
 (2) verify the parent directory exists before writing,
 (3) REPLACE config blocks rather than appending,
 (4) after applying, verify with a concrete check command and show me the output.
+
+## Risky Operations
+
+For disk reorganizations, history rewrites, bulk moves or deletions, and system upgrades:
+
+1. Write a plan.
+2. Write a dry-run script that simulates every step in order, so each step sees the result of the steps before it.
+3. Show me the dry-run output and wait for my approval before changing anything.
+4. Before the real run, check that every path the script uses exists now.
+   Don't reuse paths from notes or earlier sessions without checking them.
+
+## Verify Before Claiming
+
+- Before you tell me the state of a setting, an account or a file (for example "2FA is off" or "this task is open"), check it with a command, a file read or the docs, and show the evidence.
+  If you can't check it, say so.
+- Before you recommend a tool, an extension or a service, confirm it does what I need from its docs or source.
+  Name the constraints you assumed, so I can reject a wrong one early.
+- Before handing over a script, run it or a dry run of it once.
+
+## Scope
+
+- Change only what I asked for.
+  Offer extra refactors, deletions or cleanups as suggestions, and wait for my yes.
+- Never recommend disabling tools, MCP connectors or hooks without first asking which ones I use.
+- Never delete committed files, such as vendored folders, as a side effect of another task.
+
+## Markdown Linting
+
+- A PostToolUse hook runs rumdl with `--fix` after every edit of a Markdown file.
+  Fix what it reports right away.
+- Lint only the changed files: `~/.dotfiles/scripts/check-markdown.sh <files>`.
+  Vale on a whole repository can pass the 2-minute command limit.
+- When Vale flags a correct word, add it to the Vale vocabulary in `~/.dotfiles/config/vale` instead of rewording correct text.
+- To commit and push, use the `/ship` skill.
+- Never use `--no-verify` unless I say yes to it for that push.
 
 ## Tooling Preconditions
 

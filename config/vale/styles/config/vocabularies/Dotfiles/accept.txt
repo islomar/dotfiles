@@ -26,6 +26,7 @@ Flatpak
 Flowise
 GSConnect
 gvfs
+hostnames?
 Hamel
 Higgsfield
 Huawei
@@ -66,6 +67,7 @@ Replit
 Repo[Mm]ix
 rumdl
 Runroom
+SHAs?
 Shopify
 Silletti
 Speedtest
@@ -83,6 +85,7 @@ ufw
 untracked
 untrusted
 Vercel
+vendored
 virtualenvs
 VSCode
 Wacom

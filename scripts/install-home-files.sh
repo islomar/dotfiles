@@ -39,6 +39,12 @@ mkdir -p "$HOME/.claude"
 ln -sf "$HOME/.dotfiles/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 ln -sf "$HOME/.dotfiles/config/claude/RTK.md" "$HOME/.claude/RTK.md"
 
+# Claude Code skills kept in this repository. Each folder becomes a link in ~/.claude/skills.
+mkdir -p "$HOME/.claude/skills"
+for skill_dir in "$HOME/.dotfiles/config/claude/skills"/*/; do
+    ln -sfn "${skill_dir%/}" "$HOME/.claude/skills/$(basename "$skill_dir")"
+done
+
 # Claude Code settings: hooks (sounds in sounds/), plugins, and the status line read by the Stream Deck.
 # The file lives in the private repository ~/workspace/dotfiles-private, because it holds machine details.
 # A settings.json that is a regular file is kept as settings.json.bak before it is replaced by the link.
