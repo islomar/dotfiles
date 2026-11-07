@@ -14,6 +14,8 @@
 # Unlocked folders lock themselves after $IDLE without use.
 # status and unlock warn when a locked folder holds files saved while it was locked (they are not
 # encrypted); unlock refuses to mount over them.
+# status and unlock tell a broken mount apart from a missing folder: a folder renamed or moved
+# while unlocked, or one whose gocryptfs process died, and print the command that clears it.
 #
 # Personal settings live outside this repository, in ~/.config/encrypted-folders/:
 #   config   OP_REF="op://<vault>/<item>/password"  and optionally IDLE="15m"
@@ -63,6 +65,37 @@ stray_warning() {
   echo "  move them back in, then lock it again." >&2
 }
 
+# Print the mount point of a gocryptfs mount that belongs to folder $1: mounted at $1, or mounted
+# from its encrypted store (the folder was renamed or moved while unlocked, so it now sits at a
+# new path). Reads only the kernel's mount table, so it never touches the mounted folders.
+# mountinfo fields: ... <mount point> <options> [optional fields] - <type> <source> <options>
+gocryptfs_mount_of() {
+  awk -v want_mp="$1" -v want_src="$(store_of "$1")" '
+    function unescape(s) {
+      gsub(/\\040/, " ", s); gsub(/\\011/, "\t", s); gsub(/\\012/, "\n", s); gsub(/\\134/, "\\", s)
+      return s
+    }
+    {
+      for (i = 7; i <= NF && $i != "-"; i++) ;
+      if ($(i + 1) != "fuse.gocryptfs") next
+      mp = unescape($5); src = unescape($(i + 2))
+      if (mp == want_mp || src == want_src) { print mp; exit }
+    }' /proc/self/mountinfo
+}
+
+# Explain a listed folder that cannot be read: a broken mount, or a folder that is really gone.
+missing_message() {
+  local mp; mp="$(gocryptfs_mount_of "$1")"
+  if [ -z "$mp" ]; then
+    echo "MISSING   $1 (moved or renamed? Fix the path in $LIST)"
+  elif [ "$mp" = "$1" ]; then
+    echo "BROKEN    $1 (its gocryptfs process stopped. Run: fusermount3 -u '$mp', then unlock)"
+  else
+    echo "BROKEN    $1 (renamed or moved while unlocked, now at '$mp'."
+    echo "          Run: fusermount3 -u '$mp', fix the path in $LIST, then unlock)"
+  fi
+}
+
 cmd_unlock() {
   local targets; targets="$(selected_folders "$@")" || exit 1
   make_passfile
@@ -70,7 +103,7 @@ cmd_unlock() {
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     if mountpoint -q "$m"; then ok=$((ok + 1)); continue; fi
-    if [ ! -d "$m" ]; then echo "MISSING (moved or renamed?): $m" >&2; fail=$((fail + 1)); continue; fi
+    if [ ! -d "$m" ]; then missing_message "$m" >&2; fail=$((fail + 1)); continue; fi
     n=$(stray_count "$m")
     if [ "$n" -gt 0 ]; then
       stray_warning "$m" "$n"
@@ -101,7 +134,7 @@ cmd_status() {
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     if [ ! -d "$m" ]; then
-      echo "MISSING   $m (moved or renamed? Fix the path in $LIST)"
+      missing_message "$m"
     elif mountpoint -q "$m"; then
       echo "UNLOCKED  $m"
     else
