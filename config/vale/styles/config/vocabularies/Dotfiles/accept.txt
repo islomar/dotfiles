@@ -8,9 +8,10 @@ autostart
 Birgitta('s)?
 Canva
 Carrd
+CLIs
 Codely
 Collaboard
-config
+configs?
 Connascence
 Coolors
 Crafters
@@ -24,6 +25,9 @@ Fairphone
 Figma('s)?
 Flatpak
 Flowise
+gcloud
+gitleaks
+gocryptfs
 GSConnect
 gvfs
 Hamel
@@ -35,6 +39,7 @@ IDEs
 Junie
 KAgent
 kanban
+keyfile
 Kiro
 Langflow
 Latorre
@@ -87,6 +92,7 @@ udp
 ufw
 untracked
 untrusted
+uv
 vendored
 venv
 Vercel
@@ -95,6 +101,7 @@ VSCode
 Wacom
 Xorg
 ydotool
+Yubico
 Zepp
 Zuill
 [Aa]gentic
