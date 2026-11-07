@@ -26,9 +26,9 @@ Flatpak
 Flowise
 GSConnect
 gvfs
-hostnames?
 Hamel
 Higgsfield
+hostnames?
 Huawei
 Husain
 IDEs
@@ -54,8 +54,8 @@ O'Reilly
 Ollama
 orquestador
 Ottinger
-passwordless
 paralelice
+passwordless
 Peppe
 pipx
 Postgres
@@ -87,9 +87,9 @@ udp
 ufw
 untracked
 untrusted
+vendored
 venv
 Vercel
-vendored
 virtualenvs
 VSCode
 Wacom
@@ -98,6 +98,7 @@ ydotool
 Zepp
 Zuill
 [Aa]gentic
+[Cc]ommenters?
 [Dd]ashcam
 [Dd]oc[Tt]oc
 [Ee]lgato
@@ -110,9 +111,12 @@ Zuill
 [Rr]efactorings?
 [Rr]eplaceability
 [Rr]eplanning
-[Rr]epo
+[Rr]epos?
 [Rr]ollouts?
+[Rr]ulesets?
 [Ss]ubagentes
+[Ss]ubagents?
 [Tt]okenizer
 [Tt][Oo][Dd][Oo]s
 [Ww]ireframes?
+[Ww]orktrees?
