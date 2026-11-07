@@ -16,11 +16,14 @@
 # encrypted); unlock refuses to mount over them.
 # status and unlock tell a broken mount apart from a missing folder: a folder renamed or moved
 # while unlocked, or one whose gocryptfs process died, and print the command that clears it.
+# status warns when Déjà Dup backs up a folder's unlocked contents: the folder is inside its
+# include list and not in its exclude list.
 #
 # Personal settings live outside this repository, in ~/.config/encrypted-folders/:
 #   config   OP_REF="op://<vault>/<item>/password"  and optionally IDLE="15m"
 #   folders  one absolute folder path per line
 # Requires: gocryptfs, fusermount3, rsync, 1Password CLI (op) with desktop app integration.
+# status also uses python3 and /usr/bin/gsettings to read the Déjà Dup lists, when Déjà Dup is installed.
 
 set -uo pipefail
 
@@ -96,6 +99,55 @@ missing_message() {
   fi
 }
 
+# Print Déjà Dup's include-list or exclude-list ($1), one real path per line, with its keywords
+# ($HOME, $DOWNLOAD…) expanded. Prints nothing when Déjà Dup is not installed.
+# /usr/bin/gsettings on purpose: Homebrew's gsettings reads settings GNOME does not use.
+dejadup_paths() {
+  local raw p
+  raw="$(/usr/bin/gsettings get org.gnome.DejaDup "$1" 2>/dev/null)" || return 0
+  python3 -I -c '
+import ast, sys
+for p in ast.literal_eval(sys.argv[1].removeprefix("@as ").strip()):
+    print(p)' "$raw" | while IFS= read -r p; do
+    # The quoted $NAME and ~ patterns are Déjà Dup keywords, matched literally.
+    # shellcheck disable=SC2016,SC2088
+    case "$p" in
+      '$HOME') p="$HOME" ;;
+      '$TRASH') continue ;;
+      '$PUBLIC_SHARE') p="$(xdg-user-dir PUBLICSHARE)" ;;
+      '$'*) p="$(xdg-user-dir "${p#\$}")" ;;
+      '~') p="$HOME" ;;
+      '~/'*) p="$HOME/${p#\~/}" ;;
+    esac
+    [ -n "$p" ] && realpath -m "$p"
+  done
+}
+
+# True when path $1 is one of the paths in $2 (one per line) or inside one of them.
+under_any() {
+  local e
+  while IFS= read -r e; do
+    [ -n "$e" ] || continue
+    case "$1/" in "${e%/}/"*) return 0 ;; esac
+  done <<< "$2"
+  return 1
+}
+
+dejadup_warning() {
+  local inc exc m leaks=""
+  inc="$(dejadup_paths include-list)"
+  [ -n "$inc" ] || return 0
+  exc="$(dejadup_paths exclude-list)"
+  while IFS= read -r m; do
+    [ -z "$m" ] && continue
+    if under_any "$m" "$inc" && ! under_any "$m" "$exc"; then leaks+="  $m"$'\n'; fi
+  done < "$LIST"
+  [ -n "$leaks" ] || return 0
+  echo "WARNING: Déjà Dup backs up the unlocked contents of these folders. Add them to its" >&2
+  echo "  exclude list (keep their .gocryptfs stores backed up):" >&2
+  printf '%s' "$leaks" >&2
+}
+
 cmd_unlock() {
   local targets; targets="$(selected_folders "$@")" || exit 1
   make_passfile
@@ -147,6 +199,7 @@ cmd_status() {
       fi
     fi
   done < "$LIST"
+  dejadup_warning
 }
 
 # Count unlocked folders from the kernel's mount table. This never touches the mounted folders:
