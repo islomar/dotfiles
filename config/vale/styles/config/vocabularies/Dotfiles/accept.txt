@@ -118,5 +118,6 @@ Zuill
 [Ss]ubagents?
 [Tt]okenizer
 [Tt][Oo][Dd][Oo]s
+[Ww]alkthroughs?
 [Ww]ireframes?
 [Ww]orktrees?
