@@ -59,12 +59,12 @@ For disk reorganizations, history rewrites, bulk moves or deletions, and system 
 ## Tooling Preconditions
 
 Before starting git/GitHub work, verify `gh auth status` succeeds.
-Before Python CLI work, confirm the target Python and whether pipx or venv is preferred.
+Before Python CLI work, confirm the target Python and ask whether I prefer pipx or venv.
 If a precondition fails, stop and tell me what to install rather than working around it.
 
 ## Git Branches
 
-Never create or work on a git branch unless I explicitly authorize it.
+Never create or work on a git branch unless I explicitly allow it.
 When I ask to commit or push, commit on `main` and push `main`.
 This rule overrides any default guidance to branch first.
 
@@ -78,8 +78,8 @@ Pending work lives in two files, for every repository and session:
   Real secrets stay in 1Password and never go in that file.
 
 When asked what is pending, read both files.
-When a task is left open, add it to the public list.
-When one is finished, tick it and move it to Done, in both files if it appears in both.
+When you leave a task open, add it to the public list.
+When you finish one, tick it and move it to Done, in both files if it appears in both.
 Whenever the private file changes, commit it on `main` of its repository and push.
 
 The public list follows the rules at the top of that file.
@@ -107,7 +107,7 @@ Apply these filters automatically — I should not have to ask.
 - Push back when something seems wrong, don't just agree with mistakes.
 
 Always begin each reply with STARTER_CHARACTER followed by a space (default: 🍀).
-The starter may be replaced or extended with additional characters.
+You may replace the starter or add more characters to it.
 
 When you need my input on a decision:
 

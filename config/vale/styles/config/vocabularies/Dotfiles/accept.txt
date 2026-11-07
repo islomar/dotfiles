@@ -54,8 +54,10 @@ O'Reilly
 Ollama
 orquestador
 Ottinger
+passwordless
 paralelice
 Peppe
+pipx
 Postgres
 PRDs
 PRs
@@ -76,6 +78,7 @@ stdin
 subfolders
 Supabase
 Syncthing
+systemd
 Tasker('s)?
 Tessl
 Tornhill('s)?
@@ -84,6 +87,7 @@ udp
 ufw
 untracked
 untrusted
+venv
 Vercel
 vendored
 virtualenvs
