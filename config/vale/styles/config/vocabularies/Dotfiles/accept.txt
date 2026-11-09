@@ -21,10 +21,12 @@ dojos?
 dotfiles
 Edu
 Everitt
+Exceria
 Fairphone
 Figma('s)?
 Flatpak
 Flowise
+Gbps
 gcloud
 gitleaks
 gocryptfs
@@ -40,6 +42,7 @@ Junie
 KAgent
 kanban
 keyfile
+Kioxia
 Kiro
 Langflow
 Latorre
@@ -77,12 +80,14 @@ Runroom
 SHAs?
 Shopify
 Silletti
+Slimbook
 Speedtest
 Spotify
 stdin
 subfolders
 Supabase
 Syncthing
+sysfs
 systemd
 Tasker('s)?
 Tessl

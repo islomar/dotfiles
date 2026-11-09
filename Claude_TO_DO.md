@@ -60,6 +60,11 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### System
 
+- [ ] **Buy and test the 2 TB external SSD** (`linux/external-ssd.md`)
+  - Research and the pick are in that file. Check the price again before buying.
+  - After buying, run the "Test after buying" steps and record the results in the same file.
+  - Then the cloud-backup task in Backups can start.
+
 ### This repository
 
 - [ ] **Chain more hook types** (`hooks/`, `scripts/run-local-git-hook.sh`)
