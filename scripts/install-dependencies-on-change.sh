@@ -86,6 +86,26 @@ python_install_dependencies_where_changed() {
 
 python_install_dependencies_where_changed
 
+# Runs `uv sync --locked` in each folder whose uv.lock changed.
+# --locked fails when uv.lock does not match pyproject.toml instead of rewriting it, so the hook never changes tracked files.
+uv_install_dependencies_where_changed() {
+  local dirs dir
+  dirs="$(echo "$changed_files" | grep -E '(^|/)uv\.lock$' | xargs -r -n1 dirname | sort -u || true)"
+  for dir in $dirs; do
+    if [[ ! -f "$dir/pyproject.toml" ]]; then
+      continue
+    fi
+    if ! command -v uv >/dev/null; then
+      echo " * changes detected in $dir/uv.lock, but uv is not installed: skipped"
+      continue
+    fi
+    echo " * changes detected in $dir/uv.lock: running uv sync --locked"
+    (cd "$dir" && uv sync --locked)
+  done
+}
+
+uv_install_dependencies_where_changed
+
 ts_js_install_dependencies_where_changed
 
 ELIXIR_DEPENDENCY_FILES_TO_DETECT="mix.exs\|mix.lock"
