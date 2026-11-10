@@ -50,14 +50,26 @@ ts_js_install_dependencies_where_changed() {
   done
 }
 
-# Runs `make build` once per Makefile that serves a folder whose pyproject.toml or poetry.lock changed.
-# The Makefile is the nearest one with a `build` target, in that folder or a parent up to the repository root.
-# Skips a folder with no such Makefile instead of failing on "No rule to make target 'build'".
+# Handles each folder whose pyproject.toml, poetry.lock or uv.lock changed. The folder decides the tool:
+# - With a uv.lock: runs `uv sync --locked` in that folder. --locked fails when uv.lock does not match
+#   pyproject.toml instead of rewriting it, so the hook never changes tracked files.
+# - Without one: runs `make build` once per Makefile that serves the folder. The Makefile is the nearest one
+#   with a `build` target, in that folder or a parent up to the repository root. Skips the folder when there
+#   is none, instead of failing on "No rule to make target 'build'".
 python_install_dependencies_where_changed() {
   local dirs dir candidate make_dirs="" make_dir
-  dirs="$(echo "$changed_files" | grep -E '(^|/)(pyproject\.toml|poetry\.lock)$' | xargs -r -n1 dirname | sort -u || true)"
+  dirs="$(echo "$changed_files" | grep -E '(^|/)(pyproject\.toml|poetry\.lock|uv\.lock)$' | xargs -r -n1 dirname | sort -u || true)"
   for dir in $dirs; do
     if [[ ! -f "$dir/pyproject.toml" ]]; then
+      continue
+    fi
+    if [[ -f "$dir/uv.lock" ]]; then
+      if ! command -v uv >/dev/null; then
+        echo " * changes detected in $dir/ (uv project), but uv is not installed: skipped"
+        continue
+      fi
+      echo " * changes detected in $dir/ (uv project): running uv sync --locked"
+      (cd "$dir" && uv sync --locked)
       continue
     fi
     candidate="$dir"
@@ -85,26 +97,6 @@ python_install_dependencies_where_changed() {
 }
 
 python_install_dependencies_where_changed
-
-# Runs `uv sync --locked` in each folder whose uv.lock changed.
-# --locked fails when uv.lock does not match pyproject.toml instead of rewriting it, so the hook never changes tracked files.
-uv_install_dependencies_where_changed() {
-  local dirs dir
-  dirs="$(echo "$changed_files" | grep -E '(^|/)uv\.lock$' | xargs -r -n1 dirname | sort -u || true)"
-  for dir in $dirs; do
-    if [[ ! -f "$dir/pyproject.toml" ]]; then
-      continue
-    fi
-    if ! command -v uv >/dev/null; then
-      echo " * changes detected in $dir/uv.lock, but uv is not installed: skipped"
-      continue
-    fi
-    echo " * changes detected in $dir/uv.lock: running uv sync --locked"
-    (cd "$dir" && uv sync --locked)
-  done
-}
-
-uv_install_dependencies_where_changed
 
 ts_js_install_dependencies_where_changed
 
