@@ -50,9 +50,41 @@ ts_js_install_dependencies_where_changed() {
   done
 }
 
-PYTHON_DEPENDENCY_FILES_TO_DETECT="pyproject.toml\|poetry.lock"
-PYTHON_COMMAND_TO_INSTALL_DEPENDENCIES="make build"
-check_run "$PYTHON_DEPENDENCY_FILES_TO_DETECT" "$PYTHON_COMMAND_TO_INSTALL_DEPENDENCIES"
+# Runs `make build` once per Makefile that serves a folder whose pyproject.toml or poetry.lock changed.
+# The Makefile is the nearest one with a `build` target, in that folder or a parent up to the repository root.
+# Skips a folder with no such Makefile instead of failing on "No rule to make target 'build'".
+python_install_dependencies_where_changed() {
+  local dirs dir candidate make_dirs="" make_dir
+  dirs="$(echo "$changed_files" | grep -E '(^|/)(pyproject\.toml|poetry\.lock)$' | xargs -r -n1 dirname | sort -u || true)"
+  for dir in $dirs; do
+    if [[ ! -f "$dir/pyproject.toml" ]]; then
+      continue
+    fi
+    candidate="$dir"
+    make_dir=""
+    while true; do
+      if [[ -f "$candidate/Makefile" ]] && grep --quiet -E '^build:' "$candidate/Makefile"; then
+        make_dir="$candidate"
+        break
+      fi
+      if [[ "$candidate" == "." ]]; then
+        break
+      fi
+      candidate="$(dirname "$candidate")"
+    done
+    if [[ -z "$make_dir" ]]; then
+      echo " * changes detected in $dir/ (pyproject.toml or poetry.lock), but no Makefile with a build target: skipped"
+      continue
+    fi
+    make_dirs+="$make_dir"$'\n'
+  done
+  for make_dir in $(echo -n "$make_dirs" | sort -u); do
+    echo " * changes detected in pyproject.toml or poetry.lock: running make build in $make_dir/"
+    make -C "$make_dir" build
+  done
+}
+
+python_install_dependencies_where_changed
 
 ts_js_install_dependencies_where_changed
 
