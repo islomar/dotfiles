@@ -133,3 +133,7 @@ Zuill
 [Ww]alkthroughs?
 [Ww]ireframes?
 [Ww]orktrees?
+Dependabot('s)?
+lockfiles?
+[Ll]earnings
+workflow_run
