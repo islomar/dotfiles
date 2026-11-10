@@ -27,21 +27,34 @@ tool_versions_command_to_install_dependencies() {
   mix setup
 }
 
-ts_js_command_to_install_dependencies() {
-  if [[ -f yarn.lock ]]; then
-    yarn install
-  else
-    npm install
-  fi
-  npm run build
+# Installs and builds in each folder whose package.json, package-lock.json or yarn.lock changed.
+# Runs inside that folder: run from the repository root, npm would climb to the nearest
+# package.json above it (for example ~/package.json) and install that project instead.
+ts_js_install_dependencies_where_changed() {
+  local dirs dir
+  dirs="$(echo "$changed_files" | grep -E '(^|/)(package\.json|package-lock\.json|yarn\.lock)$' | xargs -r -n1 dirname | sort -u || true)"
+  for dir in $dirs; do
+    if [[ ! -f "$dir/package.json" ]]; then
+      continue
+    fi
+    echo " * changes detected in $dir/ (package.json, package-lock.json or yarn.lock)"
+    (
+      cd "$dir"
+      if [[ -f yarn.lock ]]; then
+        yarn install
+      else
+        npm install
+      fi
+      npm run build --if-present
+    )
+  done
 }
 
 PYTHON_DEPENDENCY_FILES_TO_DETECT="pyproject.toml\|poetry.lock"
 PYTHON_COMMAND_TO_INSTALL_DEPENDENCIES="make build"
 check_run "$PYTHON_DEPENDENCY_FILES_TO_DETECT" "$PYTHON_COMMAND_TO_INSTALL_DEPENDENCIES"
 
-TS_JS_DEPENDENCY_FILES_TO_DETECT="package.json\|yarn.lock"
-check_run "$TS_JS_DEPENDENCY_FILES_TO_DETECT" ts_js_command_to_install_dependencies
+ts_js_install_dependencies_where_changed
 
 ELIXIR_DEPENDENCY_FILES_TO_DETECT="mix.exs\|mix.lock"
 ELIXIR_COMMAND_TO_INSTALL_DEPENDENCIES="mix deps.get && mix compile"

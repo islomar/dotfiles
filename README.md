@@ -119,7 +119,7 @@ and runs one command per changed dependency file:
 | Changed file | Command |
 |---|---|
 | `pyproject.toml`, `poetry.lock` | `make build` |
-| `package.json`, `yarn.lock` | `yarn install` if `yarn.lock` exists, otherwise `npm install`; then `npm run build` |
+| `package.json`, `package-lock.json`, `yarn.lock` | In the folder of the changed file: `yarn install` if `yarn.lock` exists, otherwise `npm install`; then `npm run build --if-present` |
 | `mix.exs`, `mix.lock` | `mix deps.get && mix compile` |
 | `.tool-versions` | `asdf install`, then the Elixir setup steps in `scripts/install-dependencies-on-change.sh` |
 
