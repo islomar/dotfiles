@@ -20,7 +20,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$script_dir/load-tool-paths.sh"
 
 if grep -q 'START doctoc' "$file" && [[ -x "$HOME/.local/bin/doctoc" ]]; then
-	"$HOME/.local/bin/doctoc" "$file" --title '## Contents' >/dev/null 2>&1 || true
+	"$HOME/.local/bin/doctoc" "$file" >/dev/null 2>&1 || true
 fi
 
 command -v rumdl >/dev/null 2>&1 || exit 0
