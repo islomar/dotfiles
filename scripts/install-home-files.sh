@@ -70,8 +70,8 @@ if [[ -d "$HOME/workspace/dotfiles-private" ]]; then
             curl -fsSL "$url" -o "$claude_sounds/$sound" || echo "Could not download $sound from $url" >&2
         fi
     done <<'EOF'
-on-agent-complete.wav https://assets.mixkit.co/active_storage/sfx/951/951.wav
-on-agent-need-attention.wav https://assets.mixkit.co/active_storage/sfx/2575/2575.wav
+on-agent-complete-positive-notification.wav https://assets.mixkit.co/active_storage/sfx/951/951.wav
+on-agent-need-attention-software-interface-back.wav https://assets.mixkit.co/active_storage/sfx/2575/2575.wav
 on-agent-idle-magic-notification-ring.wav https://assets.mixkit.co/active_storage/sfx/2344/2344.wav
 EOF
 fi
