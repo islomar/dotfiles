@@ -226,10 +226,15 @@ To undo the setup, restore the files from the newest folder in `/var/backups/yub
   `XDG_CURRENT_DESKTOP=GNOME` for the Flatpak and requests the StreamController GNOME extension.
   Approve the GNOME dialog, then restart StreamController.
 - In StreamController, open the menu > Open Store and install what the pages use:
-  - Plugins: OS, Deck, OBS, Clocks, Weather, Battery and Speedtest.
+  - Plugins: OS, Deck, OBS, Clocks, Weather, Battery, Speedtest and Pomodoro Timer.
   - Icon packs: Material Icons and Bootstrap Icons. The pages refer to these icons, and
     `export_apps.sh` does not export them.
 - In Settings > Plugins > OBS, enter the OBS WebSocket password.
+- The Pomodoro Timer plugin only blinks the key when a timer ends.
+  `apps/streamcontroller/patches/pomodoro-finish-sound.patch` makes it also play a sound once.
+  `install-home-files.sh` downloads the sound into the private repository.
+  After installing or updating the plugin from the Store, run `install_elgato_stream_deck.sh` again
+  to apply the patch, then restart StreamController.
 - The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
 - The lock key on Page 4 runs `scripts/encrypted-folders`.
   One action shows the state every 5 seconds (`deck`). The other runs `toggle` on a press.

@@ -22,7 +22,8 @@ main() {
 	fi
 
 	echo "And... DONE! Next steps in StreamController:"
-	echo "  1. Menu > Open Store: install the OS, Deck, OBS, Clocks, Weather, Battery and Speedtest plugins,"
+	echo "  1. Menu > Open Store: install the OS, Deck, OBS, Clocks, Weather, Battery, Speedtest"
+	echo "     and Pomodoro Timer plugins,"
 	echo "     and the Material Icons and Bootstrap Icons icon packs"
 	echo "  2. Settings > Plugins > OBS: enter your OBS WebSocket password"
 	echo "  3. After installing or updating the Pomodoro Timer plugin, run this script again"
