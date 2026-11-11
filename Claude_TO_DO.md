@@ -64,6 +64,10 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - Research and the pick are in that file. Check the price again before buying.
   - After buying, run the "Test after buying" steps and record the results in the same file.
   - Then the cloud-backup task in Backups can start.
+- [ ] **Follow the pull request that adds a finish sound to the StreamController Pomodoro Timer plugin**
+  - The link is in the private to-do file.
+  - Once the maintainer merges and releases it: update the plugin from the Store, set the sound in the key's settings,
+    then remove `apps/streamcontroller/patches/pomodoro-finish-sound.patch` and its step in `scripts/install_elgato_stream_deck.sh`.
 
 ### This repository
 
