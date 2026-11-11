@@ -8,11 +8,14 @@ STREAMCONTROLLER_EXPORT="$DOTFILES_PATH/apps/streamcontroller"
 UDEV_RULES_FILE="/etc/udev/rules.d/70-streamdeck.rules"
 UDEV_RULE='SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", TAG+="uaccess"'
 GNOME_EXTENSION_UUID="streamcontroller@core447.com"
+POMODORO_PLUGIN="$STREAMCONTROLLER_DATA/plugins/com_cuflt_pomodoro"
+POMODORO_SOUND_PATCH="$STREAMCONTROLLER_EXPORT/patches/pomodoro-finish-sound.patch"
 
 main() {
 	install_streamcontroller
 	allow_stream_deck_access
 	restore_streamcontroller_config
+	add_pomodoro_finish_sound
 	if [[ "${XDG_CURRENT_DESKTOP:-}" == *GNOME* ]]; then
 		enable_window_detection_on_gnome
 		install_gnome_extension
@@ -22,6 +25,8 @@ main() {
 	echo "  1. Menu > Open Store: install the OS, Deck, OBS, Clocks, Weather, Battery and Speedtest plugins,"
 	echo "     and the Material Icons and Bootstrap Icons icon packs"
 	echo "  2. Settings > Plugins > OBS: enter your OBS WebSocket password"
+	echo "  3. After installing or updating the Pomodoro Timer plugin, run this script again"
+	echo "     to add the finish sound, then restart StreamController"
 }
 
 install_streamcontroller() {
@@ -53,6 +58,22 @@ restore_streamcontroller_config() {
 	mkdir -p "$STREAMCONTROLLER_DATA"
 	cp -pr "$STREAMCONTROLLER_EXPORT/." "$STREAMCONTROLLER_DATA/"
 	echo "StreamController pages restored"
+}
+
+# The Pomodoro Timer plugin only blinks when a timer ends. The patch makes it also play a sound.
+# A plugin update from the Store removes the patch.
+add_pomodoro_finish_sound() {
+	if [[ ! -d "$POMODORO_PLUGIN" ]]; then
+		echo "Pomodoro Timer plugin not installed yet, not adding the finish sound"
+		return
+	fi
+	if patch --dry-run --reverse --force -p1 -d "$POMODORO_PLUGIN" <"$POMODORO_SOUND_PATCH" >/dev/null 2>&1; then
+		echo "Pomodoro Timer plugin already plays the finish sound"
+		return
+	fi
+	cp -p "$POMODORO_PLUGIN/actions/Pomodoro/Pomodoro.py" "$POMODORO_PLUGIN/actions/Pomodoro/Pomodoro.py.orig"
+	patch --forward -p1 -d "$POMODORO_PLUGIN" <"$POMODORO_SOUND_PATCH"
+	echo "Pomodoro Timer plugin patched. Restart StreamController to hear the finish sound."
 }
 
 # StreamController detects the active window (for automatic page switching) only when

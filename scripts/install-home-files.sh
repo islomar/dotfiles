@@ -60,7 +60,7 @@ else
     echo "Skipping Claude Code settings: clone the private repository to ~/workspace/dotfiles-private first." >&2
 fi
 
-# Claude Code hook sounds come from Mixkit. Their license forbids redistribution, so they are not in this repository.
+# Claude Code hook sounds and the Stream Deck Pomodoro sound come from Mixkit. Their license forbids redistribution, so they are not in this repository.
 # Download any sound missing from the private repository.
 claude_sounds="$HOME/workspace/dotfiles-private/sounds"
 if [[ -d "$HOME/workspace/dotfiles-private" ]]; then
@@ -73,6 +73,7 @@ if [[ -d "$HOME/workspace/dotfiles-private" ]]; then
 on-agent-complete-positive-notification.wav https://assets.mixkit.co/active_storage/sfx/951/951.wav
 on-agent-need-attention-software-interface-back.wav https://assets.mixkit.co/active_storage/sfx/2575/2575.wav
 on-agent-idle-magic-notification-ring.wav https://assets.mixkit.co/active_storage/sfx/2344/2344.wav
+mixkit-correct-answer-reward-952.wav https://assets.mixkit.co/active_storage/sfx/952/952.wav
 EOF
 fi
 

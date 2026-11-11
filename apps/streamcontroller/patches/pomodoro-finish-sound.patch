@@ -1,0 +1,48 @@
+--- a/actions/Pomodoro/Pomodoro.py
++++ b/actions/Pomodoro/Pomodoro.py
+@@ -2,6 +2,7 @@
+ from enum import Enum
+ import time
+ import os
++import subprocess
+ from src.backend.DeckManagement.InputIdentifier import Input, InputEvent
+ from src.backend.PluginManager.ActionBase import ActionBase
+ 
+@@ -11,6 +12,8 @@
+ gi.require_version("Adw", "1")
+ from gi.repository import Gtk, Adw, GLib, Gdk
+ 
++DEFAULT_SOUND_PATH = "~/workspace/dotfiles-private/sounds/mixkit-correct-answer-reward-952.wav"
++
+ 
+ class State(Enum):
+     IDLE = "idle"
+@@ -145,6 +148,7 @@
+         self._timer_state = State.FINISHED_BLINKING
+         self.blink_on = True
+         self._update_display()
++        self._play_finish_sound()
+ 
+         if self.blink_enabled:
+             # Start blinking timer (500ms interval)
+@@ -161,6 +165,20 @@
+             except AttributeError:
+                 pass
+ 
++    def _play_finish_sound(self) -> None:
++        """Play the finish sound once, without blocking the deck."""
++        settings = self.get_settings()
++        if not settings.get("sound_enabled", True):
++            return
++        sound_path = os.path.expanduser(settings.get("sound_path", DEFAULT_SOUND_PATH))
++        if not os.path.isfile(sound_path):
++            return
++        try:
++            subprocess.Popen(["paplay", sound_path],
++                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
++        except OSError:
++            pass
++
+     def _blink_callback(self) -> bool:
+         """GLib timer callback for blinking effect."""
+         if self._timer_state != State.FINISHED_BLINKING:
