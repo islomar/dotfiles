@@ -156,3 +156,5 @@ Mixkit
 Sosumi
 Tink
 paplay
+Ghostty
+chavalotes
