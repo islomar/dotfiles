@@ -45,7 +45,8 @@ for skill_dir in "$HOME/.dotfiles/config/claude/skills"/*/; do
     ln -sfn "${skill_dir%/}" "$HOME/.claude/skills/$(basename "$skill_dir")"
 done
 
-# Claude Code settings: hooks (sounds in sounds/), plugins, and the status line read by the Stream Deck.
+# Claude Code settings: hooks, plugins, and the status line read by the Stream Deck.
+# The hooks play sounds from ~/workspace/dotfiles-private/sounds (see the README there).
 # The file lives in the private repository ~/workspace/dotfiles-private, because it holds machine details.
 # A settings.json that is a regular file is kept as settings.json.bak before it is replaced by the link.
 claude_settings="$HOME/.claude/settings.json"
@@ -57,6 +58,21 @@ if [[ -f "$claude_settings_private" ]]; then
     ln -sf "$claude_settings_private" "$claude_settings"
 else
     echo "Skipping Claude Code settings: clone the private repository to ~/workspace/dotfiles-private first." >&2
+fi
+
+# Claude Code hook sounds come from Mixkit. Their license forbids redistribution, so they are not in this repository.
+# Download any sound missing from the private repository.
+claude_sounds="$HOME/workspace/dotfiles-private/sounds"
+if [[ -d "$HOME/workspace/dotfiles-private" ]]; then
+    mkdir -p "$claude_sounds"
+    while read -r sound url; do
+        if [[ ! -f "$claude_sounds/$sound" ]]; then
+            curl -fsSL "$url" -o "$claude_sounds/$sound" || echo "Could not download $sound from $url" >&2
+        fi
+    done <<'EOF'
+on-agent-complete.wav https://assets.mixkit.co/active_storage/sfx/951/951.wav
+on-agent-need-attention.wav https://assets.mixkit.co/active_storage/sfx/2575/2575.wav
+EOF
 fi
 
 

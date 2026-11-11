@@ -138,3 +138,9 @@ lockfiles?
 [Ll]earnings
 workflow_run
 [Pp]olkit
+Jepsen
+nothin
+Mixkit
+Sosumi
+Tink
+paplay
