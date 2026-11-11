@@ -18,6 +18,7 @@
   - [Android: Tasker step automation](#android-tasker-step-automation)
   - [Phone photo sync](#phone-photo-sync)
   - [YubiKey](#yubikey)
+  - [Claude Desktop: MarkItDown MCP server](#claude-desktop-markitdown-mcp-server)
   - [How to set up my Stream Deck Mini](#how-to-set-up-my-stream-deck-mini)
     - [ydotool](#ydotool)
   - [Wacom tablet](#wacom-tablet)
@@ -214,6 +215,41 @@ Limits:
 - Do not add pam_u2f's `debug` option to `/etc/pam.d/polkit-1`. It put the polkit helper in a restart loop.
 
 To undo the setup, restore the files from the newest folder in `/var/backups/yubikey-pam`, delete the sandbox exception, and run `sudo systemctl daemon-reload`.
+
+## Claude Desktop: MarkItDown MCP server
+
+[MarkItDown](https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp) converts Word, PowerPoint, Excel, PDF, EPUB, HTML and ZIP files to Markdown.
+Claude Desktop has no shell, so this server is its only way to read those formats.
+Claude Code does not need it: it runs `uvx markitdown <file>` when needed.
+
+The server runs in Docker with `~/Downloads` mounted read-only and no network.
+The server has no authentication and can read any file its user can read, so the container limits what it sees.
+
+Build the image, as your user so it can read files with mode 600:
+
+```bash
+git clone --depth 1 https://github.com/microsoft/markitdown.git
+cd markitdown/packages/markitdown-mcp
+docker build --build-arg USERID="$(id -u)" --build-arg GROUPID="$(id -g)" -t markitdown-mcp:latest .
+```
+
+Add the server to `~/.config/Claude/claude_desktop_config.json` under `mcpServers`, then restart Claude Desktop:
+
+```json
+"markitdown": {
+  "command": "docker",
+  "args": ["run", "--rm", "-i", "--network", "none",
+           "-v", "/home/<user>/Downloads:/workdir:ro",
+           "markitdown-mcp:latest"]
+}
+```
+
+Usage and limits:
+
+- Refer to files by their path in the container: `~/Downloads/report.docx` is `file:///workdir/report.docx`.
+- Web addresses fail on purpose. Use the `fetch` server for web pages.
+- No OCR for scanned PDFs or images. That needs Azure or an LLM plugin.
+- No automatic updates. To update, clone again and rebuild the image.
 
 ## How to set up my Stream Deck Mini
 
