@@ -77,9 +77,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - After the next "always allow" answer or `/config` change, run `readlink ~/.claude/settings.json`.
   - Empty output means Claude Code replaced the link with a regular file.
     Then move the new content back into the repository and restore the link.
-- [ ] **Add a third Claude Code sound for idle notifications**
-  - Split the `Notification` hook by matcher: `permission_prompt` (and maybe `elicitation_dialog`) keeps the "need attention" sound, `idle_prompt` gets a softer one.
-  - Waiting for the user to pick the sound on Mixkit. Then add its URL to the install script fallback.
 
 ### Personal
 
@@ -91,6 +88,9 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Add a third Claude Code sound for idle notifications**. 2026-11-11.
+  - `idle_prompt` plays Mixkit "Magic notification ring" (2344). `permission_prompt|elicitation_dialog` keeps the "need attention" sound.
+  - The install script downloads it from Mixkit when missing.
 - [x] **Finish the TV remote script** (the script is in the private repository, `tv/tv`). 2026-11-07.
   - Dropped input switching: the TV ignores the HDMI keys and has nothing connected.
 - [x] **Keep Claude Code sessions and export them to Markdown**. 2026-11-05.

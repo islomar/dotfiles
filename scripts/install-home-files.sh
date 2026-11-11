@@ -72,6 +72,7 @@ if [[ -d "$HOME/workspace/dotfiles-private" ]]; then
     done <<'EOF'
 on-agent-complete.wav https://assets.mixkit.co/active_storage/sfx/951/951.wav
 on-agent-need-attention.wav https://assets.mixkit.co/active_storage/sfx/2575/2575.wav
+on-agent-idle-magic-notification-ring.wav https://assets.mixkit.co/active_storage/sfx/2344/2344.wav
 EOF
 fi
 
