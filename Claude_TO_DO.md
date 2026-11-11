@@ -77,6 +77,9 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - After the next "always allow" answer or `/config` change, run `readlink ~/.claude/settings.json`.
   - Empty output means Claude Code replaced the link with a regular file.
     Then move the new content back into the repository and restore the link.
+- [ ] **Add a third Claude Code sound for idle notifications**
+  - Split the `Notification` hook by matcher: `permission_prompt` (and maybe `elicitation_dialog`) keeps the "need attention" sound, `idle_prompt` gets a softer one.
+  - Waiting for the user to pick the sound on Mixkit. Then add its URL to the install script fallback.
 
 ### Personal
 
