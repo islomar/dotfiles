@@ -13,7 +13,6 @@ ln -sf "$HOME/.dotfiles/home/.gitignore_global" "$HOME/.gitignore_global"
 ln -sf "$HOME/.dotfiles/home/.gitattributes" "$HOME/.gitattributes"
 ln -sf "$HOME/.dotfiles/home/.zshenv" "$HOME/.zshenv"
 ln -sf "$HOME/.dotfiles/home/.tmux.conf" "$HOME/.tmux.conf"
-ln -sf "$HOME/.dotfiles/home/.tmate.conf" "$HOME/.tmate.conf"
 ln -sf "$HOME/.dotfiles/home/.gitconfig" "$HOME/.gitconfig"
 mkdir -p "$HOME/.local/bin"
 # The Stream Deck buttons in apps/streamcontroller run obs-ctl from this path
