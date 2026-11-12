@@ -12,7 +12,7 @@ mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install libfuse2t64 bat espeak libespeak-dev mbrola-us2 eza gimp snapd fzf tree tealdeer jq vim tmux tmate curl git maven gitk git-gui silversearcher-ag htop xclip unzip xournal git-extras gnome-screenshot -y
+sudo apt install libfuse2t64 bat espeak libespeak-dev mbrola-us2 eza gimp snapd fzf tree tealdeer jq vim tmux curl git maven gitk git-gui silversearcher-ag htop xclip unzip xournal git-extras gnome-screenshot -y
 sudo snap install telegram-desktop
 # ctop: not in apt or snap. Download the binary from https://github.com/bcicen/ctop/releases to /usr/local/bin/ctop.
 sudo snap install postman
@@ -60,7 +60,7 @@ pyenv install 3.10
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install rumdl vale shellcheck gitleaks
+brew install rumdl vale shellcheck gitleaks upterm
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
 
 # Adobe
