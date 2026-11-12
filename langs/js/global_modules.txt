@@ -7,4 +7,3 @@ next
 omniroute
 @openai/codex
 pnpm
-tldr

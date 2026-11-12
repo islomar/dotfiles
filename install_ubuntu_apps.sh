@@ -12,9 +12,8 @@ mkdir -p ~/tmp
 cd ~
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt install libfuse2t64 bat espeak libespeak-dev mbrola-us2 eza gimp snapd fzf tree tealdeer jq vim tmux tmate curl git npm maven gitk git-gui silversearcher-ag htop xclip unzip xournal git-extras gnome-screenshot -y
+sudo apt install libfuse2t64 bat espeak libespeak-dev mbrola-us2 eza gimp snapd fzf tree tealdeer jq vim tmux tmate curl git maven gitk git-gui silversearcher-ag htop xclip unzip xournal git-extras gnome-screenshot -y
 sudo snap install telegram-desktop
-# yarn: run `corepack enable` once nvm has installed Node.
 # ctop: not in apt or snap. Download the binary from https://github.com/bcicen/ctop/releases to /usr/local/bin/ctop.
 sudo snap install postman
 sudo snap install emote
@@ -90,6 +89,18 @@ sudo systemctl status docker
 sudo groupadd docker
 sudo usermod -aG docker "$USER"
 newgrp docker
+
+# Node.js through nvm. Don't install npm or node with apt: they shadow the nvm versions.
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.41.0/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+set +o nounset
+# shellcheck source=/dev/null
+source "$NVM_DIR/nvm.sh"
+nvm install --lts
+set -o nounset
+# Node 25 and later no longer bundle corepack, which provides yarn and pnpm.
+npm install -g corepack
+corepack enable
 
 # SDKMan
 curl -s "https://get.sdkman.io" | bash
