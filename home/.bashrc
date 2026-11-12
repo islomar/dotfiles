@@ -145,3 +145,4 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH="$PATH:/home/islomar/.lmstudio/bin"
 # End of LM Studio CLI section
 
+. "$HOME/.cargo/env"
