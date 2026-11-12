@@ -166,6 +166,7 @@ alias java17="sdk default java 17.0.10-amzn; java --version"
 alias java21="sdk default java 21.0.2-amzn; java --version"
 alias java23="sdk default java 23-amzn; java --version"
 alias gsettings="/usr/bin/gsettings"
+alias skillspector-docker='docker run --rm -v "$PWD:/scan" skillspector'
 
 bash $HOME/bin/docker-aliases.sh
 
@@ -218,3 +219,6 @@ export PATH="$PATH:/home/islomar/.lmstudio/bin"
 
 # Needed so that llmfit detects the Docker Model Runner
 export DOCKER_MODEL_RUNNER_HOST=http://localhost:12434
+
+# export SKILLSPECTOR_PROVIDER=openai
+# export OPENAI_API_KEY=<op://vault/item/field>
