@@ -11,9 +11,20 @@ cd ~/tmp
 brew doctor
 brew update
 
-brew install mas tfenv tflint tldr vim tmux tmate curl wget git npm htop ctop maven slack tree the_silver_searcher fzf exa bat gpg autojump pipenv composer lazygit watch yarn cloc watchman n graphviz git-extras rumdl vale shellcheck jq
+brew install mas tfenv tealdeer vim tmux tmate curl wget git htop ctop maven tree the_silver_searcher fzf eza bat gpg autojump pipenv composer lazygit watch cloc watchman graphviz git-extras rumdl vale shellcheck jq
+brew install --cask terraform-linters/tap/tflint
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
-brew cask install postman virtualbox vagrant google-chrome firefox skype visual-studio-code spotify skype zoomus slack iterm2 sourcetree gpg-suite spectacle rocket vlc
+brew install --cask postman virtualbox vagrant google-chrome firefox visual-studio-code spotify zoom slack iterm2 sourcetree gpg-suite rocket vlc
+
+# Node.js through nvm, as on Linux. nvm doesn't support its Homebrew formula.
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.41.0/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+# shellcheck source=/dev/null
+source "$NVM_DIR/nvm.sh"
+nvm install --lts
+# Node 25 and later no longer bundle corepack, which provides yarn and pnpm.
+npm install -g corepack
+corepack enable
 
 # Vundle for vim
 wget https://raw.githubusercontent.com/islomar/dotfiles/master/.vimrc && cp -pr .vimrc "$HOME/"
@@ -26,13 +37,11 @@ curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Font Fira Code
-brew tap homebrew/cask-fonts
-brew cask install font-fira-code
+brew install --cask font-fira-code
 
 # Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-brew tap homebrew/cask-fonts
-brew cask install font-awesome-terminal-fonts
+brew install --cask font-awesome-terminal-fonts
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts && ./install.sh && cd .. && rm -rf fonts
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
