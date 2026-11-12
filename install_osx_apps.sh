@@ -14,7 +14,7 @@ brew update
 brew install mas tfenv tealdeer vim tmux tmate curl wget git htop ctop maven tree the_silver_searcher fzf eza bat gpg autojump pipenv composer lazygit watch cloc watchman graphviz git-extras rumdl vale shellcheck jq
 brew install --cask terraform-linters/tap/tflint
 vale sync --config ~/.dotfiles/config/vale/.vale.ini
-brew install --cask postman virtualbox vagrant google-chrome firefox visual-studio-code spotify zoom slack iterm2 sourcetree gpg-suite rocket vlc
+brew install --cask postman virtualbox vagrant google-chrome firefox visual-studio-code spotify zoom slack iterm2 sourcetree gpg-suite rectangle rocket vlc
 
 # Node.js through nvm, as on Linux. nvm doesn't support its Homebrew formula.
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.41.0/install.sh | bash
