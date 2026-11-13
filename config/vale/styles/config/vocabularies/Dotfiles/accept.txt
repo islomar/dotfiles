@@ -12,7 +12,7 @@ CLIs
 Codely
 Collaboard
 configs?
-Connascence
+[Cc]onnascence
 Coolors
 Crafters
 Dani
@@ -165,3 +165,4 @@ seguimo
 tmux
 Pomodoro
 PDFs
+Kongsberg
