@@ -40,7 +40,7 @@ Husain
 IDEs
 Junie
 KAgent
-kanban
+[Kk]anban
 keyfile
 Kioxia
 Kiro
