@@ -85,6 +85,9 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 ### Personal
 
 - [ ] **Work through the dated personal item in the private to-do file** (due 2026-11-09) (`~/workspace/dotfiles-private/claude-todo.md`)
+- [ ] **Decide on per-component Vitest tests for the course demo app**
+  - Proposal: one test file next to each layout component and page, rendering it directly instead of through a route.
+  - Waiting for the user's yes or no.
 
 ### Blog
 
