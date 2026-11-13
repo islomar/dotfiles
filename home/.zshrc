@@ -132,7 +132,10 @@ alias cleanup-docker='docker stop $(docker ps -qa) || true && docker rm $(docker
 alias cdw="cd $HOME/workspace"
 alias cdwm="cd $HOME/workspace/my-notes"
 alias cdt="cd $HOME/tmp"
-alias cdd="cd $HOME/workspace/dotfiles"
+alias cddot="cd $HOME/workspace/dotfiles"
+alias cdd="cd $HOME/Downloads"
+alias cdb="cd $HOME/workspace/islomar.github.io"
+alias cdwc="cd $HOME/workspace/corporate-hotel-booking-software-factory"
 # bat queries the terminal background and picks the matching theme
 export BAT_THEME_DARK="Monokai Extended"
 export BAT_THEME_LIGHT="GitHub"
