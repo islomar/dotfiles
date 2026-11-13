@@ -166,3 +166,5 @@ tmux
 Pomodoro
 PDFs
 Kongsberg
+herdr
+obligarle
