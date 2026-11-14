@@ -171,7 +171,7 @@ alias java21="sdk default java 21.0.2-amzn; java --version"
 alias java23="sdk default java 23-amzn; java --version"
 alias gsettings="/usr/bin/gsettings"
 alias skillspector-docker='docker run --rm -v "$PWD:/scan" skillspector'
-alias telegram-claude="claude --channels plugin:telegram@anthropic-plugin-directory"
+alias telegram-claude="claude --channels plugin:telegram@claude-plugins-official"
 
 bash $HOME/bin/docker-aliases.sh
 
