@@ -64,7 +64,7 @@ If a precondition fails, stop and tell me what to install rather than working ar
 
 ## Git Branches
 
-Never create or work on a git branch unless I explicitly allow it.
+By default, do not create or work on a git branch unless I explicitly allow it.
 When I ask to commit or push, commit on `main` and push `main`.
 This rule overrides any default guidance to branch first.
 
