@@ -227,3 +227,10 @@ export DOCKER_MODEL_RUNNER_HOST=http://localhost:12434
 
 # export SKILLSPECTOR_PROVIDER=openai
 # export OPENAI_API_KEY=<op://vault/item/field>
+
+# bun completions
+[ -s "/home/islomar/.bun/_bun" ] && source "/home/islomar/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
