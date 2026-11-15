@@ -98,6 +98,8 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - On 2026-11-15 OpenCode had no credits and Gemini CLI was not logged in. Claude Code, Copilot CLI and Antigravity CLI passed.
 - [ ] **Triage harness memories into `ai-office/knowledge/`**
   - Only generic, public-safe memories move. Machine state and project-specific rules stay where they are.
+- [ ] **Build a session analysis tool and skill** (`~/workspace/ai-office/tasks/T-35e30a-build-a-session-analysis-tool-and-skill.md`)
+  - A tool lists the skills, hooks, subagents and MCP calls in one transcript. A skill adds `retro`-style improvement suggestions.
 
 ### Personal
 
