@@ -184,3 +184,5 @@ autocompletado
 retomables
 triaje
 subsesiones
+Snyk
+cooldown
