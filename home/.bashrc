@@ -146,3 +146,7 @@ export PATH="$PATH:/home/islomar/.lmstudio/bin"
 # End of LM Studio CLI section
 
 . "$HOME/.cargo/env"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/islomar/.local/bin:$PATH"

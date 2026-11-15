@@ -234,3 +234,7 @@ export DOCKER_MODEL_RUNNER_HOST=http://localhost:12434
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/islomar/.local/bin:$PATH"
