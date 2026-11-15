@@ -88,7 +88,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 - [ ] **Upgrade `my-nvc-app` from Expo SDK 51 to the current SDK**
   - Most of its Dependabot security alerts come from SDK 51. Dependabot skips Expo and React Native packages on purpose.
   - Upgrade with `npx expo install expo@<version> --fix`, one SDK at a time, and run CI after each step.
-- [ ] **Stop Snyk pull requests** in the Snyk web dashboard (manual step for the user).
 - [ ] **Archive the dead repositories** after the active ones are done.
 - [ ] **Copy existing skills into `ai-office`** (`~/workspace/ai-office/skills/`)
   - Candidates: `gepeto`, `pinokio`, `spec-polish`, `changelog`, `feature-spec`, `review-acceptance-criteria`.
@@ -111,6 +110,8 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Stop Snyk**. 2026-11-15.
+  - Snyk no longer opens pull requests. Its webhooks are gone from the active repositories.
 - [x] **Fix the failing CI of `my-nvc-app`**: aligned packages with Expo SDK 51. 2026-11-15, `096a406`.
 - [x] **Close the stale Snyk and Dependabot pull requests**. 2026-11-15.
   - `katas`: 20 closed and their branches deleted. `payments-api` was archived instead, so its 105 PRs stay frozen.
