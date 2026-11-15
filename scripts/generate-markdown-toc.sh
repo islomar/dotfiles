@@ -19,8 +19,11 @@ update_toc_in_markdown_files() {
 
 # config/claude/ holds Claude Code instructions, which Claude Code loads in full at every
 # session start. A table of contents there only adds text, so those files are skipped.
+# .agents/skills/ holds skills installed by the skills CLI: a change there breaks the hash
+# in skills-lock.json, and the next update reverts it. They are maintained in their source repository.
 detect_changed_files() {
-	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown' ':(exclude)config/claude/*'
+	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown' \
+		':(exclude)config/claude/*' ':(exclude).agents/skills'
 }
 
 update_table_of_contents() {

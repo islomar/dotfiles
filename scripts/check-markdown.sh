@@ -82,8 +82,10 @@ check_files() {
 	return "$status"
 }
 
+# Skills installed by the skills CLI live in .agents/skills/ and are linted in their source
+# repository. Fixing them here would break the hash in skills-lock.json.
 detect_staged_files() {
-	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown'
+	git diff --cached --name-only --diff-filter=ACMRT -- '*.md' '*.markdown' ':(exclude).agents/skills'
 }
 
 check_prose() {
