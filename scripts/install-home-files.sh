@@ -33,10 +33,13 @@ fi
 mkdir -p "$HOME/.config/environment.d"
 ln -sf "$HOME/.dotfiles/config/environment.d/999-jetbrains-toolbox.conf" "$HOME/.config/environment.d/999-jetbrains-toolbox.conf"
 
-# Claude Code global instructions. RTK.md sits next to CLAUDE.md because CLAUDE.md imports it with @RTK.md.
-mkdir -p "$HOME/.claude"
-ln -sf "$HOME/.dotfiles/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-ln -sf "$HOME/.dotfiles/config/claude/RTK.md" "$HOME/.claude/RTK.md"
+# Global agent instructions live in ~/workspace/ai-office/instructions.
+# Its Makefile links them into Claude Code, Codex, OpenCode, Pi, Copilot CLI and Gemini CLI.
+if [[ -f "$HOME/workspace/ai-office/Makefile" ]]; then
+    make -s -C "$HOME/workspace/ai-office" link-instructions
+else
+    echo "Skipping agent instructions: clone islomar/ai-office to ~/workspace/ai-office first." >&2
+fi
 
 # Claude Code skills kept in this repository. Each folder becomes a link in ~/.claude/skills.
 mkdir -p "$HOME/.claude/skills"
