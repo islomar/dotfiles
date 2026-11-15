@@ -8,6 +8,7 @@
     - [Security](#security)
     - [System](#system)
     - [This repository](#this-repository)
+    - [GitHub repositories](#github-repositories)
     - [Personal](#personal)
     - [Blog](#blog)
   - [Done](#done)
@@ -82,6 +83,21 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - Empty output means Claude Code replaced the link with a regular file.
     Then move the new content back into the repository and restore the link.
 
+### GitHub repositories
+
+- [ ] **Fix the failing CI of `my-nvc-app`**
+  - `expo-doctor` fails: packages do not match the installed Expo SDK. Fix with an SDK upgrade and `npx expo install --fix`.
+  - Until CI passes, no Dependabot PR merges there.
+- [ ] **Stop Snyk pull requests** in the Snyk web dashboard (manual step for the user).
+- [ ] **Archive the dead repositories** after the active ones are done.
+- [ ] **Copy existing skills into `ai-office`** (`~/workspace/ai-office/skills/`)
+  - Candidates: `gepeto`, `pinokio`, `spec-polish`, `changelog`, `feature-spec`, `review-acceptance-criteria`.
+  - The user picks which ones. Copy, never delete from the source repositories.
+  - Read each one in full first: course skills may carry another license, and some may hold private details.
+  - Then run `npx skills add islomar/ai-office --list` to confirm the skills CLI finds them.
+- [ ] **Triage harness memories into `ai-office/knowledge/`**
+  - Only generic, public-safe memories move. Machine state and project-specific rules stay where they are.
+
 ### Personal
 
 - [ ] **Work through the dated personal item in the private to-do file** (due 2026-11-09) (`~/workspace/dotfiles-private/claude-todo.md`)
@@ -95,6 +111,13 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Close the stale Snyk and Dependabot pull requests**. 2026-11-15.
+  - `katas`: 20 closed and their branches deleted. `payments-api` was archived instead, so its 105 PRs stay frozen.
+- [x] **Automate dependency updates** in `my-nvc-app`, `python-kata-template`, `typescript-kata-template` and `java-kata-template`. 2026-11-15.
+  - Grouped minor and patch updates, a cooldown, auto-merge with `GITHUB_TOKEN` once the required check passes,
+    and a `main: require CI` ruleset that repository admins bypass.
+  - `typescript-kata-template`: removed the npm `node` package (`3b96db7`), which broke `make deps` in the pre-commit hook.
+- [x] **Choose a license for `ai-office`**: MIT. 2026-11-15, `a555bf2`.
 - [x] **Add a third Claude Code sound for idle notifications**. 2026-11-11.
   - `idle_prompt` plays Mixkit "Magic notification ring" (2344). `permission_prompt|elicitation_dialog` keeps the "need attention" sound.
   - The install script downloads it from Mixkit when missing.
