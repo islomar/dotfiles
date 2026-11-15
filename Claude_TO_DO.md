@@ -91,7 +91,8 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 - [ ] **Upgrade `my-nvc-app` from Expo SDK 51 to the current SDK**
   - Most of its Dependabot security alerts come from SDK 51. Dependabot skips Expo and React Native packages on purpose.
   - Upgrade with `npx expo install expo@<version> --fix`, one SDK at a time, and run CI after each step.
-- [ ] **Archive the dead repositories** after the active ones are done.
+- [ ] **Decide on the remaining 96 repositories with no commit in 12 months**
+  - The user keeps them for now. Archive in bulk with a dry run first, as on 2026-11-15.
 - [ ] **Make the global agent rules agent-neutral** (`~/workspace/ai-office/instructions/AGENTS.md`)
   - Every agent reads this file now, but some lines apply only to Claude Code: the `PostToolUse` hook, the `/ship` skill and RTK.
   - Mark those lines as Claude Code only, or move them to a Claude-only file that `instructions/CLAUDE.md` imports.
@@ -114,13 +115,15 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Archive 57 repositories**. 2026-11-15.
+  - Forks older than 60 days, private interview exercises, and three old katas and projects.
 - [x] **Copy existing skills into `ai-office`**: only `ship` moved, by the user's choice. 2026-11-15, `11aaf54`.
   - `review-acceptance-criteria` stays in its own project: it is not generic.
 - [x] **Stop Snyk**. 2026-11-15.
-  - Snyk no longer opens pull requests. Its webhooks are gone from the active repositories.
+  - Snyk no longer opens pull requests. The active repositories no longer have its webhooks.
 - [x] **Fix the failing CI of `my-nvc-app`**: aligned packages with Expo SDK 51. 2026-11-15, `096a406`.
 - [x] **Close the stale Snyk and Dependabot pull requests**. 2026-11-15.
-  - `katas`: 20 closed and their branches deleted. `payments-api` was archived instead, so its 105 PRs stay frozen.
+  - `katas`: 20 closed and their branches deleted. The user archived `payments-api` instead, so its 105 PRs stay frozen.
 - [x] **Automate dependency updates** in `my-nvc-app`, `python-kata-template`, `typescript-kata-template` and `java-kata-template`. 2026-11-15.
   - Grouped minor and patch updates, a cooldown, auto-merge with `GITHUB_TOKEN` once the required check passes,
     and a `main: require CI` ruleset that repository admins bypass.
