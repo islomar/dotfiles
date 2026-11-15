@@ -88,9 +88,8 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### GitHub repositories
 
-- [ ] **Upgrade `my-nvc-app` from Expo SDK 51 to the current SDK**
-  - Most of its Dependabot security alerts come from SDK 51. Dependabot skips Expo and React Native packages on purpose.
-  - Upgrade with `npx expo install expo@<version> --fix`, one SDK at a time, and run CI after each step.
+- [ ] **Test `my-nvc-app` 2.0.0 (Expo SDK 58) on a phone**
+  - CI, bundles and Docker pass, but nobody has run SDK 58 on a device. Check the EAS build result on expo.dev.
 - [ ] **Decide on the remaining 96 repositories with no commit in 12 months**
   - The user keeps them for now. Archive in bulk with a dry run first, as on 2026-11-15.
 - [ ] **Make the global agent rules agent-neutral** (`~/workspace/ai-office/instructions/AGENTS.md`)
@@ -115,6 +114,8 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Upgrade `my-nvc-app` to Expo SDK 58**. 2026-11-15, `f206faa`.
+  - React 19.3, React Native 0.88, Node 22 in CI, EAS workflows and Docker. App version 2.0.0.
 - [x] **Archive 57 repositories**. 2026-11-15.
   - Forks older than 60 days, private interview exercises, and three old katas and projects.
 - [x] **Copy existing skills into `ai-office`**: only `ship` moved, by the user's choice. 2026-11-15, `11aaf54`.
