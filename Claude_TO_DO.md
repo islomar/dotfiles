@@ -82,6 +82,9 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - After the next "always allow" answer or `/config` change, run `readlink ~/.claude/settings.json`.
   - Empty output means Claude Code replaced the link with a regular file.
     Then move the new content back into the repository and restore the link.
+- [ ] **Remove the dead `config/claude/*` exclusion** (`scripts/generate-markdown-toc.sh`)
+  - The agent instructions moved to `ai-office` on 2026-11-15 (`c187bca`), so `config/claude/` no longer exists.
+  - Delete the exclusion and its comment. Keep the `.agents/skills` exclusion.
 
 ### GitHub repositories
 
@@ -89,11 +92,12 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
   - Most of its Dependabot security alerts come from SDK 51. Dependabot skips Expo and React Native packages on purpose.
   - Upgrade with `npx expo install expo@<version> --fix`, one SDK at a time, and run CI after each step.
 - [ ] **Archive the dead repositories** after the active ones are done.
-- [ ] **Copy existing skills into `ai-office`** (`~/workspace/ai-office/skills/`)
-  - Candidates: `gepeto`, `pinokio`, `spec-polish`, `changelog`, `feature-spec`, `review-acceptance-criteria`.
-  - The user picks which ones. Copy, never delete from the source repositories.
-  - Read each one in full first: course skills may carry another license, and some may hold private details.
-  - Then run `npx skills add islomar/ai-office --list` to confirm the skills CLI finds them.
+- [ ] **Make the global agent rules agent-neutral** (`~/workspace/ai-office/instructions/AGENTS.md`)
+  - Every agent reads this file now, but some lines apply only to Claude Code: the `PostToolUse` hook, the `/ship` skill and RTK.
+  - Mark those lines as Claude Code only, or move them to a Claude-only file that `instructions/CLAUDE.md` imports.
+- [ ] **Confirm OpenCode and Gemini CLI read their linked rules file**
+  - Ask each one which character its instructions say to start replies with; the answer must be 🍀.
+  - On 2026-11-15 OpenCode had no credits and Gemini CLI was not logged in. Claude Code, Copilot CLI and Antigravity CLI passed.
 - [ ] **Triage harness memories into `ai-office/knowledge/`**
   - Only generic, public-safe memories move. Machine state and project-specific rules stay where they are.
 
@@ -110,6 +114,8 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Copy existing skills into `ai-office`**: only `ship` moved, by the user's choice. 2026-11-15, `11aaf54`.
+  - `review-acceptance-criteria` stays in its own project: it is not generic.
 - [x] **Stop Snyk**. 2026-11-15.
   - Snyk no longer opens pull requests. Its webhooks are gone from the active repositories.
 - [x] **Fix the failing CI of `my-nvc-app`**: aligned packages with Expo SDK 51. 2026-11-15, `096a406`.
