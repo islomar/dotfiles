@@ -41,8 +41,17 @@ ln -sf "$HOME/.dotfiles/config/claude/RTK.md" "$HOME/.claude/RTK.md"
 # Claude Code skills kept in this repository. Each folder becomes a link in ~/.claude/skills.
 mkdir -p "$HOME/.claude/skills"
 for skill_dir in "$HOME/.dotfiles/config/claude/skills"/*/; do
+    [[ -d "$skill_dir" ]] || continue  # no match: the glob stays literal
     ln -sfn "${skill_dir%/}" "$HOME/.claude/skills/$(basename "$skill_dir")"
 done
+
+# Skills kept in ~/workspace/ai-office, linked the same way. A skill with the same name there wins.
+if [[ -d "$HOME/workspace/ai-office/skills" ]]; then
+    for skill_dir in "$HOME/workspace/ai-office/skills"/*/; do
+        [[ -d "$skill_dir" ]] || continue
+        ln -sfn "${skill_dir%/}" "$HOME/.claude/skills/$(basename "$skill_dir")"
+    done
+fi
 
 # Claude Code settings: hooks, plugins, and the status line read by the Stream Deck.
 # The hooks play sounds from ~/workspace/dotfiles-private/sounds (see the README there).
