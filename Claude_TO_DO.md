@@ -90,8 +90,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 - [ ] **Test `my-nvc-app` 2.0.0 (Expo SDK 58) on a phone**
   - CI, bundles and Docker pass, but nobody has run SDK 58 on a device. Check the EAS build result on expo.dev.
-- [ ] **Decide on the remaining 96 repositories with no commit in 12 months**
-  - The user keeps them for now. Archive in bulk with a dry run first, as on 2026-11-15.
 - [ ] **Make the global agent rules agent-neutral** (`~/workspace/ai-office/instructions/AGENTS.md`)
   - Every agent reads this file now, but some lines apply only to Claude Code: the `PostToolUse` hook, the `/ship` skill and RTK.
   - Mark those lines as Claude Code only, or move them to a Claude-only file that `instructions/CLAUDE.md` imports.
@@ -114,6 +112,8 @@ Blog tasks live in `_TODO.md` in the blog's repository.
 
 ## Done
 
+- [x] **Archive 86 more repositories** chosen by the user from the 96 with no commit in 12 months. 2026-11-15.
+  - The user keeps the other 10 active.
 - [x] **Upgrade `my-nvc-app` to Expo SDK 58**. 2026-11-15, `f206faa`.
   - React 19.3, React Native 0.88, Node 22 in CI, EAS workflows and Docker. App version 2.0.0.
 - [x] **Archive 57 repositories**. 2026-11-15.
