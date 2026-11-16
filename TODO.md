@@ -18,19 +18,19 @@
 # Claude to-do
 
 The single list of pending work for Claude Code, across all repositories and sessions.
-Start a session with "work through Claude_TO_DO.md".
+Start a session with "work through TODO.md".
 When you finish a task, tick it, move it to Done, and add the commit hash or the date.
 
 This repository is public.
 Describe tasks without secrets, key identifiers, private folder names, names of other people, or the security state of any machine or account.
 Never name a company or project the user worked for, and never name their private workspaces.
-Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.md`, in a private repository.
+Details that break these rules go in `~/workspace/dotfiles-private/TODO.md`, in a private repository.
 
 ## Open
 
 ### Backups
 
-- [ ] **Work through the Backups section of the private to-do file** (urgent) (`~/workspace/dotfiles-private/claude-todo.md`)
+- [ ] **Work through the Backups section of the private to-do file** (urgent) (`~/workspace/dotfiles-private/TODO.md`)
 - [ ] **Decide which data-disk folders go to the cloud backup**
   - The folder list is in the private to-do file.
 - [ ] **Shrink the cloud backup once an external disk takes the daily backups** (important)
@@ -57,7 +57,7 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### Security
 
-- [ ] **Work through the Security section of the private to-do file** (`~/workspace/dotfiles-private/claude-todo.md`)
+- [ ] **Work through the Security section of the private to-do file** (`~/workspace/dotfiles-private/TODO.md`)
 
 ### System
 
@@ -103,14 +103,14 @@ Details that break these rules go in `~/workspace/dotfiles-private/claude-todo.m
 
 ### Personal
 
-- [ ] **Work through the dated personal item in the private to-do file** (due 2026-11-09) (`~/workspace/dotfiles-private/claude-todo.md`)
+- [ ] **Work through the dated personal item in the private to-do file** (due 2026-11-09) (`~/workspace/dotfiles-private/TODO.md`)
 - [ ] **Decide on per-component Vitest tests for the course demo app**
   - Proposal: one test file next to each layout component and page, rendering it directly instead of through a route.
   - Waiting for the user's yes or no.
 
 ### Blog
 
-Blog tasks live in `_TODO.md` in the blog's repository.
+Blog tasks live in `TODO.md` in the blog's repository.
 
 ## Done
 
