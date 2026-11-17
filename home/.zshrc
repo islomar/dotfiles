@@ -153,6 +153,7 @@ alias lzd='lazydocker'
 alias gplr="git pull --rebase"
 alias gp="git push || say 'Stop the line!'"
 alias update_git_repos="$HOME/bin/update_all_git_repos.sh"
+alias update-skills="npx skills update -g"
 alias vphpini="vim $(php -i | grep "Loaded Configuration File" | cut -d" " -f 5)"
 alias xdebug-enable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini"
 alias xdebug-disable="mv /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini /usr/local/etc/php/7.4/conf.d/ext-xdebug.ini.bak"
