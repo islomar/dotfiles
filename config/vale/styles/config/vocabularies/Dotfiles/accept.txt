@@ -188,3 +188,10 @@ Snyk
 cooldown
 stderr
 kaizen
+composable
+eferro
+mattpocock
+exfiltration
+[Pp]romptfoo
+Cherny
+Zhang
