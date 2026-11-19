@@ -129,6 +129,7 @@ export LC_CTYPE=en_US.UTF-8
 alias brewery='brew update; brew upgrade; brew cleanup; brew doctor'
 alias bundletool="java -jar $HOME/bin/bundletool-all-1.16.0.jar"
 alias cleanup-docker='docker stop $(docker ps -qa) || true && docker rm $(docker ps -qa) || true && docker system prune -f && docker volume prune -f'
+alias cddown="cd $HOME/Downloads"
 alias cdw="cd $HOME/workspace"
 alias cdwo="cd $HOME/workspace-others"
 alias cdwm="cd $HOME/workspace/my-notes"
