@@ -195,3 +195,5 @@ exfiltration
 [Pp]romptfoo
 Cherny
 Zhang
+[Tt]riaged
+[Uu]ntriaged
