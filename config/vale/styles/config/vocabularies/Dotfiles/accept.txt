@@ -203,3 +203,8 @@ npx
 [Ss]ubcommands?
 [Uu]npushed
 [Zz]izmor
+[Ss]andboxed
+[Bb]ubblewrap
+[Nn]amespaces?
+sysctl
+[Tt]humbnailers
