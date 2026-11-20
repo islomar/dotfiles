@@ -90,16 +90,6 @@ Details that break these rules go in `~/workspace/dotfiles-private/TODO.md`, in 
 
 - [ ] **Test `my-nvc-app` 2.0.0 (Expo SDK 58) on a phone**
   - CI, bundles and Docker pass, but nobody has run SDK 58 on a device. Check the EAS build result on expo.dev.
-- [ ] **Make the global agent rules agent-neutral** (`~/workspace/ai-office/instructions/AGENTS.md`)
-  - Every agent reads this file now, but some lines apply only to Claude Code: the `PostToolUse` hook, the `/ship` skill and RTK.
-  - Mark those lines as Claude Code only, or move them to a Claude-only file that `instructions/CLAUDE.md` imports.
-- [ ] **Confirm OpenCode and Gemini CLI read their linked rules file**
-  - Ask each one which character its instructions say to start replies with; the answer must be 🍀.
-  - On 2026-11-15 OpenCode had no credits and Gemini CLI was not logged in. Claude Code, Copilot CLI and Antigravity CLI passed.
-- [ ] **Triage harness memories into `ai-office/knowledge/`**
-  - Only generic, public-safe memories move. Machine state and project-specific rules stay where they are.
-- [ ] **Build a session analysis tool and skill** (`~/workspace/ai-office/tasks/T-35e30a-build-a-session-analysis-tool-and-skill.md`)
-  - A tool lists the skills, hooks, subagents and MCP calls in one transcript. A skill adds `retro`-style improvement suggestions.
 
 ### Personal
 
