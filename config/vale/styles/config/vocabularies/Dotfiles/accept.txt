@@ -202,3 +202,4 @@ Zhang
 npx
 [Ss]ubcommands?
 [Uu]npushed
+[Zz]izmor
