@@ -227,7 +227,7 @@ export PATH="$PATH:/home/islomar/.lmstudio/bin"
 # Needed so that llmfit detects the Docker Model Runner
 export DOCKER_MODEL_RUNNER_HOST=http://localhost:12434
 
-# export SKILLSPECTOR_PROVIDER=openai
+export SKILLSPECTOR_PROVIDER=openai
 # export OPENAI_API_KEY=<op://vault/item/field>
 
 # bun completions
