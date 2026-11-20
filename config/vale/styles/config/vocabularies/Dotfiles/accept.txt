@@ -197,3 +197,8 @@ Cherny
 Zhang
 [Tt]riaged
 [Uu]ntriaged
+[Gg]epeto
+[Pp]inokio
+npx
+[Ss]ubcommands?
+[Uu]npushed
