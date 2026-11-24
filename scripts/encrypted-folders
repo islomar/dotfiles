@@ -16,6 +16,9 @@
 # encrypted); unlock refuses to mount over them.
 # status and unlock tell a broken mount apart from a missing folder: a folder renamed or moved
 # while unlocked, or one whose gocryptfs process died, and print the command that clears it.
+# lock detaches a folder that an app still holds open (lazy unmount): new access stops at once,
+# and the app keeps only what it already had open until it exits. unlock skips such a folder
+# until that app lets go, so two gocryptfs processes never serve the same store.
 # status warns when Déjà Dup backs up a folder's unlocked contents: the folder is inside its
 # include list and not in its exclude list.
 #
@@ -84,6 +87,16 @@ gocryptfs_mount_of() {
       mp = unescape($5); src = unescape($(i + 2))
       if (mp == want_mp || src == want_src) { print mp; exit }
     }' /proc/self/mountinfo
+}
+
+# True when a gocryptfs process still serves folder $1's store: a folder detached by lock while
+# an app held it open. Mounting the store again would give it two writers.
+store_busy() {
+  local store p; store="$(store_of "$1")"
+  for p in $(pgrep -x gocryptfs); do
+    tr '\0' '\n' < "/proc/$p/cmdline" 2>/dev/null | grep -qxF "$store" && return 0
+  done
+  return 1
 }
 
 # Explain a listed folder that cannot be read: a broken mount, or a folder that is really gone.
@@ -156,6 +169,10 @@ cmd_unlock() {
     [ -z "$m" ] && continue
     if mountpoint -q "$m"; then ok=$((ok + 1)); continue; fi
     if [ ! -d "$m" ]; then missing_message "$m" >&2; fail=$((fail + 1)); continue; fi
+    if store_busy "$m"; then
+      echo "NOT UNLOCKED, still open in an app since it was locked (close the app): $m" >&2
+      fail=$((fail + 1)); continue
+    fi
     n=$(stray_count "$m")
     if [ "$n" -gt 0 ]; then
       stray_warning "$m" "$n"
@@ -172,13 +189,19 @@ cmd_unlock() {
 
 cmd_lock() {
   local targets; targets="$(selected_folders "$@")" || exit 1
-  local busy=0 m
+  local held=0 busy=0 m
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     mountpoint -q "$m" || continue
-    fusermount3 -u "$m" 2>/dev/null || { echo "IN USE (close files or terminals there): $m" >&2; busy=$((busy + 1)); }
+    fusermount3 -u "$m" 2>/dev/null && continue
+    # An app holds the folder open: detach it so nothing new can enter it.
+    if fusermount3 -uz "$m" 2>/dev/null; then
+      echo "DETACHED, an app still has it open until it exits: $m" >&2; held=$((held + 1))
+    else
+      echo "NOT LOCKED: $m" >&2; busy=$((busy + 1))
+    fi
   done <<< "$targets"
-  echo "Locked. Still open because in use: $busy"
+  echo "Locked. Not locked: $busy   Still open in an app: $held"
 }
 
 cmd_status() {
@@ -189,6 +212,8 @@ cmd_status() {
       missing_message "$m"
     elif mountpoint -q "$m"; then
       echo "UNLOCKED  $m"
+    elif store_busy "$m"; then
+      echo "locked, still open in an app until it exits  $m"
     else
       n=$(stray_count "$m")
       if [ "$n" -gt 0 ]; then
@@ -230,7 +255,7 @@ toggle_now() {
   else
     ( cmd_unlock ) > "$out" 2>&1; rc=$?
   fi
-  if [ "$rc" -ne 0 ] || grep -qE 'Failed: [1-9]|in use: [1-9]' "$out"; then
+  if [ "$rc" -ne 0 ] || grep -qE 'Failed: [1-9]|Not locked: [1-9]|in an app: [1-9]' "$out"; then
     notify dialog-warning "$(tail -n 1 "$out") Run: encrypted-folders status"
   else
     notify changes-prevent "$(tail -n 1 "$out")"

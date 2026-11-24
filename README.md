@@ -275,6 +275,8 @@ Usage and limits:
 - The lock key on Page 4 runs `scripts/encrypted-folders`.
   One action shows the state every 5 seconds (`deck`). The other runs `toggle` on a press.
   A press locks every folder if any is unlocked. Otherwise it unlocks them all, with 1Password approval.
+  If an app still holds a folder open, a press detaches it: nothing new can open it, and it stays
+  locked on later presses until that app exits.
 - `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
 - StreamController adds its own autostart entry.
 - Focus the browser tab that plays sound: [`apps/focus-audible-tab-extension`](./apps/focus-audible-tab-extension/README.md).
