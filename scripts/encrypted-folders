@@ -18,7 +18,8 @@
 # while unlocked, or one whose gocryptfs process died, and print the command that clears it.
 # lock detaches a folder that an app still holds open (lazy unmount): new access stops at once,
 # and the app keeps only what it already had open until it exits. unlock skips such a folder
-# until that app lets go, so two gocryptfs processes never serve the same store.
+# until that app lets go, so two gocryptfs processes never serve the same store. lock, unlock
+# and status name the process that holds it (often a GNOME image loader, glycin-*).
 # status warns when Déjà Dup backs up a folder's unlocked contents: the folder is inside its
 # include list and not in its exclude list.
 #
@@ -99,6 +100,41 @@ store_busy() {
   return 1
 }
 
+# Print "name (pid N)" for each process that keeps a detached folder alive: its working directory,
+# root or an open file sits on a FUSE connection that is no longer in the mount table. Image
+# loaders (glycin-*) and file managers often stay there after showing a folder.
+# The mount table cannot tell which folder a detached connection served, so with several detached
+# folders the list covers them all. One find call with a time limit: a stuck mount cannot hang it.
+detached_holders() {
+  local c live devs="" seen=""
+  live=" $(awk '{ printf "%s ", $3 }' /proc/self/mountinfo)"
+  for c in /sys/fs/fuse/connections/*; do
+    c="${c##*/}"
+    case "$live" in *" 0:$c "*) continue ;; esac
+    # st_dev of device 0:c, as glibc encodes it.
+    devs+=" $(( (c & 0xff) | ((c >> 8) << 20) )) "
+  done
+  [ -n "$devs" ] || return 0
+  local dev path pid
+  timeout 10 find -L /proc/[0-9]*/cwd /proc/[0-9]*/root /proc/[0-9]*/fd -maxdepth 1 -printf '%D %p\n' 2>/dev/null |
+    while read -r dev path; do
+      case "$devs" in *" $dev "*) ;; *) continue ;; esac
+      pid="${path#/proc/}"; pid="${pid%%/*}"
+      case "$seen" in *" $pid "*) continue ;; esac
+      seen+=" $pid "
+      echo "$(cat "/proc/$pid/comm" 2>/dev/null) (pid $pid)"
+    done
+}
+
+# One line naming the holders, for messages and the notification. Empty when none are found.
+holders_line() {
+  local h pids
+  h="$(detached_holders)"
+  [ -n "$h" ] || return 0
+  pids="$(grep -o '[0-9]*)$' <<< "$h" | tr -d ')' | paste -sd' ' -)"
+  echo "Held by: $(paste -sd, - <<< "$h" | sed 's/,/, /g'). Close it, or run: kill $pids"
+}
+
 # Explain a listed folder that cannot be read: a broken mount, or a folder that is really gone.
 missing_message() {
   local mp; mp="$(gocryptfs_mount_of "$1")"
@@ -164,14 +200,14 @@ dejadup_warning() {
 cmd_unlock() {
   local targets; targets="$(selected_folders "$@")" || exit 1
   make_passfile
-  local ok=0 fail=0 m n
+  local ok=0 fail=0 held=0 m n
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     if mountpoint -q "$m"; then ok=$((ok + 1)); continue; fi
     if [ ! -d "$m" ]; then missing_message "$m" >&2; fail=$((fail + 1)); continue; fi
     if store_busy "$m"; then
       echo "NOT UNLOCKED, still open in an app since it was locked (close the app): $m" >&2
-      fail=$((fail + 1)); continue
+      fail=$((fail + 1)); held=$((held + 1)); continue
     fi
     n=$(stray_count "$m")
     if [ "$n" -gt 0 ]; then
@@ -184,7 +220,8 @@ cmd_unlock() {
       echo "FAILED: $m" >&2; fail=$((fail + 1))
     fi
   done <<< "$targets"
-  echo "Unlocked: $ok   Failed: $fail   (each folder locks itself after $IDLE idle)"
+  local h=""; [ "$held" -gt 0 ] && h="   $(holders_line)"
+  echo "Unlocked: $ok   Failed: $fail   (each folder locks itself after $IDLE idle)$h"
 }
 
 cmd_lock() {
@@ -201,11 +238,12 @@ cmd_lock() {
       echo "NOT LOCKED: $m" >&2; busy=$((busy + 1))
     fi
   done <<< "$targets"
-  echo "Locked. Not locked: $busy   Still open in an app: $held"
+  local h=""; [ "$held" -gt 0 ] && h="   $(holders_line)"
+  echo "Locked. Not locked: $busy   Still open in an app: $held$h"
 }
 
 cmd_status() {
-  local m n
+  local m n held=0
   while IFS= read -r m; do
     [ -z "$m" ] && continue
     if [ ! -d "$m" ]; then
@@ -213,7 +251,7 @@ cmd_status() {
     elif mountpoint -q "$m"; then
       echo "UNLOCKED  $m"
     elif store_busy "$m"; then
-      echo "locked, still open in an app until it exits  $m"
+      echo "locked, still open in an app until it exits  $m"; held=$((held + 1))
     else
       n=$(stray_count "$m")
       if [ "$n" -gt 0 ]; then
@@ -224,6 +262,9 @@ cmd_status() {
       fi
     fi
   done < "$LIST"
+  if [ "$held" -gt 0 ]; then
+    holders_line | grep . >&2 || echo "No process found holding it. Run: pgrep -ax gocryptfs, and kill the one serving that folder." >&2
+  fi
   dejadup_warning
 }
 

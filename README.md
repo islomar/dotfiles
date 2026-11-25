@@ -277,6 +277,8 @@ Usage and limits:
   A press locks every folder if any is unlocked. Otherwise it unlocks them all, with 1Password approval.
   If an app still holds a folder open, a press detaches it: nothing new can open it, and it stays
   locked on later presses until that app exits.
+  The notification and `encrypted-folders status` name that app and its PID.
+  The usual culprit is a GNOME image loader (`glycin-*`) left over from a thumbnail; `kill <pid>` frees the folder.
 - `export_apps.sh` exports the current pages to `apps/streamcontroller/`.
 - StreamController adds its own autostart entry.
 - Focus the browser tab that plays sound: [`apps/focus-audible-tab-extension`](./apps/focus-audible-tab-extension/README.md).
