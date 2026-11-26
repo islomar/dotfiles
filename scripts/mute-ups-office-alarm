@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+#
+# Mutes or turns back on the beeper of the office UPS through Network UPS Tools (NUT).
+# Called as mute-ups-office-alarm it sends beeper.mute: it silences the alarm sounding now.
+# Called as unmute-ups-office-alarm (a link to this file) it sends beeper.enable.
+#
+# Reads the password of the NUT user from 1Password. Set these to override the defaults:
+#   UPS_NAME           Default: eaton@localhost
+#   NUT_USER           Default: upsadmin
+#   NUT_PASSWORD_REF   Default: op://Personal/NUT-upsadmin-password/password
+#
+set -euo pipefail
+
+UPS="${UPS_NAME:-eaton@localhost}"
+USER_NAME="${NUT_USER:-upsadmin}"
+PASSWORD_REF="${NUT_PASSWORD_REF:-op://Personal/NUT-upsadmin-password/password}"
+# The driver reads the full UPS state every 30 seconds (pollfreq).
+WAIT_SECONDS=35
+
+main() {
+	local command expected
+	case "$(basename "$0")" in
+	mute-ups-office-alarm) command="beeper.mute" expected="muted" ;;
+	unmute-ups-office-alarm) command="beeper.enable" expected="enabled" ;;
+	*)
+		printf 'Run this script as mute-ups-office-alarm or unmute-ups-office-alarm.\n' >&2
+		exit 2
+		;;
+	esac
+	if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+		sed -n '3,10p' "$0" | sed 's/^# \{0,1\}//'
+		exit 0
+	fi
+	require_command "upscmd" "sudo apt install nut-client"
+	require_command "op" "https://developer.1password.com/docs/cli/get-started/"
+
+	[[ "$command" == "beeper.mute" ]] && warn_if_no_alarm
+	send_command "$command"
+	wait_for_beeper_status "$expected"
+}
+
+require_command() {
+	if ! command -v "$1" >/dev/null 2>&1; then
+		printf 'Error: %s is not installed. Install it with: %s\n' "$1" "$2" >&2
+		exit 1
+	fi
+}
+
+ups_value() {
+	upsc "$UPS" "$1" 2>/dev/null || true
+}
+
+# Mute only acts on an alarm that is sounding. On mains power with no fault, nothing sounds.
+warn_if_no_alarm() {
+	local status
+	status=" $(ups_value ups.status) "
+	if [[ "$status" == *" OL "* && "$status" != *" LB "* && "$status" != *" OVER "* && "$status" != *" RB "* ]]; then
+		printf 'Note: the UPS is on mains power with no alarm (%s), so mute may have nothing to silence.\n' "$(ups_value ups.status)"
+	fi
+}
+
+# upscmd reads a password only from the terminal or -p. With -p it shows in the process list
+# for the second the command runs.
+send_command() {
+	local password reply
+	if ! password="$(op read "$PASSWORD_REF")"; then
+		# shellcheck disable=SC2016 # The $(...) is text for the user to run.
+		printf 'Error: cannot read %s from 1Password. Sign in with: eval "$(op signin)"\n' "$PASSWORD_REF" >&2
+		exit 1
+	fi
+	if ! reply="$(upscmd -u "$USER_NAME" -p "$password" -w "$UPS" "$1" 2>&1 | grep -v '^Init SSL')"; then
+		printf 'Error: %s failed: %s\n' "$1" "$reply" >&2
+		exit 1
+	fi
+	printf '%s: %s\n' "$1" "$reply"
+}
+
+wait_for_beeper_status() {
+	local expected="$1" status waited=0
+	status="$(ups_value ups.beeper.status)"
+	while [[ "$status" != "$expected" ]] && ((waited < WAIT_SECONDS)); do
+		sleep 5
+		waited=$((waited + 5))
+		status="$(ups_value ups.beeper.status)"
+	done
+	printf 'Beeper: %s\n' "${status:-unknown}"
+	if [[ "$status" != "$expected" && "$expected" == "muted" ]]; then
+		printf 'The UPS did not report "muted". With no alarm sounding, the beeper stays enabled.\n'
+	fi
+}
+
+main "$@"
