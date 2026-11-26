@@ -274,6 +274,7 @@ Usage and limits:
   After installing or updating the plugin from the Store, run `install_elgato_stream_deck.sh` again
   to apply the patch, then restart StreamController.
 - The OBS buttons run `obs-ctl` (`scripts/obs-ctl`), linked into `~/.local/bin` by `install-home-files.sh`.
+- The Refocus key on Page 4 runs `scripts/refocus-webcam`. See [Webcam](#webcam).
 - The lock key on Page 4 runs `scripts/encrypted-folders`.
   One action shows the state every 5 seconds (`deck`). The other runs `toggle` on a press.
   A press locks every folder if any is unlocked. Otherwise it unlocks them all, with 1Password approval.

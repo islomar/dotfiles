@@ -51,6 +51,29 @@
                     "background-control-action": 0
                 }
             }
+        },
+        "0x0": {
+            "states": {
+                "0": {
+                    "labels": {
+                        "bottom": {
+                            "text": "Refocus"
+                        }
+                    },
+                    "background": {},
+                    "media": {
+                        "path": "/home/islomar/.var/app/com.core447.StreamController/data/icons/com_core447_MaterialIcons/icons/center_focus_strong-inv.png"
+                    },
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "/home/islomar/.dotfiles/scripts/refocus-webcam"
+                            }
+                        }
+                    ]
+                }
+            }
         }
     }
 }
