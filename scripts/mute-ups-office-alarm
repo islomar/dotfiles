@@ -34,7 +34,13 @@ main() {
 	require_command "upscmd" "sudo apt install nut-client"
 	require_command "op" "https://developer.1password.com/docs/cli/get-started/"
 
-	[[ "$command" == "beeper.mute" ]] && warn_if_no_alarm
+	if [[ "$command" == "beeper.mute" ]] && no_alarm; then
+		printf 'Note: the UPS is on mains power with no alarm (%s), so mute has nothing to silence.\n' "$(ups_value ups.status)"
+		send_command "$command"
+		# With no alarm the UPS never reports "muted": waiting for it would only delay the prompt.
+		printf 'Beeper: %s\n' "$(ups_value ups.beeper.status)"
+		return
+	fi
 	send_command "$command"
 	wait_for_beeper_status "$expected"
 }
@@ -51,12 +57,10 @@ ups_value() {
 }
 
 # Mute only acts on an alarm that is sounding. On mains power with no fault, nothing sounds.
-warn_if_no_alarm() {
+no_alarm() {
 	local status
 	status=" $(ups_value ups.status) "
-	if [[ "$status" == *" OL "* && "$status" != *" LB "* && "$status" != *" OVER "* && "$status" != *" RB "* ]]; then
-		printf 'Note: the UPS is on mains power with no alarm (%s), so mute may have nothing to silence.\n' "$(ups_value ups.status)"
-	fi
+	[[ "$status" == *" OL "* && "$status" != *" LB "* && "$status" != *" OVER "* && "$status" != *" RB "* ]]
 }
 
 # upscmd reads a password only from the terminal or -p. With -p it shows in the process list
@@ -78,6 +82,9 @@ send_command() {
 wait_for_beeper_status() {
 	local expected="$1" status waited=0
 	status="$(ups_value ups.beeper.status)"
+	if [[ "$status" != "$expected" ]]; then
+		printf 'Waiting up to %d s for the UPS to report the change…\n' "$WAIT_SECONDS"
+	fi
 	while [[ "$status" != "$expected" ]] && ((waited < WAIT_SECONDS)); do
 		sleep 5
 		waited=$((waited + 5))
