@@ -347,5 +347,7 @@ An Eaton 3S 550 UPS powers the laptop and talks to it over USB.
 | `show-ups-info <ups>@<host>` | Shows the state of another UPS. |
 
 The script needs `upsc`, from the `nut-client` package.
-To mute, turn off or turn on the beeper, run `upscmd eaton@localhost beeper.mute`, `beeper.disable` or `beeper.enable`.
-`upscmd` needs a NUT user allowed to run commands, set in `/etc/nut/upsd.users`.
+To mute, turn off or turn on the beeper, run `upscmd -u upsadmin -w eaton@localhost beeper.mute`, `beeper.disable` or `beeper.enable`.
+The NUT user `upsadmin`, set in `/etc/nut/upsd.users`, may run only these three commands.
+Its password is the NUT one, not the Ubuntu one.
+Mute only silences an alarm that is sounding: with no alarm, the beeper stays `enabled`.

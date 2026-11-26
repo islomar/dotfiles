@@ -207,7 +207,7 @@ transfer_text() {
 
 # NUT reports enabled, disabled or muted. Muted silences the current alarm only.
 beeper_text() {
-	local enable_hint="${DIM}(turn on: upscmd $UPS beeper.enable)${RESET}"
+	local enable_hint="${DIM}(turn on: upscmd -u upsadmin -w $UPS beeper.enable)${RESET}"
 	case "$1" in
 	enabled) printf '%sEnabled%s %s(sounds on power alarms)%s' "$GREEN" "$RESET" "$DIM" "$RESET" ;;
 	muted) printf '%sMuted%s %s(current alarm silenced)%s\n  %-17s %s' "$YELLOW" "$RESET" "$DIM" "$RESET" '' "$enable_hint" ;;
