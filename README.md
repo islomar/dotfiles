@@ -25,6 +25,7 @@
     - [Installation](#installation)
     - [Software](#software)
     - [OpenBoard installation](#openboard-installation)
+  - [UPS](#ups)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -332,3 +333,19 @@ Usage and limits:
 - `sudo apt --fix-broken install`
 - <https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.1/openboard_ubuntu_20.04_1.6.1_amd64.deb>
 - `sudo dpkg -i openboard_ubuntu_20.04_1.6.1_amd64.deb`
+
+## UPS
+
+An Eaton 3S 550 UPS powers the laptop and talks to it over USB.
+[Network UPS Tools](https://networkupstools.org/) (NUT) reads it under the name `eaton`.
+
+[`scripts/show-ups-info`](./scripts/show-ups-info) shows its state: power source, battery charge and runtime, load, output voltage, outlets and beeper.
+
+| Command | What it does |
+|---|---|
+| `show-ups-info` | Shows the state of `eaton@localhost`. |
+| `show-ups-info <ups>@<host>` | Shows the state of another UPS. |
+
+The script needs `upsc`, from the `nut-client` package.
+To mute, turn off or turn on the beeper, run `upscmd eaton@localhost beeper.mute`, `beeper.disable` or `beeper.enable`.
+`upscmd` needs a NUT user allowed to run commands, set in `/etc/nut/upsd.users`.
