@@ -134,10 +134,16 @@ power_source() {
 
 charge_bar() {
 	local charge="$1" width=20 filled color
-	[[ -z "$charge" ]] && { printf 'n/a'; return; }
+	charge="${charge%%.*}"
+	is_integer "$charge" || { printf '%s' "${1:-n/a}"; return; }
 	filled=$((charge * width / 100))
 	if ((charge >= 50)); then color="$GREEN"; elif ((charge >= 20)); then color="$YELLOW"; else color="$RED"; fi
 	printf '%s%s%s%s%s %s%%' "$color" "$(repeat '█' "$filled")" "$DIM" "$(repeat '░' $((width - filled)))" "$RESET" "$charge"
+}
+
+# upsd values are untrusted text: bash runs $(...) found inside an arithmetic expression.
+is_integer() {
+	[[ "$1" =~ ^[0-9]+$ ]]
 }
 
 repeat() {
@@ -148,7 +154,8 @@ repeat() {
 # The runtime is an estimate for the current load: it drops as the load rises.
 format_duration() {
 	local seconds="$1"
-	[[ -z "$seconds" ]] && { printf 'n/a'; return; }
+	seconds="${seconds%%.*}"
+	is_integer "$seconds" || { printf '%s' "${1:-n/a}"; return; }
 	if ((seconds >= 3600)); then
 		printf '%dh %02dm' $((seconds / 3600)) $((seconds % 3600 / 60))
 	else
