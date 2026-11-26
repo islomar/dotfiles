@@ -1,0 +1,231 @@
+#!/usr/bin/env bash
+#
+# Shows the most important data of a UPS managed by Network UPS Tools (NUT):
+# power source, battery charge and runtime, load, output voltage and device details.
+#
+# Usage:
+#   show-ups-info [ups@host]   Default: eaton@localhost
+#
+set -euo pipefail
+
+UPS="${1:-eaton@localhost}"
+
+declare -A ups_data
+
+main() {
+	if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+		sed -n '3,7p' "$0" | sed 's/^# \{0,1\}//'
+		exit 0
+	fi
+	require_command "upsc" "sudo apt install nut-client"
+	setup_colors
+	read_ups_data
+
+	print_header "$(value ups.mfr) $(value ups.model)" "$UPS"
+	print_section "Status"
+	print_row "State" "$(describe_status "$(value ups.status)")"
+	print_row "Power source" "$(power_source "$(value ups.status)")"
+
+	print_section "Battery"
+	print_row "Charge" "$(charge_bar "$(value battery.charge)")"
+	print_row "Runtime left" "$(format_duration "$(value battery.runtime)")"
+	print_row "Low battery at" "$(with_unit "$(value battery.charge.low)" "%")"
+	print_row "Type" "$(battery_type "$(value battery.type)")"
+
+	print_section "Load and output"
+	print_row "Load" "$(load_text)"
+	print_row "Output voltage" "$(voltage_text)"
+	print_row "Goes on battery" "$(transfer_text)"
+
+	print_section "Device"
+	print_row "Outlets" "$(outlets_text)"
+	print_row "Beeper" "$(value ups.beeper.status)"
+	print_row "Firmware" "$(value ups.firmware)"
+	print_row "Driver" "$(value driver.name) $(value driver.version) ($(value driver.state))"
+}
+
+require_command() {
+	if ! command -v "$1" >/dev/null 2>&1; then
+		printf 'Error: %s is not installed. Install it with: %s\n' "$1" "$2" >&2
+		exit 1
+	fi
+}
+
+setup_colors() {
+	if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
+		BOLD=$'\e[1m' DIM=$'\e[2m' RED=$'\e[31m' GREEN=$'\e[32m' YELLOW=$'\e[33m' CYAN=$'\e[36m' RESET=$'\e[0m'
+	else
+		BOLD='' DIM='' RED='' GREEN='' YELLOW='' CYAN='' RESET=''
+	fi
+}
+
+# upsc prints "Init SSL without certificate database" on stderr when NUT has no SSL setup.
+read_ups_data() {
+	local output key val
+	if ! output="$(upsc "$UPS" 2>/dev/null)"; then
+		printf 'Error: cannot read UPS "%s". Check that the NUT driver and upsd are running:\n' "$UPS" >&2
+		printf '  systemctl status nut-driver.target nut-server.service\n' >&2
+		exit 1
+	fi
+	while IFS= read -r line; do
+		key="${line%%: *}"
+		val="${line#*: }"
+		ups_data["$key"]="${val%"${val##*[![:space:]]}"}"
+	done <<<"$output"
+}
+
+value() {
+	printf '%s' "${ups_data[$1]:-}"
+}
+
+with_unit() {
+	if [[ -n "$1" ]]; then printf '%s%s' "$1" "$2"; else printf 'n/a'; fi
+}
+
+print_header() {
+	printf '\n%s🔋 %s%s  %s%s%s\n' "$BOLD" "$1" "$RESET" "$DIM" "$2" "$RESET"
+}
+
+print_section() {
+	printf '\n%s%s%s\n' "$CYAN$BOLD" "$1" "$RESET"
+}
+
+print_row() {
+	printf '  %-17s %s\n' "$1" "${2:-n/a}"
+}
+
+# Status flags from the NUT developer guide: https://networkupstools.org/docs/developer-guide.chunked/new-drivers.html
+describe_status() {
+	local flag text=()
+	for flag in $1; do
+		case "$flag" in
+		OL) text+=("${GREEN}Online${RESET}") ;;
+		OB) text+=("${YELLOW}On battery${RESET}") ;;
+		LB) text+=("${RED}Low battery${RESET}") ;;
+		HB) text+=("High battery") ;;
+		RB) text+=("${RED}Replace battery${RESET}") ;;
+		CHRG) text+=("charging") ;;
+		DISCHRG) text+=("discharging") ;;
+		BYPASS) text+=("${YELLOW}Bypass${RESET}") ;;
+		CAL) text+=("calibrating") ;;
+		OFF) text+=("${RED}Off${RESET}") ;;
+		OVER) text+=("${RED}Overloaded${RESET}") ;;
+		TRIM) text+=("trimming high voltage") ;;
+		BOOST) text+=("boosting low voltage") ;;
+		FSD) text+=("${RED}Forced shutdown${RESET}") ;;
+		*) text+=("$flag") ;;
+		esac
+	done
+	local i
+	for i in "${!text[@]}"; do
+		((i > 0)) && printf ', '
+		printf '%s' "${text[$i]}"
+	done
+	return 0
+}
+
+power_source() {
+	case " $1 " in
+	*" OB "*) printf '%sBattery: the mains power is off%s' "$YELLOW" "$RESET" ;;
+	*" OL "*) printf 'Mains power' ;;
+	*) printf 'Unknown' ;;
+	esac
+}
+
+charge_bar() {
+	local charge="$1" width=20 filled color
+	[[ -z "$charge" ]] && { printf 'n/a'; return; }
+	filled=$((charge * width / 100))
+	if ((charge >= 50)); then color="$GREEN"; elif ((charge >= 20)); then color="$YELLOW"; else color="$RED"; fi
+	printf '%s%s%s%s%s %s%%' "$color" "$(repeat '█' "$filled")" "$DIM" "$(repeat '░' $((width - filled)))" "$RESET" "$charge"
+}
+
+repeat() {
+	local i
+	for ((i = 0; i < $2; i++)); do printf '%s' "$1"; done
+}
+
+# The runtime is an estimate for the current load: it drops as the load rises.
+format_duration() {
+	local seconds="$1"
+	[[ -z "$seconds" ]] && { printf 'n/a'; return; }
+	if ((seconds >= 3600)); then
+		printf '%dh %02dm' $((seconds / 3600)) $((seconds % 3600 / 60))
+	else
+		printf '%dm %02ds' $((seconds / 60)) $((seconds % 60))
+	fi
+	printf ' %s(at the current load)%s' "$DIM" "$RESET"
+}
+
+battery_type() {
+	case "$1" in
+	PbAc) printf 'Lead-acid (PbAc)' ;;
+	'') printf 'n/a' ;;
+	*) printf '%s' "$1" ;;
+	esac
+}
+
+load_text() {
+	local load real nominal
+	load="$(value ups.load)"
+	real="$(value ups.realpower)"
+	nominal="$(value ups.power.nominal)"
+	printf '%s' "$(with_unit "$load" "%")"
+	[[ -n "$real" ]] && printf ' (%s W)' "$real"
+	[[ -n "$nominal" ]] && printf ' of %s VA' "$nominal"
+}
+
+voltage_text() {
+	local voltage nominal frequency
+	voltage="$(value output.voltage)"
+	nominal="$(value output.voltage.nominal)"
+	frequency="$(value output.frequency.nominal)"
+	printf '%s' "$(with_unit "$voltage" " V")"
+	[[ -n "$nominal" ]] && printf ' %s(nominal %s V' "$DIM" "$nominal"
+	[[ -n "$nominal" && -n "$frequency" ]] && printf ', %s Hz' "$frequency"
+	[[ -n "$nominal" ]] && printf ')%s' "$RESET"
+	return 0
+}
+
+transfer_text() {
+	local low high
+	low="$(value input.transfer.low)"
+	high="$(value input.transfer.high)"
+	if [[ -n "$low" && -n "$high" ]]; then
+		printf 'below %s V or above %s V' "$low" "$high"
+	else
+		printf 'n/a'
+	fi
+}
+
+outlets_text() {
+	local id desc status protect text=()
+	for id in 0 1 2 3; do
+		if [[ "$id" == 0 ]]; then
+			desc="$(value outlet.desc)"
+			status=''
+			protect=''
+		else
+			desc="$(value "outlet.$id.desc")"
+			status="$(value "outlet.$id.status")"
+			protect="$(value "outlet.$id.protect.status")"
+		fi
+		[[ -z "$desc" ]] && continue
+		local item="$desc"
+		[[ -n "$status" ]] && item+=" $status"
+		[[ -n "$protect" ]] && item+=", $protect"
+		text+=("$item")
+	done
+	if ((${#text[@]} == 0)); then
+		printf 'n/a'
+	else
+		local first=1 item
+		for item in "${text[@]}"; do
+			((first)) || printf '\n  %-17s ' ''
+			printf '%s' "$item"
+			first=0
+		done
+	fi
+}
+
+main "$@"
