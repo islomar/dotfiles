@@ -211,3 +211,6 @@ sysctl
 [Tt]humbnailers
 Makefiles?
 [Uu]nmute
+Razer
+Kiyo
+autofocus

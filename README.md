@@ -26,6 +26,7 @@
     - [Software](#software)
     - [OpenBoard installation](#openboard-installation)
   - [UPS](#ups)
+  - [Webcam](#webcam)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -356,3 +357,16 @@ The scripts read it with the 1Password CLI from `op://Personal/NUT-upsadmin-pass
 `UPS_NAME`, `NUT_USER` and `NUT_PASSWORD_REF` override the UPS, the user and the 1Password reference.
 
 To turn the beeper off until you turn it back on, run `upscmd -u upsadmin -w eaton@localhost beeper.disable`.
+
+## Webcam
+
+The Razer Kiyo sometimes shows a blurred image when a call starts.
+The likely cause is autofocus stopping at the wrong distance.
+
+| Command | What it does |
+|---|---|
+| [`refocus-webcam`](./scripts/refocus-webcam) | Turns continuous autofocus off and back on, so the camera focuses again. Works during a call. |
+
+The script needs `v4l2-ctl`, from the `v4l-utils` package.
+`WEBCAM_NAME` overrides the camera name, `Razer Kiyo` by default.
+If the image stays blurred, unplug the camera, or run `sudo usbreset 1532:0e03`.

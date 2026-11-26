@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+#
+# Makes the webcam focus again when the image is blurred, without unplugging it.
+# Turns continuous autofocus off and back on, so the camera searches for focus from scratch.
+# Works while a call uses the camera.
+#
+# Finds the camera by the name the kernel gives it. Set this to override the default:
+#   WEBCAM_NAME   Default: Razer Kiyo
+#
+set -euo pipefail
+
+CAMERA_NAME="${WEBCAM_NAME:-Razer Kiyo}"
+CONTROL="focus_automatic_continuous"
+
+main() {
+	if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+		sed -n '3,9p' "$0" | sed 's/^# \{0,1\}//'
+		exit 0
+	fi
+	if ! command -v v4l2-ctl >/dev/null 2>&1; then
+		printf 'Error: v4l2-ctl is not installed. Install it with: sudo apt install v4l-utils\n' >&2
+		exit 1
+	fi
+
+	local device
+	device="$(find_device)"
+	v4l2-ctl -d "$device" -c "$CONTROL=0"
+	sleep 0.5
+	v4l2-ctl -d "$device" -c "$CONTROL=1"
+	printf 'Refocused %s (%s). %s\n' "$CAMERA_NAME" "$device" "$(v4l2-ctl -d "$device" -C "$CONTROL")"
+}
+
+# The camera has two nodes: one for video and one for metadata. Only the video one has the control.
+find_device() {
+	local node device
+	for node in /sys/class/video4linux/video*; do
+		[[ "$(cat "$node/name")" == "$CAMERA_NAME" ]] || continue
+		device="/dev/$(basename "$node")"
+		if v4l2-ctl -d "$device" -C "$CONTROL" >/dev/null 2>&1; then
+			printf '%s\n' "$device"
+			return
+		fi
+	done
+	printf 'Error: no camera named "%s" with %s. Is it plugged in?\n' "$CAMERA_NAME" "$CONTROL" >&2
+	exit 1
+}
+
+main "$@"
