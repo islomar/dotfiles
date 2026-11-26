@@ -339,15 +339,20 @@ Usage and limits:
 An Eaton 3S 550 UPS powers the laptop and talks to it over USB.
 [Network UPS Tools](https://networkupstools.org/) (NUT) reads it under the name `eaton`.
 
-[`scripts/show-ups-info`](./scripts/show-ups-info) shows its state: power source, battery charge and runtime, load, output voltage, outlets and beeper.
-
 | Command | What it does |
 |---|---|
-| `show-ups-info` | Shows the state of `eaton@localhost`. |
-| `show-ups-info <ups>@<host>` | Shows the state of another UPS. |
+| [`show-ups-office-info`](./scripts/show-ups-office-info) | Shows the state of `eaton@localhost`: power source, battery charge and runtime, load, output voltage, outlets and beeper. |
+| `show-ups-office-info <ups>@<host>` | Shows the state of another UPS. |
+| [`mute-ups-office-alarm`](./scripts/mute-ups-office-alarm) | Silences the alarm that is sounding now (`beeper.mute`). |
+| [`unmute-ups-office-alarm`](./scripts/unmute-ups-office-alarm) | Turns the beeper back on (`beeper.enable`). A link to `mute-ups-office-alarm`. |
 
-The script needs `upsc`, from the `nut-client` package.
-To mute, turn off or turn on the beeper, run `upscmd -u upsadmin -w eaton@localhost beeper.mute`, `beeper.disable` or `beeper.enable`.
-The NUT user `upsadmin`, set in `/etc/nut/upsd.users`, may run only these three commands.
-Its password is the NUT one, not the Ubuntu one.
+The scripts need `upsc` and `upscmd`, from the `nut-client` package.
 Mute only silences an alarm that is sounding: with no alarm, the beeper stays `enabled`.
+
+The mute and unmute scripts log in to NUT as `upsadmin`, set in `/etc/nut/upsd.users`.
+That user may run only `beeper.mute`, `beeper.disable` and `beeper.enable`.
+Its password is the NUT one, not the Ubuntu one.
+The scripts read it with the 1Password CLI from `op://Personal/NUT-upsadmin-password/password`.
+`UPS_NAME`, `NUT_USER` and `NUT_PASSWORD_REF` override the UPS, the user and the 1Password reference.
+
+To turn the beeper off until you turn it back on, run `upscmd -u upsadmin -w eaton@localhost beeper.disable`.

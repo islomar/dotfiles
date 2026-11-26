@@ -210,3 +210,4 @@ npx
 sysctl
 [Tt]humbnailers
 Makefiles?
+[Uu]nmute

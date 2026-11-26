@@ -4,7 +4,7 @@
 # power source, battery charge and runtime, load, output voltage and device details.
 #
 # Usage:
-#   show-ups-info [ups@host]   Default: eaton@localhost
+#   show-ups-office-info [ups@host]   Default: eaton@localhost
 #
 set -euo pipefail
 
