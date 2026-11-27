@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+#
+# Prints the state of the office UPS every few seconds until you press Ctrl+C:
+# power source, battery charge, runtime left and load. Marks each switch to battery and back.
+# Run it when the UPS loses mains power to see what is going on.
+#
+# Usage:
+#   monitor-ups-office [interval_seconds] [ups@host]   Defaults: 2 and eaton@localhost
+#
+set -euo pipefail
+
+INTERVAL="${1:-2}"
+UPS="${2:-eaton@localhost}"
+
+declare -A ups_data
+
+main() {
+	if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+		sed -n '3,8p' "$0" | sed 's/^# \{0,1\}//'
+		exit 0
+	fi
+	if [[ ! "$INTERVAL" =~ ^[1-9][0-9]*$ ]]; then
+		printf 'Error: the interval must be a whole number of seconds, not "%s".\n' "$INTERVAL" >&2
+		exit 2
+	fi
+	require_command "upsc" "sudo apt install nut-client"
+	setup_colors
+	trap 'printf "\n"; exit 0' INT TERM
+
+	printf '%sWatching %s every %ss. Press Ctrl+C to stop.%s\n' "$BOLD" "$UPS" "$INTERVAL" "$RESET"
+	local last_source="" source battery_since=""
+	while true; do
+		if ! read_ups_data; then
+			printf '%s %sCannot read %s. Is the NUT driver running?%s\n' "$(date +%H:%M:%S)" "$RED" "$UPS" "$RESET"
+			sleep "$INTERVAL"
+			continue
+		fi
+		source="$(power_source "${ups_data[ups.status]:-}")"
+		if [[ -n "$last_source" && "$source" != "$last_source" ]]; then
+			if [[ "$source" == "battery" ]]; then
+				battery_since="$(date +%s)"
+				printf '%s%s>>> Mains power lost: running on battery%s\n' "$BOLD" "$RED" "$RESET"
+			elif [[ "$source" == "mains" && -n "$battery_since" ]]; then
+				printf '%s%s>>> Mains power back after %s on battery%s\n' "$BOLD" "$GREEN" \
+					"$(format_duration $(($(date +%s) - battery_since)))" "$RESET"
+				battery_since=""
+			fi
+		elif [[ -z "$last_source" && "$source" == "battery" ]]; then
+			battery_since="$(date +%s)"
+		fi
+		last_source="$source"
+		print_line
+		sleep "$INTERVAL"
+	done
+}
+
+require_command() {
+	if ! command -v "$1" >/dev/null 2>&1; then
+		printf 'Error: %s is not installed. Install it with: %s\n' "$1" "$2" >&2
+		exit 1
+	fi
+}
+
+setup_colors() {
+	if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
+		BOLD=$'\e[1m' RED=$'\e[31m' GREEN=$'\e[32m' YELLOW=$'\e[33m' RESET=$'\e[0m'
+	else
+		BOLD='' RED='' GREEN='' YELLOW='' RESET=''
+	fi
+}
+
+# Reads all variables of the UPS with one upsc call. Fails when upsc cannot reach it.
+read_ups_data() {
+	local output key value
+	ups_data=()
+	output="$(upsc "$UPS" 2>/dev/null)" || return 1
+	while IFS= read -r line; do
+		key="${line%%: *}"
+		value="${line#*: }"
+		ups_data["$key"]="$value"
+	done <<<"$output"
+	[[ -n "${ups_data[ups.status]:-}" ]]
+}
+
+# OL = on line (mains), OB = on battery.
+power_source() {
+	case " $1 " in
+	*" OB "*) printf 'battery' ;;
+	*" OL "*) printf 'mains' ;;
+	*) printf 'unknown' ;;
+	esac
+}
+
+format_duration() {
+	local seconds="$1"
+	if [[ ! "$seconds" =~ ^[0-9]+$ ]]; then
+		printf '?'
+	elif ((seconds >= 60)); then
+		printf '%dm%02ds' $((seconds / 60)) $((seconds % 60))
+	else
+		printf '%ds' "$seconds"
+	fi
+}
+
+status_text() {
+	local status="$1" color="$GREEN"
+	case " $status " in
+	*" LB "* | *" FSD "*) color="$BOLD$RED" ;;
+	*" OB "*) color="$RED" ;;
+	*" CHRG "*) color="$YELLOW" ;;
+	esac
+	printf '%s%-14s%s' "$color" "$status" "$RESET"
+}
+
+print_line() {
+	local status="${ups_data[ups.status]}" note=""
+	case " $status " in
+	*" LB "*) note="  ${BOLD}${RED}Low battery: upsmon shuts the laptop down now${RESET}" ;;
+	*" FSD "*) note="  ${BOLD}${RED}Forced shutdown in progress${RESET}" ;;
+	esac
+	printf '%s %s charge %s%3s%%%s  runtime %8s  load %3s%%%s\n' \
+		"$(date +%H:%M:%S)" \
+		"$(status_text "$status")" \
+		"$BOLD" "${ups_data[battery.charge]:-?}" "$RESET" \
+		"$(format_duration "${ups_data[battery.runtime]:-}")" \
+		"${ups_data[ups.load]:-?}" \
+		"$note"
+}
+
+main "$@"

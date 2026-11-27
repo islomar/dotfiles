@@ -346,6 +346,8 @@ An Eaton 3S 550 UPS powers the laptop and talks to it over USB.
 |---|---|
 | [`show-ups-office-info`](./scripts/show-ups-office-info) | Shows the state of `eaton@localhost`: power source, battery charge and runtime, load, output voltage, outlets and beeper. |
 | `show-ups-office-info <ups>@<host>` | Shows the state of another UPS. |
+| [`monitor-ups-office`](./scripts/monitor-ups-office) | Prints status, charge, runtime and load every 2 seconds until Ctrl+C. Marks each switch to battery and back. Run it when the UPS loses mains power. |
+| `monitor-ups-office <seconds> [<ups>@<host>]` | Same, with another interval or UPS. |
 | [`mute-ups-office-alarm`](./scripts/mute-ups-office-alarm) | Silences the alarm that is sounding now (`beeper.mute`). |
 | [`unmute-ups-office-alarm`](./scripts/unmute-ups-office-alarm) | Turns the beeper back on (`beeper.enable`). A link to `mute-ups-office-alarm`. |
 
