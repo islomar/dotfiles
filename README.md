@@ -26,6 +26,7 @@
     - [Software](#software)
     - [OpenBoard installation](#openboard-installation)
   - [UPS](#ups)
+    - [Shutdown on low battery](#shutdown-on-low-battery)
   - [Webcam](#webcam)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -358,6 +359,40 @@ The scripts read it with the 1Password CLI from `op://Personal/NUT-upsadmin-pass
 `UPS_NAME`, `NUT_USER` and `NUT_PASSWORD_REF` override the UPS, the user and the 1Password reference.
 
 To turn the beeper off until you turn it back on, run `upscmd -u upsadmin -w eaton@localhost beeper.disable`.
+
+### Shutdown on low battery
+
+`upsmon` (the `nut-monitor` service) shuts the laptop down when the UPS reports low battery (`LB`), then tells the UPS to cut its outputs.
+It needs a `MONITOR` line in `/etc/nut/upsmon.conf` and a matching user in `/etc/nut/upsd.users`.
+Without the `MONITOR` line, `upsmon` stops at start with `Fatal error: insufficient power configured!`.
+
+[`configure-ups-office-monitor`](./scripts/configure-ups-office-monitor) adds both.
+It logs `upsmon` in as the NUT user `upsmon`, whose password is in 1Password at `op://Personal/NUT-upsmon-password/password`.
+`upsmon` reads that password in plain text from `upsmon.conf`, which only root and the `nut` group can read.
+The script backs up both files and writes its lines between `# BEGIN upsmon-managed` and `# END upsmon-managed`, so a second run replaces them.
+
+```bash
+op item create --category=password --vault=Personal \
+  --title="NUT-upsmon-password" --generate-password='letters,digits,32' >/dev/null
+op read "op://Personal/NUT-upsmon-password/password" \
+  | sudo ~/.dotfiles/scripts/configure-ups-office-monitor
+sudo systemctl restart nut-server
+sudo systemctl reset-failed nut-monitor
+sudo systemctl restart nut-monitor
+```
+
+Skip `op item create` if the 1Password item already exists.
+To check, `systemctl is-active nut-monitor` prints `active` and `upsc -c eaton` lists `127.0.0.1`.
+
+To watch the UPS switch to battery, run this and unplug the UPS for 20 seconds:
+
+```bash
+upslog -s eaton@localhost -l - -i 2 -d 30 \
+  -f "%TIME @H:@M:@S% charge=%VAR battery.charge% runtime=%VAR battery.runtime%s load=%VAR ups.load% [%VAR ups.status%]"
+```
+
+The status changes from `[OL CHRG]` to `[OB DISCHRG]` and back.
+Put no `%` right after a `%VAR ...%` escape: `upslog` reads it as the start of a new escape and prints `INVALID`.
 
 ## Webcam
 

@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+#
+# Lets upsmon watch the office UPS, so the laptop shuts down cleanly on low battery.
+# Adds a [upsmon] user to upsd.users and a MONITOR line for eaton@localhost to upsmon.conf.
+# Backs up both files first. Each run replaces the block between the upsmon-managed markers.
+# Reads the password of the upsmon user from stdin:
+#   op read "op://Personal/NUT-upsmon-password/password" | sudo ~/.dotfiles/scripts/configure-ups-office-monitor [conf_dir]
+# conf_dir defaults to /etc/nut. Then restart nut-server and nut-monitor.
+#
+set -euo pipefail
+umask 077
+
+BEGIN_MARK="# BEGIN upsmon-managed"
+END_MARK="# END upsmon-managed"
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+	sed -n '3,8p' "$0" | sed 's/^# \{0,1\}//'
+	exit 0
+fi
+
+CONF_DIR="${1:-/etc/nut}"
+USERS_FILE="$CONF_DIR/upsd.users"
+MONITOR_FILE="$CONF_DIR/upsmon.conf"
+
+# Prints the file without the managed block.
+outside_block() {
+	awk -v b="$BEGIN_MARK" -v e="$END_MARK" '$0==b{s=1;next} $0==e{s=0;next} !s' "$1"
+}
+
+# Writes the file with the old managed block removed and the new one at the end.
+# "cat >" keeps the owner and mode of the file.
+replace_block() {
+	local file="$1" block="$2" tmp
+	tmp="$(mktemp)"
+	outside_block "$file" >"$tmp"
+	printf '%s\n%s\n%s\n' "$BEGIN_MARK" "$block" "$END_MARK" >>"$tmp"
+	cat "$tmp" >"$file"
+	rm -f "$tmp"
+}
+
+main() {
+	local file password stamp
+	for file in "$USERS_FILE" "$MONITOR_FILE"; do
+		[[ -f "$file" ]] || { printf 'Error: %s does not exist.\n' "$file" >&2; exit 1; }
+	done
+
+	IFS= read -r password || true
+	if [[ ! "$password" =~ ^[A-Za-z0-9]{20,}$ ]]; then
+		printf 'Error: the password on stdin must be 20 or more letters and digits.\n' >&2
+		exit 1
+	fi
+
+	if outside_block "$USERS_FILE" | grep -qE '^\s*\[upsmon\]'; then
+		printf 'Error: %s already has a [upsmon] section outside the managed block.\n' "$USERS_FILE" >&2
+		exit 1
+	fi
+	if outside_block "$MONITOR_FILE" | grep -qE '^\s*MONITOR\s'; then
+		printf 'Error: %s already has a MONITOR line outside the managed block.\n' "$MONITOR_FILE" >&2
+		exit 1
+	fi
+
+	stamp="$(date +%Y%m%d-%H%M%S-%N)"
+	cp -p "$USERS_FILE" "$USERS_FILE.bak-$stamp"
+	cp -p "$MONITOR_FILE" "$MONITOR_FILE.bak-$stamp"
+	printf 'Backups: %s.bak-%s and %s.bak-%s\n' "$USERS_FILE" "$stamp" "$MONITOR_FILE" "$stamp"
+
+	replace_block "$USERS_FILE" "[upsmon]
+    password = $password
+    upsmon primary"
+	replace_block "$MONITOR_FILE" "MONITOR eaton@localhost 1 upsmon $password primary"
+
+	printf 'Updated %s and %s.\n' "$USERS_FILE" "$MONITOR_FILE"
+}
+
+main
