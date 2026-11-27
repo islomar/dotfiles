@@ -69,6 +69,12 @@ Details that break these rules go in `~/workspace/dotfiles-private/TODO.md`, in 
   - The link is in the private to-do file.
   - Once the maintainer merges and releases it: update the plugin from the Store, set the sound in the key's settings,
     then remove `apps/streamcontroller/patches/pomodoro-finish-sound.patch` and its step in `scripts/install_elgato_stream_deck.sh`.
+- [ ] **Test the UPS shutdown on low battery** (README, section "Shutdown on low battery")
+  - Do it at the end of a working day, with all work saved: the laptop shuts down and the UPS cuts its outputs for a moment.
+  - Run `sudo upsmon -c fsd`.
+    It acts as if the battery were critical: it sets `FSD` on the UPS and runs `/sbin/shutdown -h +0`.
+  - Done when the laptop shuts down cleanly, the UPS outputs come back on, and after boot `systemctl is-active nut-monitor` prints `active`.
+  - Also unplug the UPS for 20 seconds once, to check that `notify-ups-office` shows "on battery" and "mains power back".
 
 ### This repository
 
