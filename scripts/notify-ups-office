@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+#
+# Shows a desktop notification when the office UPS changes state:
+# on battery, mains back, low battery, and lost or restored contact with the UPS.
+# Reads the UPS with upsc every few seconds. Runs as the user service notify-ups-office.service.
+#
+# Set these to override the defaults:
+#   UPS_NAME            Default: eaton@localhost
+#   UPS_POLL_SECONDS    Default: 5
+#
+set -euo pipefail
+
+UPS="${UPS_NAME:-eaton@localhost}"
+POLL_SECONDS="${UPS_POLL_SECONDS:-5}"
+# upsc can fail once while the driver reconnects. Report lost contact after this many failures in a row.
+FAILURES_BEFORE_ALERT=3
+
+main() {
+	if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+		sed -n '3,10p' "$0" | sed 's/^# \{0,1\}//'
+		exit 0
+	fi
+	require_command "upsc" "sudo apt install nut-client"
+	require_command "notify-send" "sudo apt install libnotify-bin"
+
+	local status last_source="" source failures=0 contact_lost=false low_battery=false battery_since=""
+	log "Watching $UPS every ${POLL_SECONDS}s"
+	while true; do
+		if ! status="$(upsc "$UPS" ups.status 2>/dev/null)" || [[ -z "$status" ]]; then
+			failures=$((failures + 1))
+			if ((failures == FAILURES_BEFORE_ALERT)); then
+				contact_lost=true
+				notify critical "UPS: no contact" "Cannot read $UPS. Check the USB cable and the NUT driver."
+			fi
+			sleep "$POLL_SECONDS"
+			continue
+		fi
+		failures=0
+		if [[ "$contact_lost" == true ]]; then
+			contact_lost=false
+			notify normal "UPS: contact back" "Reading $UPS again. Status: $status."
+		fi
+
+		source="$(power_source "$status")"
+		if [[ "$source" == "battery" && "$last_source" != "battery" ]]; then
+			battery_since="$(date +%s)"
+			notify critical "UPS: on battery" "Mains power lost. $(battery_summary) Save your work."
+		elif [[ "$source" == "mains" && "$last_source" == "battery" ]]; then
+			notify normal "UPS: mains power back" \
+				"After $(format_duration $(($(date +%s) - battery_since))) on battery. $(battery_summary)"
+		fi
+		last_source="$source"
+
+		if has_flag "$status" LB; then
+			if [[ "$low_battery" == false ]]; then
+				low_battery=true
+				notify critical "UPS: low battery" "upsmon shuts the laptop down now. $(battery_summary)"
+			fi
+		else
+			low_battery=false
+		fi
+		sleep "$POLL_SECONDS"
+	done
+}
+
+require_command() {
+	if ! command -v "$1" >/dev/null 2>&1; then
+		printf 'Error: %s is not installed. Install it with: %s\n' "$1" "$2" >&2
+		exit 1
+	fi
+}
+
+log() {
+	printf '%s\n' "$1"
+}
+
+# Logs the event to the journal and shows it on the desktop.
+# A critical notification stays on screen until you close it.
+notify() {
+	local urgency="$1" title="$2" body="$3"
+	log "$title: $body"
+	notify-send --app-name="UPS" --urgency="$urgency" --icon=battery-caution "$title" "$body" ||
+		log "notify-send failed"
+}
+
+has_flag() {
+	[[ " $1 " == *" $2 "* ]]
+}
+
+# OL = on line (mains), OB = on battery.
+power_source() {
+	if has_flag "$1" OB; then
+		printf 'battery'
+	elif has_flag "$1" OL; then
+		printf 'mains'
+	else
+		printf 'unknown'
+	fi
+}
+
+battery_summary() {
+	local charge runtime
+	charge="$(upsc "$UPS" battery.charge 2>/dev/null || printf '?')"
+	runtime="$(upsc "$UPS" battery.runtime 2>/dev/null || printf '')"
+	printf 'Battery %s%%, about %s left.' "$charge" "$(format_duration "$runtime")"
+}
+
+format_duration() {
+	local seconds="$1"
+	if [[ ! "$seconds" =~ ^[0-9]+$ ]]; then
+		printf '?'
+	elif ((seconds >= 60)); then
+		printf '%dm%02ds' $((seconds / 60)) $((seconds % 60))
+	else
+		printf '%ds' "$seconds"
+	fi
+}
+
+main "$@"

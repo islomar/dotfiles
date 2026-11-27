@@ -1,0 +1,13 @@
+[Unit]
+Description=Desktop notifications when the office UPS changes state
+Documentation=file://%h/.dotfiles/scripts/notify-ups-office
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/.dotfiles/scripts/notify-ups-office
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=graphical-session.target

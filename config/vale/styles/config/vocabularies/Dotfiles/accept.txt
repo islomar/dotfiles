@@ -214,3 +214,4 @@ Makefiles?
 Razer
 Kiyo
 autofocus
+sudoers

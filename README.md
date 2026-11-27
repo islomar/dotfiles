@@ -26,6 +26,7 @@
     - [Software](#software)
     - [OpenBoard installation](#openboard-installation)
   - [UPS](#ups)
+    - [Desktop notifications](#desktop-notifications)
     - [Shutdown on low battery](#shutdown-on-low-battery)
   - [Webcam](#webcam)
 
@@ -361,6 +362,23 @@ The scripts read it with the 1Password CLI from `op://Personal/NUT-upsadmin-pass
 `UPS_NAME`, `NUT_USER` and `NUT_PASSWORD_REF` override the UPS, the user and the 1Password reference.
 
 To turn the beeper off until you turn it back on, run `upscmd -u upsadmin -w eaton@localhost beeper.disable`.
+
+### Desktop notifications
+
+[`notify-ups-office`](./scripts/notify-ups-office) reads `ups.status` with `upsc` every 5 seconds and calls `notify-send` when it changes.
+It notifies when the UPS goes on battery, when mains power comes back (with the length of the outage), on low battery, and when it loses or regains contact with the UPS.
+The battery, low-battery and lost-contact notifications stay on screen until you close them.
+
+It runs as the user service [`notify-ups-office.service`](./config/systemd/user/notify-ups-office.service), which starts with the desktop session.
+It runs as you, so it needs no sudo and no change in `/etc/nut`.
+`upsmon` can run a `NOTIFYCMD` too, but as the `nut` user, which cannot reach your desktop without a sudoers rule.
+
+```bash
+ln -s ~/.dotfiles/config/systemd/user/notify-ups-office.service ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now notify-ups-office.service
+journalctl --user -u notify-ups-office   # each notification is also logged here
+```
 
 ### Shutdown on low battery
 
