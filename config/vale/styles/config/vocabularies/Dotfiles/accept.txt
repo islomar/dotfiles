@@ -86,7 +86,7 @@ Slimbook
 Speedtest
 Spotify
 stdin
-subfolders
+subfolders?
 Supabase
 Syncthing
 sysfs
@@ -217,3 +217,11 @@ Razer
 Kiyo
 autofocus
 sudoers
+Sennheiser
+Vosk
+earcups?
+whisrs
+hyprwhspr
+tries?
+[Bb]ooleans?
+reprompt(ing|s|ed)?
