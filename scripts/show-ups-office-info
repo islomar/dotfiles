@@ -72,6 +72,7 @@ read_ups_data() {
 		exit 1
 	fi
 	while IFS= read -r line; do
+		[[ -z "$line" ]] && continue
 		key="${line%%: *}"
 		val="${line#*: }"
 		ups_data["$key"]="${val%"${val##*[![:space:]]}"}"
