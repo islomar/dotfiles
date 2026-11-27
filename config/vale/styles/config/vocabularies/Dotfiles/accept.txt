@@ -31,6 +31,7 @@ gcloud
 gitleaks
 gocryptfs
 GSConnect
+Gualis
 gvfs
 Hamel
 Higgsfield
@@ -79,6 +80,7 @@ rumdl
 Runroom
 SHAs?
 Shopify
+sidechains?
 Silletti
 Slimbook
 Speedtest
