@@ -21,10 +21,12 @@ main() {
 	setup_colors
 	read_ups_data
 
-	print_header "$(value ups.mfr) $(value ups.model)" "$UPS"
+	print_header "$(device_name)" "$UPS"
 	print_section "Status"
 	print_row "State" "$(describe_status "$(value ups.status)")"
 	print_row "Power source" "$(power_source "$(value ups.status)")"
+	print_countdown "Shutdown in" "$(value ups.timer.shutdown)"
+	print_countdown "Restart in" "$(value ups.timer.start)"
 
 	print_section "Battery"
 	print_row "Charge" "$(charge_bar "$(value battery.charge)")"
@@ -38,6 +40,8 @@ main() {
 	print_row "Goes on battery" "$(transfer_text)"
 
 	print_section "Device"
+	print_row "Type" "$(value ups.type)"
+	print_row "Shutdown delays" "$(delays_text)"
 	print_row "Outlets" "$(outlets_text)"
 	print_row "Beeper" "$(beeper_text "$(value ups.beeper.status)")"
 	print_row "Firmware" "$(value ups.firmware)"
@@ -84,6 +88,18 @@ with_unit() {
 
 print_header() {
 	printf '\n%s🔋 %s%s  %s%s%s\n' "$BOLD" "$1" "$RESET" "$DIM" "$2" "$RESET"
+}
+
+# ups.model already holds the brand on some devices, such as "Eaton 3S 550".
+device_name() {
+	local mfr model
+	mfr="$(value ups.mfr)"
+	model="$(value ups.model)"
+	if [[ -n "$mfr" && "${model,,}" != "${mfr,,}"* ]]; then
+		printf '%s %s' "$mfr" "$model"
+	else
+		printf '%s' "${model:-$mfr}"
+	fi
 }
 
 print_section() {
@@ -162,6 +178,26 @@ format_duration() {
 		printf '%dm %02ds' $((seconds / 60)) $((seconds % 60))
 	fi
 	printf ' %s(at the current load)%s' "$DIM" "$RESET"
+}
+
+# NUT reports -1 when no timer runs. The row appears only during a countdown.
+print_countdown() {
+	is_integer "$2" || return 0
+	print_row "$1" "${RED}${2} s${RESET}"
+}
+
+# After a shutdown command the UPS waits ups.delay.shutdown before cutting its outlets,
+# and turns them back on ups.delay.start after mains power returns.
+delays_text() {
+	local off on
+	off="$(value ups.delay.shutdown)"
+	on="$(value ups.delay.start)"
+	if [[ -z "$off" && -z "$on" ]]; then
+		printf 'n/a'
+		return
+	fi
+	printf 'outlets off %s after the shutdown command' "$(with_unit "$off" " s")"
+	printf '\n  %-17s %s' '' "back on $(with_unit "$on" " s") after mains power returns"
 }
 
 battery_type() {
